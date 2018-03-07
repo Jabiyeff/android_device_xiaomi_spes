@@ -151,12 +151,14 @@ service vendor.pd_mapper /vendor/bin/pd-mapper
     class core
     user system
     group system
+    writepid /dev/cpuset/system-background/tasks
 
 service vendor.per_mgr /vendor/bin/pm-service
     class core
     user system
     group system
     ioprio rt 4
+    writepid /dev/cpuset/system-background/tasks
 
 service mi_thermald /system/vendor/bin/mi_thermald
     class main
@@ -169,6 +171,7 @@ service vendor.per_proxy /vendor/bin/pm-proxy
     user system
     group system
     disabled
+    writepid /dev/cpuset/system-background/tasks
 
 service vendor.mdm_helper /vendor/bin/mdm_helper
     class core
@@ -189,6 +192,7 @@ service vendor.displayfeature /vendor/bin/displayfeature
     class late_start
     user root
     group root
+    writepid /dev/cpuset/system-background/tasks
 
 on property:init.svc.surfaceflinger=stopped
     stop displayfeature
