@@ -146,6 +146,7 @@ on charger
     setprop vendor.usb.controller 4e00000.dwc3
     setprop sys.usb.configfs 1
     start mi_thermald
+    start vendor.hvdcp_opti
 
 service vendor.pd_mapper /vendor/bin/pd-mapper
     class core
@@ -202,3 +203,9 @@ on property:init.svc.surfaceflinger=running
 
 on property:init.svc.surfaceflinger=restarting
     stop displayfeature
+
+service vendor.hvdcp_opti /vendor/bin/hvdcp_opti
+    class main
+    user root
+    group system wakelock
+    writepid /dev/cpuset/system-background/tasks
