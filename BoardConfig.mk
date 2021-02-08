@@ -145,5 +145,8 @@ PRODUCT_FULL_TREBLE_OVERRIDE := true
 PRODUCT_COMPATIBLE_PROPERTY_OVERRIDE := true
 BOARD_VNDK_VERSION := current
 
+# Sepolicy
+include device/qcom/sepolicy_vndr/SEPolicy.mk
+
 # Inherit from the proprietary version
 include vendor/xiaomi/spes/BoardConfigVendor.mk
