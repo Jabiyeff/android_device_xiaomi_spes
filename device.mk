@@ -289,6 +289,10 @@ PRODUCT_PACKAGES += \
     update_engine_sideload \
     update_verifier
 
+# Power
+PRODUCT_PACKAGES += \
+    android.hardware.power-service-qti
+
 # QSPM
 PRODUCT_PROPERTY_OVERRIDES += \
     ro.vendor.qspm.enable=true
