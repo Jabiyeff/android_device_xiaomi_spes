@@ -146,6 +146,9 @@ PMIC_QG_SUPPORT := true
 # QSPM compilation
 TARGET_USES_QSPM := true
 
+# RIL
+ENABLE_VENDOR_RIL_SERVICE := true
+
 # Sensor multi HAL
 USE_SENSOR_MULTI_HAL := true
 
