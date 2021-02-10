@@ -191,6 +191,13 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     libhwbinder.vendor
 
+# IPACM
+PRODUCT_PACKAGES += \
+    ipacm \
+    IPACM_cfg.xml \
+    libipanat \
+    liboffloadhal
+
 # Enable incremental FS feature
 PRODUCT_PROPERTY_OVERRIDES += \
     ro.incremental.enable=1
