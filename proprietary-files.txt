@@ -644,6 +644,9 @@ vendor/lib64/libmmcamera_lscv35.so
 vendor/lib64/libmmcamera_mfnr.so
 vendor/lib64/libmmcamera_mfnr_t4.so
 
+# Consumer IR
+vendor/lib64/hw/consumerir.default.so:vendor/lib64/hw/consumerir.bengal.so
+
 # Listen
 vendor/lib/hw/sound_trigger.primary.bengal.so
 vendor/lib/libadpcmdec.so

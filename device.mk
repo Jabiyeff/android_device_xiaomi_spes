@@ -114,6 +114,11 @@ PRODUCT_PACKAGES += \
     vendor.qti.hardware.camera.device@3.5.vendor \
     vendor.qti.hardware.camera.postproc@1.0.vendor
 
+# Consumer IR
+PRODUCT_PACKAGES += \
+    android.hardware.ir@1.0-impl \
+    android.hardware.ir@1.0-service
+
 # Fastboot
 PRODUCT_PACKAGES += \
     android.hardware.fastboot@1.0-impl-mock \
