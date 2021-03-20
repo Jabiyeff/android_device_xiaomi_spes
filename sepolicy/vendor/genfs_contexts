@@ -13,6 +13,9 @@ genfscon sysfs /devices/platform/soc/soc:qcom,dsi-display                       
 genfscon sysfs /devices/platform/soc/soc:qcom,gpubw                                                 u:object_r:sysfs_msm_subsys:s0
 genfscon sysfs /devices/platform/soc/soc:qcom,gpubw/devfreq                                         u:object_r:sysfs_msm_subsys:s0
 
+# DT2W
+genfscon proc /tp_gesture                                                      u:object_r:proc_tp_gesture:s0
+
 # Fingerprint
 genfscon sysfs /devices/platform/soc/soc:fingerprint_fpc/device_prepare         u:object_r:vendor_sysfs_fingerprint:s0
 genfscon sysfs /devices/platform/soc/soc:fingerprint_fpc/fingerdown_wait        u:object_r:vendor_sysfs_fingerprint:s0
@@ -27,9 +30,6 @@ genfscon sysfs /devices/platform/soc/soc:maxim_ds28e16/power_supply/batt_verify 
 
 # kmsg
 genfscon proc /last_kmsg                                                        u:object_r:proc_last_kmsg:s0
-
-# Touchpanel
-genfscon sysfs /touchpanel                                                      u:object_r:sysfs_touchpanel:s0
 
 # UFS
 genfscon sysfs /devices/platform/soc/1d84000.ufshc/clkgate_enable               u:object_r:vendor_sysfs_scsi_host:s0

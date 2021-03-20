@@ -111,6 +111,10 @@ on boot
     chown system system /sys/class/drm/card0-DSI-1/doze_brightness
     chown system system /sys/class/drm/card0-DSI-1/doze_backlight
 
+    # DT2W
+    chown system system /proc/tp_gesture
+    chmod 0644 /proc/tp_gesture
+
     # USB controller configuration
     setprop vendor.usb.rndis.func.name "gsi"
     setprop vendor.usb.rmnet.func.name "gsi"
