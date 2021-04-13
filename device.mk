@@ -262,6 +262,11 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     android.hardware.biometrics.fingerprint@2.1-service.spes
 
+# FM
+PRODUCT_PACKAGES += \
+    FM2 \
+    qcom.fmradio
+
 # Health
 PRODUCT_PACKAGES += \
     android.hardware.health@2.1-impl \
