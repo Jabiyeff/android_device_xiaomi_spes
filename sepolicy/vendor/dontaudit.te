@@ -1,0 +1,21 @@
+# please don't kill yourself unless it's allowed
+dontaudit { fsck toolbox vdc zygote } self:capability kill;
+
+# We never apply OTAs when GSI is running
+dontaudit hal_bootctl_default gsi_metadata_file:dir search;
+
+# too noisy, and shouldn't even be granted by default unless necessary
+dontaudit { gmscore_app hal_camera_default } property_type:file r_file_perms;
+dontaudit {
+  vendor_hal_neuralnetworks_default
+  vendor_qti_init_shell
+} default_prop:file r_file_perms;
+
+# why would a script want to access rootfs?
+dontaudit vendor_wcnss_service rootfs:dir { open read };
+
+# untrusted_app shouldn't be allowed to read SELinux status
+dontaudit untrusted_app_all selinuxfs:file read;
+
+# all other no-context attempt by apps (as spotted on iQIYI)
+dontaudit untrusted_app_all sysfs_net:dir search;
