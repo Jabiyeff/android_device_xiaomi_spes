@@ -408,6 +408,10 @@ PRODUCT_PACKAGES += \
     libvndfwk_detect_jni.qti \
     libvndfwk_detect_jni.qti.vendor
 
+# Remove unwanted packages
+PRODUCT_PACKAGES += \
+    RemovePkgs
+
 # RIL
 PRODUCT_PACKAGES += \
     android.hardware.radio@1.5.vendor \
