@@ -1,4 +1,5 @@
-allow vendor_mdm_helper vendor_efs_boot_dev:blk_file r_file_perms;
+allow vendor_mdm_helper vendor_mba_debug_dev:blk_file r_file_perms;
+allow vendor_mdm_helper vendor_custom_ab_block_device:blk_file r_file_perms;
 allow vendor_mdm_helper vendor_tombstone_data_file:fifo_file rw_file_perms;
 
 get_prop(vendor_mdm_helper, vendor_ssr_prop)
