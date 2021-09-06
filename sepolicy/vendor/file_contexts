@@ -20,6 +20,9 @@
 # Elliptic
 /dev/elliptic[0-9]                                                      u:object_r:sensors_device:s0
 
+# Files in rootfs
+/avb(/.*)?                                                              u:object_r:avb_file:s0
+
 # Fingerprint
 /vendor/bin/hw/android\.hardware\.biometrics\.fingerprint@2.1-service\.spes                             u:object_r:hal_fingerprint_default_exec:s0
 
