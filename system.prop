@@ -48,6 +48,9 @@ ro.vendor.use_data_netmgrd=true
 # Pre-Rendering
 ro.vendor.perf.scroll_opt=true
 
+# Radio
+persist.sys.fflag.override.settings_provider_model=false
+
 # SSR
 persist.vendor.ssr.restart_level=ALL_ENABLE
 
