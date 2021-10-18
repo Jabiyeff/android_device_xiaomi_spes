@@ -53,3 +53,6 @@ persist.vendor.ssr.restart_level=ALL_ENABLE
 
 # Zygote
 persist.device_config.runtime_native.usap_pool_enabled=true
+
+# Storage.xml moment
+persist.sys.binary_xml=false
