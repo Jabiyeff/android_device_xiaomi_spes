@@ -1,0 +1,16 @@
+cc_binary {
+    name: "android.hardware.lights-service.spes",
+    relative_install_path: "hw",
+    init_rc: ["lights-spes.rc"],
+    vintf_fragments: ["lights-spes.xml"],
+    vendor: true,
+    shared_libs: [
+        "libbase",
+        "libbinder_ndk",
+        "android.hardware.light-ndk_platform",
+    ],
+    srcs: [
+        "Lights.cpp",
+        "main.cpp",
+    ],
+}

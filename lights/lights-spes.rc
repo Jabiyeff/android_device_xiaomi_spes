@@ -1,0 +1,11 @@
+on early-boot
+    chown system system /sys/class/leds/white/breath
+    chown system system /sys/class/leds/white/brightness
+
+    chown system system /sys/class/backlight/panel0-backlight/brightness
+
+service vendor.light /vendor/bin/hw/android.hardware.lights-service.spes
+    class hal
+    user system
+    group system
+    shutdown critical
