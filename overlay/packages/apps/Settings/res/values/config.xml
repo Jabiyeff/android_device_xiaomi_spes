@@ -22,6 +22,6 @@
     -->
     <integer name="config_fingerprintSensorLocation">3</integer>
 
-    <!-- Whether to show Smooth Display feature in Settings Options -->
-    <bool name="config_show_smooth_display">true</bool>
+    <!-- Whether to show min/max refresh rate in display settings -->
+    <bool name="config_show_refresh_rate_controls">true</bool>
 </resources>
