@@ -436,9 +436,7 @@ PRODUCT_PACKAGES += \
     init.qcom.post_boot.sh \
     init.qcom.sh \
     init.qcom.usb.sh \
-    init.qti.dcvs.sh \
-    init.qti.display_boot.sh \
-    init.qti.early_init.sh
+    init.qti.dcvs.sh
 
 PRODUCT_PACKAGES += \
     fstab.default \
