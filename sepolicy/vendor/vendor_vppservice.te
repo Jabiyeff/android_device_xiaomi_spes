@@ -1,0 +1,3 @@
+allow vendor_vppservice hal_vpp_hwservice:hwservice_manager { add };
+
+r_dir_file(vendor_vppservice, public_adsprpcd_file)
