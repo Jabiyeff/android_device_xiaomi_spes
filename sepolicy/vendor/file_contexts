@@ -60,6 +60,11 @@
 # Mlipay
 /vendor/bin/mlipayd@1\.1                                                u:object_r:hal_mlipay_default_exec:s0
 
+# NFC
+/vendor/bin/STFlashTool                                                 u:object_r:stflashtool_exec:s0
+/vendor/bin/hw/android\.hardware\.nfc@1\.2-service\.st                  u:object_r:hal_nfc_default_exec:s0
+/dev/st21nfc                                                            u:object_r:nfc_device:s0
+
 # Persist subsystem
 /mnt/vendor/persist/subsys(/.*)?                                        u:object_r:persist_subsys_file:s0
 
@@ -72,6 +77,9 @@
 
 # SSR
 /sys/devices(/platform)?/soc/[a-z0-9\.:]+,[a-z0-9\-\_]+/subsys[0-9]+/name         u:object_r:vendor_sysfs_ssr:s0
+
+# Secure Element
+/vendor/bin/hw/android\.hardware\.secure_element@1\.2-service\.st       u:object_r:hal_secure_element_default_exec:s0
 
 # Thermal
 /vendor/bin/mi_thermald                                                 u:object_r:mi_thermald_exec:s0
