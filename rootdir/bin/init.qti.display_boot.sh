@@ -35,28 +35,15 @@ else
     soc_hwid=`cat /sys/devices/system/soc/soc0/id`
 fi
 
-case "$target" in
-    "bengal")
-    # Set property to differentiate bengal and khaje
-    # Soc Id for khaje is 518
-    case "$soc_hwid" in
+# Set property to differentiate bengal and khaje
+# Soc Id for khaje is 518
+case "$soc_hwid" in
         518)
-        # Set property for khaje
-        setprop vendor.display.disable_layer_stitch 1
-        setprop vendor.display.enable_rounded_corner 0
-        setprop vendor.display.disable_rounded_corner_thread 0
-        setprop vendor.display.enable_rc_support 1
-        setprop vendor.display.enable_perf_hint_large_comp_cycle 1
-        ;;
-    esac
-    ;;
-    "lito")
-    # Set property to differentiate lito and lagoon
-    case "$soc_hwid" in
-        434|459)
-        #Set property for lagoon
-        setprop vendor.display.enable_hdr10_gpu_target 1
-        ;;
-    esac
+    # Set property for khaje
+    setprop vendor.display.disable_layer_stitch 1
+    setprop vendor.display.enable_rounded_corner 0
+    setprop vendor.display.disable_rounded_corner_thread 0
+    setprop vendor.display.enable_rc_support 1
+    setprop vendor.display.enable_perf_hint_large_comp_cycle 1
     ;;
 esac
