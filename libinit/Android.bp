@@ -20,6 +20,9 @@ cc_library_static {
     name: "init_xiaomi_spes",
     srcs: ["init_xiaomi_spes.cpp"],
     whole_static_libs: ["libinit_xiaomi"],
-    include_dirs: ["system/core/init"],
+    include_dirs: [
+        "system/libbase/include",
+        "system/core/init",
+    ],
     recovery_available: true,
 }
