@@ -182,6 +182,11 @@ PRODUCT_PACKAGES += \
     vendor.qti.hardware.camera.device@3.5.vendor \
     vendor.qti.hardware.camera.postproc@1.0.vendor
 
+# Cgroup and task_profiles
+PRODUCT_COPY_FILES += \
+    $(LOCAL_PATH)/configs/cgroups.json:$(TARGET_COPY_OUT_VENDOR)/etc/cgroups.json \
+    $(LOCAL_PATH)/configs/task_profiles.json:$(TARGET_COPY_OUT_VENDOR)/etc/task_profiles.json
+
 # Configs File System
 PRODUCT_PACKAGES += \
     fs_config_files
