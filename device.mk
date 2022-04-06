@@ -10,42 +10,21 @@ $(call inherit-product-if-exists, vendor/xiaomi/spes/spes-vendor.mk)
 # Include GSI
 $(call inherit-product, build/make/target/product/gsi_keys.mk)
 
-# Audio
-PRODUCT_PACKAGES += libvolumelistener
-
 # Enable Virtual A/B
-ENABLE_VIRTUAL_AB := true
-
 $(call inherit-product, $(SRC_TARGET_DIR)/product/virtual_ab_ota.mk)
 
-# Default A/B configuration
-ENABLE_AB ?= true
+# Audio
+PRODUCT_PACKAGES += libvolumelistener
 
 SYSTEMEXT_SEPARATE_PARTITION_ENABLE = true
 
 # Enable Dynamic partition
-BOARD_DYNAMIC_PARTITION_ENABLE ?= true
+BOARD_DYNAMIC_PARTITION_ENABLE := true
+PRODUCT_USE_DYNAMIC_PARTITIONS := true
 
 # API level
 BOARD_SHIPPING_API_LEVEL := 30
 BOARD_API_LEVEL := 30
-
-# Enable AVB 2.0
-BOARD_AVB_ENABLE := true
-
-BOARD_AVB_VBMETA_SYSTEM := system
-BOARD_AVB_VBMETA_SYSTEM_KEY_PATH := external/avb/test/data/testkey_rsa2048.pem
-BOARD_AVB_VBMETA_SYSTEM_ALGORITHM := SHA256_RSA2048
-BOARD_AVB_VBMETA_SYSTEM_ROLLBACK_INDEX := $(PLATFORM_SECURITY_PATCH_TIMESTAMP)
-BOARD_AVB_VBMETA_SYSTEM_ROLLBACK_INDEX_LOCATION := 2
-
-BOARD_AVB_SYSTEM_KEY_PATH := external/avb/test/data/testkey_rsa2048.pem
-BOARD_AVB_SYSTEM_ALGORITHM := SHA256_RSA2048
-BOARD_AVB_SYSTEM_ROLLBACK_INDEX := 0
-BOARD_AVB_SYSTEM_ROLLBACK_INDEX_LOCATION := 2
-
-# Partitions
-PRODUCT_USE_DYNAMIC_PARTITIONS := true
 
 # Fastboot
 PRODUCT_PACKAGES += fastbootd
@@ -67,12 +46,6 @@ POSTINSTALL_OPTIONAL_vendor=true
 PRODUCT_PACKAGES += \
     checkpoint_gc
 
-# Bluetooth
-BOARD_HAVE_BLUETOOTH := false
-
-# FM
-BOARD_HAVE_QCOM_FM := false
-
 # Enable incremental FS feature
 PRODUCT_PROPERTY_OVERRIDES += ro.incremental.enable=1
 
@@ -92,10 +65,6 @@ TARGET_USES_RRO := true
 TARGET_KERNEL_VERSION := 4.19
 KERNEL_LLVM_SUPPORT := true
 KERNEL_SD_LLVM_SUPPORT := true
-
-# Target configurations
-QCOM_BOARD_PLATFORMS += bengal
-TARGET_USES_QSSI := true
 
 # A/B related packages
 PRODUCT_PACKAGES += \
@@ -119,11 +88,6 @@ PRODUCT_PACKAGES += \
 # QSPM
 PRODUCT_PROPERTY_OVERRIDES += \
     ro.vendor.qspm.enable=true
-
-# Treble flag
-PRODUCT_FULL_TREBLE_OVERRIDE := true
-PRODUCT_COMPATIBLE_PROPERTY_OVERRIDE := true
-BOARD_VNDK_VERSION := current
 
 # Telephony
 PRODUCT_PACKAGES += telephony-ext
