@@ -1521,6 +1521,20 @@ vendor/etc/sensors/proto/sns_ultra_violet.proto
 vendor/etc/sensors/proto/sns_wrist_tilt_gesture.proto
 vendor/etc/sensors/sns_reg_config
 
+# Trusted Execution Environment connector
+vendor/bin/hw/vendor.qti.hardware.qteeconnector@1.0-service
+vendor/etc/init/vendor.qti.hardware.qteeconnector@1.0-service.rc
+vendor/lib64/hw/vendor.qti.hardware.qteeconnector@1.0-impl.so
+vendor/lib64/libGPQTEEC_vendor.so
+vendor/lib64/libGPTEE_vendor.so
+vendor/lib64/libQTEEConnector_vendor.so
+vendor/lib64/vendor.qti.hardware.qteeconnector@1.0.so
+
+# Trusted User Interface
+vendor/bin/hw/vendor.qti.hardware.tui_comm@1.0-service-qti
+vendor/etc/init/vendor.qti.hardware.tui_comm@1.0-service-qti.rc
+vendor/lib64/vendor.qti.hardware.tui_comm@1.0.so
+
 # VPP
 vendor/lib/vendor.qti.hardware.vpp@1.1.so
 vendor/lib/vendor.qti.hardware.vpp@1.2.so
