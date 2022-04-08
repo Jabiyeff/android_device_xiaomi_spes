@@ -1544,6 +1544,16 @@ vendor/etc/thermald-devices.conf
 -vendor/lib/libthermalclient.so
 -vendor/lib64/libthermalclient.so
 
+# Time services
+-vendor/app/TimeService/TimeService.apk
+vendor/bin/time_daemon
+vendor/etc/init/init.time_daemon.rc
+vendor/lib64/libtime_genoff.so
+
+# Touch Firmware
+vendor/firmware/Conf_MultipleTest.ini
+vendor/firmware/focaltech_ts_fw_samsung.bin
+
 # Trusted Execution Environment connector
 vendor/bin/hw/vendor.qti.hardware.qteeconnector@1.0-service
 vendor/etc/init/vendor.qti.hardware.qteeconnector@1.0-service.rc
