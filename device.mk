@@ -249,6 +249,20 @@ PRODUCT_COPY_FILES += \
 PRODUCT_PACKAGES += \
     netutils-wrapper-1.0
 
+# NFC
+PRODUCT_PACKAGES += \
+    android.hardware.nfc@1.0 \
+    android.hardware.nfc@1.1 \
+    android.hardware.nfc@1.2
+
+PRODUCT_PACKAGES += \
+    android.hardware.nfc@1.2-service.st \
+    com.android.nfc_extras \
+    libchrome.vendor \
+    NfcNci \
+    SecureElement \
+    Tag
+
 # RRO configuration
 TARGET_USES_RRO := true
 
