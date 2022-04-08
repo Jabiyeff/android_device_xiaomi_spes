@@ -1218,6 +1218,44 @@ vendor/lib64/vendor.xiaomi.hardware.mtdservice@1.0.so
 vendor/lib64/vendor.xiaomi.hardware.mtdservice@1.1.so
 vendor/lib64/vendor.xiaomi.hardware.mtdservice@1.2.so
 
+# Modules
+vendor/lib/modules/audio_adsp_loader.ko
+vendor/lib/modules/audio_apr.ko
+vendor/lib/modules/audio_aw87xxx.ko
+vendor/lib/modules/audio_bolero_cdc.ko
+vendor/lib/modules/audio_lct_pinctrl.ko
+vendor/lib/modules/audio_machine_bengal.ko
+vendor/lib/modules/audio_mbhc.ko
+vendor/lib/modules/audio_native.ko
+vendor/lib/modules/audio_pinctrl_lpi.ko
+vendor/lib/modules/audio_platform.ko
+vendor/lib/modules/audio_pm2250_spmi.ko
+vendor/lib/modules/audio_q6.ko
+vendor/lib/modules/audio_q6_notifier.ko
+vendor/lib/modules/audio_q6_pdr.ko
+vendor/lib/modules/audio_rouleur.ko
+vendor/lib/modules/audio_rouleur_slave.ko
+vendor/lib/modules/audio_rx_macro.ko
+vendor/lib/modules/audio_snd_event.ko
+vendor/lib/modules/audio_stub.ko
+vendor/lib/modules/audio_swr_ctrl.ko
+vendor/lib/modules/audio_swr.ko
+vendor/lib/modules/audio_tx_macro.ko
+vendor/lib/modules/audio_usf.ko
+vendor/lib/modules/audio_va_macro.ko
+vendor/lib/modules/audio_wcd937x.ko
+vendor/lib/modules/audio_wcd937x_slave.ko
+vendor/lib/modules/audio_wcd9xxx.ko
+vendor/lib/modules/audio_wcd_core.ko
+vendor/lib/modules/audio_wsa881x_analog.ko
+vendor/lib/modules/exfat.ko
+vendor/lib/modules/modules.alias
+vendor/lib/modules/modules.dep
+vendor/lib/modules/modules.load
+vendor/lib/modules/modules.softdep
+vendor/lib/modules/qca_cld3_wlan.ko
+vendor/lib/modules/rdbg.ko
+
 # Neural networks
 vendor/bin/hw/android.hardware.neuralnetworks@1.3-service-qti
 vendor/etc/init/android.hardware.neuralnetworks@1.3-service-qti.rc
