@@ -218,6 +218,9 @@ TARGET_RECOVERY_PIXEL_FORMAT := "RGBX_8888"
 # Screen density
 TARGET_SCREEN_DENSITY := 440
 
+# Security patch level
+VENDOR_SECURITY_PATCH := 2022-01-01
+
 # Sensor multi HAL
 USE_SENSOR_MULTI_HAL := true
 
