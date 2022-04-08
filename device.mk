@@ -18,6 +18,7 @@ $(call inherit-product-if-exists, vendor/xiaomi/spes/spes-vendor.mk)
 
 # Enable Dynamic partition
 BOARD_DYNAMIC_PARTITION_ENABLE := true
+PRODUCT_BUILD_SUPER_PARTITION := false
 PRODUCT_USE_DYNAMIC_PARTITIONS := true
 
 # API level
