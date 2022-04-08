@@ -1073,6 +1073,23 @@ vendor/lib64/vendor.qti.ims.rcsconfig@2.1.so
 vendor/lib64/vendor.qti.imsrtpservice@3.0-service-Impl.so
 vendor/lib64/vendor.qti.imsrtpservice@3.0.so
 
+# IPA firmware
+vendor/etc/init/ipa_fws.rc
+vendor/firmware/ipa_fws.b00
+vendor/firmware/ipa_fws.b01
+vendor/firmware/ipa_fws.b02
+vendor/firmware/ipa_fws.b03
+vendor/firmware/ipa_fws.b04
+vendor/firmware/ipa_fws.elf
+vendor/firmware/ipa_fws.mdt
+vendor/firmware/scuba_ipa_fws.b00
+vendor/firmware/scuba_ipa_fws.b01
+vendor/firmware/scuba_ipa_fws.b02
+vendor/firmware/scuba_ipa_fws.b03
+vendor/firmware/scuba_ipa_fws.b04
+vendor/firmware/scuba_ipa_fws.elf
+vendor/firmware/scuba_ipa_fws.mdt
+
 # Listen
 vendor/lib/hw/sound_trigger.primary.bengal.so
 vendor/lib/libadpcmdec.so
