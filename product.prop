@@ -1,0 +1,4 @@
+# Audio
+audio.offload.min.duration.secs=30
+audio.sys.offload.pstimeout.secs=3
+ro.config.vc_call_vol_steps=11

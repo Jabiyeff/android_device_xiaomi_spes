@@ -221,6 +221,10 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     disable_configstore
 
+# DPM
+PRODUCT_SYSTEM_EXT_PROPERTIES += \
+    persist.vendor.dpm.feature=11
+
 # DRM
 PRODUCT_PACKAGES += \
     android.hardware.drm@1.0.vendor \
@@ -261,14 +265,6 @@ PRODUCT_PACKAGES += \
     IPACM_cfg.xml \
     libipanat \
     liboffloadhal
-
-# Enable incremental FS feature
-PRODUCT_PROPERTY_OVERRIDES += \
-    ro.incremental.enable=1
-
-# Manufacturer
-PRODUCT_PROPERTY_OVERRIDES += \
-    ro.soc.manufacturer=QTI
 
 # Media
 PRODUCT_PACKAGES += \
@@ -351,10 +347,6 @@ PRODUCT_PACKAGES += \
     libvndfwk_detect_jni.qti \
     libvndfwk_detect_jni.qti.vendor
 
-# QSPM
-PRODUCT_PROPERTY_OVERRIDES += \
-    ro.vendor.qspm.enable=true
-
 # RIL
 PRODUCT_PACKAGES += \
     libprotobuf-cpp-full \
@@ -419,18 +411,6 @@ PRODUCT_PACKAGES += \
 # Vibrator
 PRODUCT_PACKAGES += \
     vendor.qti.hardware.vibrator.service
-
-# Vendor property to enable advanced network scanning
-PRODUCT_PROPERTY_OVERRIDES += \
-    persist.vendor.radio.enableadvancedscan=true
-
-# Property to disable ZSL mode
-PRODUCT_PROPERTY_OVERRIDES += \
-    camera.disable_zsl_mode=1
-
-PRODUCT_PROPERTY_OVERRIDES += \
-    ro.crypto.volume.filenames_mode = "aes-256-cts" \
-    ro.crypto.allow_encrypt_override = true
 
 # WiFi
 PRODUCT_PACKAGES += \
