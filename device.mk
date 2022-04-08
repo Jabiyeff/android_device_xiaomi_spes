@@ -174,6 +174,10 @@ PRODUCT_PACKAGES += \
     vendor.qti.hardware.camera.device@3.5.vendor \
     vendor.qti.hardware.camera.postproc@1.0.vendor
 
+# Configs File System
+PRODUCT_PACKAGES += \
+    fs_config_files
+
 # Consumer IR
 PRODUCT_PACKAGES += \
     android.hardware.ir@1.0-impl \
