@@ -96,6 +96,18 @@ PRODUCT_PACKAGES += \
     vendor.qti.hardware.btconfigstore@1.0.vendor \
     vendor.qti.hardware.btconfigstore@2.0.vendor
 
+# Boot control HAL
+PRODUCT_PACKAGES += \
+    android.hardware.boot@1.1-impl-qti \
+    android.hardware.boot@1.1-impl-qti.recovery \
+    android.hardware.boot@1.1-service
+
+PRODUCT_HOST_PACKAGES += \
+    brillo_update_payload
+
+PRODUCT_PACKAGES_DEBUG += \
+    bootctl
+
 # Camera
 PRODUCT_PACKAGES += \
     android.hardware.camera.provider@2.4-impl \
@@ -271,24 +283,6 @@ TARGET_KERNEL_VERSION := 4.19
 KERNEL_LLVM_SUPPORT := true
 KERNEL_SD_LLVM_SUPPORT := true
 
-# Boot control HAL
-PRODUCT_PACKAGES += \
-    android.hardware.boot@1.1-impl-qti \
-    android.hardware.boot@1.1-impl-qti.recovery \
-    android.hardware.boot@1.1-service
-
-PRODUCT_HOST_PACKAGES += \
-    brillo_update_payload
-
-PRODUCT_PACKAGES_DEBUG += \
-    bootctl
-
-PRODUCT_PACKAGES += \
-    update_engine \
-    update_engine_client \
-    update_engine_sideload \
-    update_verifier
-
 # Power
 PRODUCT_PACKAGES += \
     android.hardware.power-service-qti
@@ -311,6 +305,13 @@ PRODUCT_PACKAGES += \
 
 PRODUCT_BOOT_JARS += \
     telephony-ext
+
+# Update Engine
+PRODUCT_PACKAGES += \
+    update_engine \
+    update_engine_client \
+    update_engine_sideload \
+    update_verifier
 
 # Vendor property to enable advanced network scanning
 PRODUCT_PROPERTY_OVERRIDES += \
