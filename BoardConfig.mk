@@ -7,7 +7,20 @@
 DEVICE_PATH := device/xiaomi/spes
 
 # A/B
-ENABLE_VIRTUAL_AB := true
+AB_OTA_UPDATER := true
+BOARD_BUILD_SYSTEM_ROOT_IMAGE := false
+BOARD_USES_RECOVERY_AS_BOOT := true
+
+AB_OTA_PARTITIONS += \
+    boot \
+    dtbo \
+    product \
+    system \
+    system_ext \
+    vbmeta \
+    vbmeta_system \
+    vendor \
+    vendor_boot
 
 # APEX
 DEXPREOPT_GENERATE_APEX_IMAGE := true
