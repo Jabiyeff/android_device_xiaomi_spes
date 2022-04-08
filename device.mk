@@ -357,6 +357,32 @@ PRODUCT_PACKAGES += \
     librmnetctl \
     libxml2
 
+# Rootdir
+PRODUCT_PACKAGES += \
+    init.class_main.sh \
+    init.mi.usb.sh \
+    init.mdm.sh \
+    init.qcom.early_boot.sh \
+    init.qcom.post_boot.sh \
+    init.qcom.sh \
+    init.qcom.usb.sh \
+    init.qti.dcvs.sh \
+    init.qti.display_boot.sh \
+    init.qti.early_init.sh
+
+PRODUCT_PACKAGES += \
+    fstab.default \
+    fstab.emmc \
+    init.qcom.rc \
+    init.qcom.usb.rc \
+    init.recovery.qcom.rc \
+    init.stnfc rc \
+    init.target.rc \
+    ueventd.qcom.rc
+
+PRODUCT_COPY_FILES += \
+    $(LOCAL_PATH)/rootdir/etc/fstab.default:$(TARGET_COPY_OUT_VENDOR_RAMDISK)/first_stage_ramdisk/fstab.default
+
 # Sensors
 PRODUCT_PACKAGES += \
     android.hardware.sensors@2.0-service.multihal \

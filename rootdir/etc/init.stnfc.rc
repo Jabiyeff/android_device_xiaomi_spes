@@ -1,0 +1,13 @@
+
+# This file needs to be executed by vendor_init at boot of the device,
+# both in normal and factory mode.
+on post-fs && property:ro.boot.hwname=spesn
+    start stflashtool
+    setprop ro.vendor.se.type HCE,UICC
+	
+service stflashtool /vendor/bin/STFlashTool
+       class late_start
+       group nfc
+       user nfc
+       disabled
+       oneshot

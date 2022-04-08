@@ -149,6 +149,10 @@ TARGET_USES_QSPM := true
 # RIL
 ENABLE_VENDOR_RIL_SERVICE := true
 
+# Recovery
+TARGET_RECOVERY_FSTAB := $(DEVICE_PATH)/rootdir/etc/fstab.default
+TARGET_RECOVERY_PIXEL_FORMAT := "RGBX_8888"
+
 # Sensor multi HAL
 USE_SENSOR_MULTI_HAL := true
 
