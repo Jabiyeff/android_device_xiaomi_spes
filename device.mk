@@ -478,9 +478,11 @@ PRODUCT_BOOT_JARS += \
 # Update Engine
 PRODUCT_PACKAGES += \
     update_engine \
-    update_engine_client \
     update_engine_sideload \
     update_verifier
+
+PRODUCT_PACKAGES_DEBUG += \
+    update_engine_client
 
 # USB
 PRODUCT_PACKAGES += \
