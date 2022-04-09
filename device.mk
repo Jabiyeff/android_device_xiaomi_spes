@@ -381,6 +381,7 @@ PRODUCT_ENFORCE_RRO_TARGETS := *
 
 # Perf
 PRODUCT_PACKAGES += \
+    vendor.qti.hardware.perf@2.2 \
     vendor.qti.hardware.perf@2.2.vendor
 
 # Power
