@@ -155,6 +155,7 @@ BOARD_KERNEL_CMDLINE += \
     swiotlb=2048 \
     video=vfb:640x400,bpp=32,memsize=3072000
 
+TARGET_FORCE_PREBUILT_KERNEL := true
 TARGET_KERNEL_ARCH := arm64
 TARGET_KERNEL_HEADER_ARCH := arm64
 TARGET_KERNEL_CROSS_COMPILE_PREFIX := $(shell pwd)/prebuilts/gcc/linux-x86/aarch64/aarch64-linux-android-4.9/bin/aarch64-linux-android-
