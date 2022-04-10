@@ -158,9 +158,6 @@ BOARD_KERNEL_CMDLINE += \
 
 TARGET_FORCE_PREBUILT_KERNEL := true
 TARGET_KERNEL_ARCH := arm64
-TARGET_KERNEL_HEADER_ARCH := arm64
-TARGET_KERNEL_CROSS_COMPILE_PREFIX := $(shell pwd)/prebuilts/gcc/linux-x86/aarch64/aarch64-linux-android-4.9/bin/aarch64-linux-android-
-
 TARGET_KERNEL_CONFIG := vendor/bengal_defconfig
 TARGET_KERNEL_HEADERS := kernel/xiaomi/spes
 TARGET_KERNEL_SOURCE := kernel/xiaomi/spes
@@ -207,8 +204,6 @@ TARGET_COPY_OUT_VENDOR := vendor
 TARGET_BOARD_PLATFORM := bengal
 
 # Properties
-BOARD_PROPERTY_OVERRIDES_SPLIT_ENABLED := true
-
 TARGET_ODM_PROP += $(DEVICE_PATH)/odm.prop
 TARGET_PRODUCT_PROP += $(DEVICE_PATH)/product.prop
 TARGET_SYSTEM_PROP += $(DEVICE_PATH)/system.prop
@@ -243,8 +238,6 @@ VENDOR_SECURITY_PATCH := 2022-01-01
 USE_SENSOR_MULTI_HAL := true
 
 # Treble flag
-PRODUCT_FULL_TREBLE_OVERRIDE := true
-PRODUCT_COMPATIBLE_PROPERTY_OVERRIDE := true
 BOARD_VNDK_VERSION := current
 
 # Sepolicy

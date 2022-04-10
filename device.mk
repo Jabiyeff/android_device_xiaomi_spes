@@ -363,14 +363,6 @@ PRODUCT_PACKAGES += \
     SecureElement \
     Tag
 
-# RRO configuration
-TARGET_USES_RRO := true
-
-# Kernel configurations
-TARGET_KERNEL_VERSION := 4.19
-KERNEL_LLVM_SUPPORT := true
-KERNEL_SD_LLVM_SUPPORT := true
-
 # Overlays
 DEVICE_PACKAGE_OVERLAYS += \
     $(LOCAL_PATH)/overlay \
