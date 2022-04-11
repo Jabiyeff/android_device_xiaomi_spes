@@ -286,9 +286,12 @@ vendor/lib/libcapiv2vop.so
 vendor/lib/libchilog.so
 vendor/lib/libcom.qti.chinodeutils.so
 vendor/lib/libipebpsstriping.so
+vendor/lib/libjpege.so
+vendor/lib/libmctfengine_stub.so
 vendor/lib/libmpbase.so
 vendor/lib/libofflinelog.so
 vendor/lib/libopencv.so
+vendor/lib/libopestriping.so
 vendor/lib/libsns_device_mode_stub.so
 vendor/lib/libsns_fastRPC_util.so
 vendor/lib/libsns_low_lat_stream_stub.so
@@ -297,6 +300,7 @@ vendor/lib/libsnsapi.so
 vendor/lib/libsnsdiaglog.so
 vendor/lib/libswregistrationalgo.so
 vendor/lib/libswvdec.so
+vendor/lib/libtfestriping.so
 vendor/lib/libvideofilter_only.so
 vendor/lib/libvidhance.so
 vendor/lib/vendor.qti.hardware.camera.postproc@1.0-service-impl.so
@@ -434,6 +438,8 @@ vendor/lib64/libcom.qti.chinodeutils.so
 vendor/lib64/libdng_sdk2vendor.so
 vendor/lib64/libft2vendor.so
 vendor/lib64/libipebpsstriping.so
+vendor/lib64/libjpege.so
+vendor/lib64/libmctfengine_stub.so
 vendor/lib64/libmiai_supernight.so
 vendor/lib64/libmialgoengine.so
 vendor/lib64/libmibokeh_712.so
@@ -441,6 +447,8 @@ vendor/lib64/libmorpho_Lowlight.so
 vendor/lib64/libmpbase.so
 vendor/lib64/libofflinelog.so
 vendor/lib64/libopencv.so
+vendor/lib64/libopestriping.so
+vendor/lib64/libsdk_sr.so
 vendor/lib64/libsns_device_mode_stub.so
 vendor/lib64/libsns_fastRPC_util.so
 vendor/lib64/libsns_low_lat_stream_stub.so
@@ -449,6 +457,7 @@ vendor/lib64/libsnsapi.so
 vendor/lib64/libsnsdiaglog.so
 vendor/lib64/libswregistrationalgo.so
 vendor/lib64/libswvdec.so
+vendor/lib64/libtfestriping.so
 vendor/lib64/libvideofilter_only.so
 vendor/lib64/libvidhance.so
 vendor/lib64/libwa_depth.so
