@@ -625,6 +625,10 @@ vendor/etc/camera/morpho_lowlight_2.0_ofilm_s5kjn1_wide_global.xml
 vendor/etc/camera/morpho_lowlight_2.0_ofilm_s5kjn1_wide_india.xml
 vendor/etc/camera/vidhance_calibration
 
+# Camera Device
+vendor/lib/vendor.qti.hardware.camera.device@3.5.so
+vendor/lib64/vendor.qti.hardware.camera.device@3.5.so
+
 # Camera Feature
 vendor/lib/com.qti.chiusecaseselector.so
 vendor/lib/com.qti.feature2.anchorsync.so
