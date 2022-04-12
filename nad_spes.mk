@@ -11,11 +11,14 @@ $(call inherit-product, $(SRC_TARGET_DIR)/product/full_base_telephony.mk)
 # Inherit from spes/spesn device
 $(call inherit-product, device/xiaomi/spes/device.mk)
 
-# Inherit some common Lineage stuff.
-$(call inherit-product, vendor/lineage/config/common_full_phone.mk)
+# Inherit some common Nusantara stuff.
+$(call inherit-product, vendor/nusantara/config/common_full_phone.mk)
+
+TARGET_USES_BLUR := true
+USE_PIXEL_CHARGING := true
 
 # Product Specifics
-PRODUCT_NAME := lineage_spes
+PRODUCT_NAME := nad_spes
 PRODUCT_DEVICE := spes
 PRODUCT_BRAND := Redmi
 PRODUCT_MODEL := Redmi Note 11
