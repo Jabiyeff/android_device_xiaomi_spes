@@ -320,7 +320,6 @@ vendor/lib64/libwa_refocus.so
 vendor/lib64/libwa_rtdof.so
 vendor/lib64/libwa_widelens_undistort.so
 vendor/lib64/libxmi_high_dynamic_range.so
-vendor/lib64/vendor.qti.hardware.camera.postproc@1.0-service-impl.so
 
 # Camera Arcsoft
 vendor/lib64/libarcsoft_beautyshot.so
@@ -453,6 +452,9 @@ vendor/lib64/com.qti.feature2.rt.so
 vendor/lib64/com.qti.feature2.serializer.so
 vendor/lib64/com.qti.feature2.stub.so
 vendor/lib64/com.qti.feature2.swmf.so
+
+# Camera Postprocessing
+vendor/lib64/vendor.qti.hardware.camera.postproc@1.0-service-impl.so|7a115f12f4fa948bd54c4fd4124a59c9b54730f9
 
 # Camera Sensor
 vendor/lib/libmmcamera_cac3.so
