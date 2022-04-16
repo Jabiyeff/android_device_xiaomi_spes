@@ -145,7 +145,6 @@ BOARD_KERNEL_CMDLINE += \
     androidboot.fstab_suffix=default \
     androidboot.hardware=qcom \
     androidboot.memcg=1 \
-    androidboot.selinux=permissive \
     androidboot.usbcontroller=4e00000.dwc3 \
     console=ttyMSM0,115200n8 \
     earlycon=msm_geni_serial,0x4a90000 \
@@ -245,8 +244,6 @@ include device/qcom/sepolicy_vndr/SEPolicy.mk
 SYSTEM_EXT_PRIVATE_SEPOLICY_DIRS += $(DEVICE_PATH)/sepolicy/private
 SYSTEM_EXT_PUBLIC_SEPOLICY_DIRS += $(DEVICE_PATH)/sepolicy/public
 BOARD_VENDOR_SEPOLICY_DIRS += $(DEVICE_PATH)/sepolicy/vendor
-
-IGNORE_SELINUX_NEVERALLOWS := true
 
 # WiFi
 BOARD_WLAN_DEVICE := qcwcn
