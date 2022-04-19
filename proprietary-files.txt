@@ -287,6 +287,7 @@ vendor/lib64/libHalSuperSensorServer.so
 vendor/lib64/libI420colorconvert.so
 vendor/lib64/libSuperSensor.so
 vendor/lib64/libSuperSensorCPU.so
+vendor/lib64/libaidenoiser.so
 vendor/lib64/libalCFR.so
 vendor/lib64/libanc_dc_base.so
 vendor/lib64/libbitmlengine.so
@@ -768,6 +769,7 @@ vendor/lib64/libizat_core.so
 vendor/lib64/libjnihelper.so
 vendor/lib64/liblbs_core.so
 vendor/lib64/libloc_api_v02.so
+vendor/lib64/libloc_api_wds.so
 vendor/lib64/libloc_core.so
 vendor/lib64/libloc_socket.so
 vendor/lib64/liblocation_api.so
