@@ -1,5 +1,7 @@
 # allow nv_mac to create /mnt/vendor/persist/wlan_mac.bin
 allow vendor_wcnss_service mnt_vendor_file:dir search;
 allow vendor_wcnss_service mnt_vendor_file:file create_file_perms;
+allow vendor_wcnss_service property_socket:sock_file { write };
+allow vendor_wcnss_service init:unix_stream_socket { connectto }; 
 
 get_prop(vendor_wcnss_service, vendor_bluetooth_prop)

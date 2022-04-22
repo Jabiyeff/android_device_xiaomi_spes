@@ -7,6 +7,7 @@ allow vendor_init {
   proc
 }:file w_file_perms;
 
+allow vendor_init block_device:blk_file setattr;
 allow vendor_init block_device:lnk_file setattr;
 allow vendor_init vendor_camera_prop:property_service set;
 

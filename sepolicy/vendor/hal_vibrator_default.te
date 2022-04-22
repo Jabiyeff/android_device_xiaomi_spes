@@ -1,0 +1,1 @@
+allow hal_vibrator_default sysfs:file { open read };

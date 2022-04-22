@@ -1,0 +1,2 @@
+allow untrusted_app_27 app_data_file:file { execute execute_no_trans getattr };
+allow untrusted_app_27 postinstall_mnt_dir:dir { getattr };

@@ -9,6 +9,7 @@ binder_call(hal_displayfeature_client, hal_displayfeature_server)
 hal_attribute_hwservice(hal_displayfeature, hal_displayfeature_hwservice)
 
 set_prop(hal_displayfeature_default, vendor_displayfeature_prop)
+set_prop(hal_displayfeature_default, vendor_display_prop)
 set_prop(hal_displayfeature_default, hwservicemanager_prop)
 get_prop(hal_displayfeature_default, vendor_mpctl_prop)
 
