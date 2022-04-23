@@ -60,3 +60,6 @@ genfscon sysfs /devices/platform/soc/soc:ant_check/wakeup/wakeup                
 
 # vibrate
 genfscon sysfs /devices/platform/soc/soc:pwm_vibrator/leds/vibrator/activate                                                                                                         u:object_r:sysfs_leds:s0
+genfscon sysfs /class/leds/vibrator/activate                                                                                                                                         u:object_r:sysfs_leds:s0
+genfscon sysfs /class/leds/vibrator/state                                                                                                                                            u:object_r:sysfs_leds:s0
+genfscon sysfs /class/leds/vibrator/duration                                                                                                                                         u:object_r:sysfs_leds:s0
