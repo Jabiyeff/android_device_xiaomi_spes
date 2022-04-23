@@ -69,7 +69,7 @@
     </hal>
     <hal format="hidl" optional="true">
         <name>android.hardware.radio.config</name>
-        <version>1.0-1</version>
+        <version>1.0-2</version>
         <interface>
             <name>IRadioConfig</name>
             <instance>default</instance>
