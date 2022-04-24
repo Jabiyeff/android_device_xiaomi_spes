@@ -43,6 +43,9 @@ media.stagefright.thumbnail.prefer_hw_codecs=true
 mmp.enable.3g2=true
 persist.mm.enable.prefetch=true
 
+# Netflix Properties
+ro.netflix.bsp_rev=Q6115-31409-1
+
 # Netmgr
 persist.data.netmgrd.qos.enable=true
 persist.vendor.data.mode=concurrent

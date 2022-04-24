@@ -185,16 +185,6 @@ on property:init.svc.vendor.per_mgr=running
 on property:sys.shutdown.requested=*
     stop vendor.per_proxy
 
-service dcvs-sh /vendor/bin/init.qti.dcvs.sh
-    class late_start
-    user root
-    group root system
-    disabled
-    oneshot
-
-on property:vendor.dcvs.prop=1
-   start dcvs-sh
-
 service vendor.displayfeature /vendor/bin/displayfeature
     class late_start
     user root
