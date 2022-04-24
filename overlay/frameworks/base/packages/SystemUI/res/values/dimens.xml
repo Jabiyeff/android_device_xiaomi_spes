@@ -20,7 +20,7 @@
     <dimen name="status_bar_padding_top">8dp</dimen>
 
     <!-- the padding on the rouded corner content -->
-    <dimen name="rounded_corner_content_padding">6dp</dimen>
+    <dimen name="rounded_corner_content_padding">47.0px</dimen>
 
     <!-- the padding on the start of the statusbar -->
     <dimen name="status_bar_padding_start">12dp</dimen>
