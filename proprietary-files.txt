@@ -545,6 +545,7 @@ vendor/etc/default-permissions/com.qualcomm.qti.cne.xml
 vendor/lib64/libcne.so
 vendor/lib64/libcneapiclient.so
 vendor/lib64/libcneoplookup.so
+vendor/lib64/libcneqmiutils.so
 vendor/lib64/libwms.so
 vendor/lib64/libwqe.so
 vendor/lib64/libxml.so
@@ -866,6 +867,15 @@ vendor/firmware/aw87xxx_acf.bin
 vendor/lib/hw/vulkan.adreno.so
 vendor/lib64/hw/vulkan.adreno.so
 
+# HotwordEnrollment
+-product/priv-app/HotwordEnrollmentOKGoogleHEXAGON/HotwordEnrollmentOKGoogleHEXAGON.apk
+-product/priv-app/HotwordEnrollmentXGoogleHEXAGON/HotwordEnrollmentXGoogleHEXAGON.apk
+system_ext/etc/permissions/com.android.hotwordenrollment.common.util.xml
+system_ext/framework/com.android.hotwordenrollment.common.util.jar
+
+# IFAA
+-system/app/IFAAService/IFAAService.apk
+
 # IMS
 -system_ext/app/uceShimService/uceShimService.apk
 system_ext/framework/vendor.qti.ims.factory-V1.0-java.jar
@@ -966,6 +976,7 @@ vendor/firmware/scuba_ipa_fws.elf
 vendor/firmware/scuba_ipa_fws.mdt
 
 # Keymaster
+vendor/bin/hw/android.hardware.keymaster@4.0-service-qti
 vendor/bin/hw/android.hardware.keymaster@4.1-service-qti
 vendor/etc/init/android.hardware.keymaster@4.1-service-qti.rc
 -vendor/etc/vintf/manifest/android.hardware.keymaster@4.1-service-default-qti.xml
@@ -978,6 +989,7 @@ vendor/lib64/libqtikeymaster4.so
 vendor/lib/hw/sound_trigger.primary.bengal.so
 vendor/lib/libadpcmdec.so
 vendor/lib/libcapiv2svacnn.so
+vendor/lib/libcapiv2svarnn.so
 vendor/lib/libcapiv2vop.so
 vendor/lib/libgcs-calwrapper.so
 vendor/lib/libgcs-ipc.so
@@ -1097,6 +1109,7 @@ vendor/lib/modules/rdbg.ko
 vendor/bin/hw/android.hardware.neuralnetworks@1.3-service-qti
 vendor/etc/init/android.hardware.neuralnetworks@1.3-service-qti.rc
 -vendor/etc/vintf/manifest/android.hardware.neuralnetworks@1.3-service-qti.xml
+vendor/lib64/libhexagon_nn_stub.so
 vendor/lib64/unnhal-acc-adreno.so
 vendor/lib64/unnhal-acc-common.so
 vendor/lib64/unnhal-acc-hvx.so
@@ -1302,6 +1315,7 @@ vendor/radio/qcril_database/upgrade/2_version_add_wps_config.sql
 vendor/radio/qcril_database/upgrade/3_version_update_wps_config.sql
 vendor/radio/qcril_database/upgrade/4_version_update_ecc_table.sql
 vendor/radio/qcril_database/upgrade/5_version_update_ecc_table.sql
+vendor/radio/qcril_database/upgrade/6_version_update_ecc_table.sql
 
 # Sensors
 vendor/bin/init.qcom.sensors.sh
@@ -1524,6 +1538,11 @@ vendor/etc/thermald-devices.conf
 vendor/bin/time_daemon
 vendor/etc/init/init.time_daemon.rc
 vendor/lib64/libtime_genoff.so
+
+# Touchfeature
+vendor/bin/hw/vendor.xiaomi.hw.touchfeature@1.0-service
+vendor/etc/init/vendor.xiaomi.hw.touchfeature@1.0-service.rc
+vendor/lib64/hw/vendor.xiaomi.hw.touchfeature@1.0-impl.so
 
 # Touch Firmware
 vendor/firmware/Conf_MultipleTest.ini
