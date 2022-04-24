@@ -116,6 +116,9 @@ DEVICE_SPECIFIC_AUDIO_PATH := $(DEVICE_PATH)/hals/audio
 DEVICE_SPECIFIC_DISPLAY_PATH := $(DEVICE_PATH)/hals/display
 DEVICE_SPECIFIC_MEDIA_PATH := $(DEVICE_PATH)/hals/media
 
+# OTA assert
+TARGET_OTA_ASSERT_DEVICE := spes,spesn
+
 # HIDL
 DEVICE_FRAMEWORK_COMPATIBILITY_MATRIX_FILE := \
     $(DEVICE_PATH)/configs/hidl/framework_compatibility_matrix.xml
