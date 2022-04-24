@@ -223,6 +223,7 @@ PRODUCT_PACKAGES += \
     hwcomposer.bengal
 
 PRODUCT_PACKAGES += \
+    libdisplayconfig \
     libdisplayconfig.qti \
     libdisplayconfig.qti.vendor \
     libqdMetaData \
