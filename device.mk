@@ -427,7 +427,7 @@ PRODUCT_PACKAGES += \
     fstab.emmc \
     init.qcom.rc \
     init.recovery.qcom.rc \
-    init.stnfc rc \
+    init.stnfc.rc \
     init.target.rc \
     ueventd.qcom.rc
 
