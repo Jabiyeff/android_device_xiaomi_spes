@@ -53,6 +53,7 @@ USE_CUSTOM_AUDIO_POLICY :=1
 
 # AVB
 BOARD_AVB_ENABLE := true
+BOARD_MOVE_GSI_AVB_KEYS_TO_VENDOR_BOOT := true
 
 BOARD_AVB_VBMETA_SYSTEM := system system_ext product
 BOARD_AVB_VBMETA_SYSTEM_KEY_PATH := external/avb/test/data/testkey_rsa2048.pem
