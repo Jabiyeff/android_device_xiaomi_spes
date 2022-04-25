@@ -1104,23 +1104,9 @@ vendor/lib64/unnhal-acc-common.so
 vendor/lib64/unnhal-acc-hvx.so
 
 # NFC
-system_ext/etc/permissions/com.st.android.nfc_extensions.xml
-system_ext/framework/com.st.android.nfc_extensions.jar
-system_ext/lib64/libnfc_st_dta_jni.so
-system_ext/lib64/libnfc_st_dta.so
-system_ext/lib64/libstnfc_nci_jni.so
-system_ext/lib64/libstnfc-nci.so
-system_ext/lib/libnfc_st_dta_jni.so
-system_ext/lib/libnfc_st_dta.so
-system_ext/lib/libstnfc_nci_jni.so
-system_ext/lib/libstnfc-nci.so
 vendor/bin/STFlashTool
 vendor/etc/libnfc-hal-st.conf
-vendor/etc/libnfc-mtp-SN100_38_4MHZ.conf
-vendor/etc/libnfc-mtp-SN100.conf
 vendor/etc/libnfc-nci.conf
-vendor/etc/libnfc-qrd-SN100_38_4MHZ.conf
-vendor/etc/libnfc-qrd-SN100.conf
 vendor/etc/st21nfc_conf.txt
 vendor/lib/libsn100u_fw.so
 vendor/lib64/libst_sr_models.so
