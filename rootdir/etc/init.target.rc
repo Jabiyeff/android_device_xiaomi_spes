@@ -147,6 +147,7 @@ on charger
     setprop sys.usb.configfs 1
     start mi_thermald
     start vendor.hvdcp_opti
+    start vendor.qcom-post-boot
 
 service vendor.pd_mapper /vendor/bin/pd-mapper
     class core
