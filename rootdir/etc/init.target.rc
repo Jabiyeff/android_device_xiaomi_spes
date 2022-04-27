@@ -94,8 +94,12 @@ on post-fs-data
     chmod 0666 /sys/class/drm/card0-DSI-1/disp_param
 
     # Charger
-    chmod 0777 /sys/class/power_supply/battery/input_suspend
+    chmod 0664 /sys/class/power_supply/battery/input_suspend
+    chmod 0664 /sys/class/power_supply/battery/battery_charging_enabled
+    chmod 0664 /sys/class/power_supply/usb/typec_cc_orientation
     chown system system /sys/class/power_supply/battery/input_suspend
+    chown system system /sys/class/power_supply/battery/battery_charging_enabled
+    chown system system /sys/class/power_supply/usb/typec_cc_orientation
 
 on early-boot
     start vendor.sensors
