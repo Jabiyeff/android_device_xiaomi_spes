@@ -158,6 +158,7 @@ persist.vendor.qcom.bluetooth.soc=cherokee
 persist.vendor.qcom.bluetooth.twsp_state.enabled=false
 ro.hardware.egl=adreno
 ro.hardware.vulkan=adreno
+ro.opengles.version=196610
 ro.surface_flinger.force_hwc_copy_for_virtual_displays=true
 ro.surface_flinger.has_HDR_display=true
 ro.surface_flinger.has_wide_color_display=true
@@ -192,7 +193,6 @@ vendor.display.secure_preview_buffer_format=420_sp
 vendor.display.use_smooth_motion=1
 vendor.gralloc.disable_ubwc=0
 vendor.gralloc.secure_preview_buffer_format=420_sp
-vendor.opengles.version=196610
 
 # Media Codecs
 debug.stagefright.ccodec=1
