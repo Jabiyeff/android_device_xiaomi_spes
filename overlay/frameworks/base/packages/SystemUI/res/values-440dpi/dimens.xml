@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
- * Copyright (c) 2006, The Android Open Source Project
+ * Copyright (c) 2020, The Android Open Source Project
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -16,5 +16,6 @@
 */
 -->
 <resources>
-    <dimen name="rounded_corner_radius">4dp</dimen>
+    <!-- for 20dp of padding at 3.5px/dp at default density -->
+    <dimen name="rounded_corner_content_padding">47.0px</dimen>
 </resources>
