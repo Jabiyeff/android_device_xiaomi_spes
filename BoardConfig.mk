@@ -167,6 +167,7 @@ BOARD_KERNEL_CMDLINE += \
     swiotlb=2048 \
     kpti=off
 
+BOARD_KERNEL_CMDLINE += androidboot.init_fatal_reboot_target=recovery
 TARGET_FORCE_PREBUILT_KERNEL := true
 TARGET_KERNEL_ARCH := arm64
 TARGET_KERNEL_CONFIG := vendor/bengal_defconfig
