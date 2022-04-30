@@ -625,10 +625,6 @@ vendor/lib64/vendor.xiaomi.hardware.displayfeature@1.0.so
 # Display HDR
 vendor/lib64/libhdr_tm.so
 
-# Display HWC
-vendor/lib64/libsdmcore.so
-vendor/lib64/libsdmutils.so
-
 # Display SDM
 vendor/lib64/libdisplayqos.so
 vendor/lib64/libdisplayskuutils.so
