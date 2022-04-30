@@ -1539,11 +1539,6 @@ vendor/bin/time_daemon
 vendor/etc/init/init.time_daemon.rc
 vendor/lib64/libtime_genoff.so
 
-# Touchfeature
-vendor/bin/hw/vendor.xiaomi.hw.touchfeature@1.0-service
-vendor/etc/init/vendor.xiaomi.hw.touchfeature@1.0-service.rc
-vendor/lib64/hw/vendor.xiaomi.hw.touchfeature@1.0-impl.so
-
 # Touch Firmware
 vendor/firmware/Conf_MultipleTest.ini
 vendor/firmware/focaltech_ts_fw_samsung.bin
