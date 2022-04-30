@@ -122,7 +122,7 @@ ro.crypto.volume.filenames_mode=aes-256-cts
 ro.crypto.volume.metadata.method=dm-default-key
 
 # CNE
-persist.cne.feature=1
+persist.vendor.cne.feature=1
 
 # Display calib
 ro.vendor.display.sensortype=2
@@ -150,7 +150,6 @@ debug.sf.high_fps_early_phase_offset_ns=-5000000
 debug.sf.high_fps_late_app_phase_offset_ns=1000000
 debug.sf.high_fps_late_sf_phase_offset_ns=-5000000
 debug.sf.hw=0
-persist.demo.hdmirotationlock=false
 persist.sys.sf.color_mode=7
 persist.sys.sf.color_saturation=1.0
 ro.hardware.egl=adreno
@@ -186,7 +185,7 @@ vendor.display.enable_rc_support=1
 vendor.display.enable_rounded_corner=0
 vendor.display.normal_noc_efficiency_factor=0.85
 vendor.display.secure_preview_buffer_format=420_sp
-vendor.display.use_smooth_motion=1
+vendor.display.use_smooth_motion=0
 vendor.gralloc.disable_ubwc=0
 vendor.gralloc.secure_preview_buffer_format=420_sp
 
@@ -197,8 +196,8 @@ debug.stagefright.omx_default_rank=0
 # NFC DT
 ro.nfc.port=I2C
 
-# NTP
-persist.backup.ntpServer=0.pool.ntp.org
+# OTG
+persist.sys.oem.otg_support=true
 
 # PERF
 ro.vendor.extension_library=libqti-perfd-client.so
@@ -206,9 +205,9 @@ ro.vendor.perf-hal.ver=2.2
 ro.vendor.perf.scroll_opt=1
 
 # Radio
-DEVICE_PROVISIONED=1
 persist.radio.multisim.config=dsds
 persist.vendor.data.iwlan.enable=true
+persist.vendor.radio.add_power_save=1
 persist.vendor.radio.apm_sim_not_pwdn=1
 persist.vendor.radio.atfwd.start=true
 persist.vendor.radio.custom_ecc=1
@@ -222,24 +221,21 @@ persist.vendor.radio.sib16_support=1
 persist.vendor.radio.snapshot_enabled=1
 persist.vendor.radio.snapshot_timer=5
 ril.subscription.types=NV,RUIM
-rild.libpath=/vendor/lib64/libril-qc-hal-qmi.so
+vendor.rild.libpath=/vendor/lib64/libril-qc-hal-qmi.so
 ro.telephony.default_network=22,20
 ro.vendor.se.type=HCE,UICC
 telephony.lteOnCdmaDevice=1
 
+# Radio (IMS)
+persist.vendor.ims.disableIMSLogs=1
+persist.vendor.ims.disableADBLogs=1
+persist.vendor.ims.disableDebugDataPathLogs=1
+persist.vendor.ims.disableDebugLogs=1
+persist.vendor.ims.disableSigHandler=1
+persist.vendor.ims.disableQXDMLogs=1
+
 # QSPM
 ro.vendor.qspm.enable=true
-
-# RmNet data
-persist.data.df.agg.dl_pkt=10
-persist.data.df.agg.dl_size=4096
-persist.data.df.dev_name=rmnet_usb0
-persist.data.df.dl_mode=5
-persist.data.df.iwlan_mux=9
-persist.data.df.mux_count=8
-persist.data.df.ul_mode=5
-persist.data.wda.enable=true
-persist.rmnet.data.enable=true
 
 # Sensors
 persist.vendor.sensors.debug.ssc_qmi_debug=true
@@ -271,16 +267,9 @@ sys.thermal.data.path=/data/vendor/thermal/
 # Time
 sys.vendor.shutdown.waittime=500
 
-# Time-services
-persist.timed.enable=true
-
 # USB
 vendor.usb.diag.func.name=diag
 vendor.usb.use_ffs_mtp=0
-
-# WFD settings
-persist.debug.wfd.enable=1
-persist.sys.wfd.virtual=0
 
 # Wi-Fi
 wifi.aware.interface=wifi-aware0
