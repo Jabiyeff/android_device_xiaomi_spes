@@ -5,3 +5,4 @@ allow vendor_wcnss_service property_socket:sock_file { write };
 allow vendor_wcnss_service init:unix_stream_socket { connectto }; 
 
 get_prop(vendor_wcnss_service, vendor_bluetooth_prop)
+set_prop(vendor_wcnss_service, vendor_radio_prop)
