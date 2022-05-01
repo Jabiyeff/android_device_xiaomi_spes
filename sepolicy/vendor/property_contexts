@@ -55,6 +55,11 @@ persist.vendor.sys.provision.status             u:object_r:vendor_tee_listener_p
 
 # RIL
 ro.vendor.ril                                   u:object_r:vendor_public_vendor_default_prop:s0
+ro.ril.factory_id                               u:object_r:vendor_public_vendor_default_prop:s0
 
 # Thermal
 vendor.sys.thermal.                             u:object_r:vendor_thermal_normal_prop:s0
+
+# Wlan
+ro.wlan.                                        u:object_r:vendor_public_vendor_default_prop:s0
+ro.ril.oem.wifimac                              u:object_r:vendor_wifimac_prop:s0
