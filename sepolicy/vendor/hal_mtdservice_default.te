@@ -12,9 +12,13 @@ add_hwservice(hal_mtdservice_server, hal_mtdservice_hwservice)
 allow hal_mtdservice_client hal_mtdservice_hwservice:hwservice_manager find;
 
 allow hal_mtdservice_default ion_device:chr_file r_file_perms;
-allow hal_mtdservice_default mnt_vendor_file:dir r_dir_perms;
 allow hal_mtdservice_default tee_device:chr_file rw_file_perms;
+allow hal_mtdservice_default {
+  mnt_vendor_file
+  camera_persist_file
+  vendor_persist_file
+}:dir r_dir_perms;
 
 set_prop(hal_mtdservice_default, vendor_tee_listener_prop)
 
-dontaudit hal_mtdservice_default self:capability dac_override;
+dontaudit hal_mtdservice_default self:capability { dac_override dac_read_search };
