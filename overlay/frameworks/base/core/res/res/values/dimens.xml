@@ -19,9 +19,10 @@
 -->
 <resources>
 
-    <!-- Height of the status bar in portrait. The height should be
-         Max((status bar content height + waterfall top size), top cutout size) -->
-    <dimen name="status_bar_height_portrait">93.0px</dimen>
+    <!-- Height of the status bar.
+         Do not read this dimen directly. Use {@link SystemBarUtils#getStatusBarHeight} instead.
+         -->
+    <dimen name="status_bar_height">115px</dimen>
 
     <!-- Radius of the software rounded corners at the top of the display in its natural
         orientation. If zero, the value of rounded_corner_radius is used. -->
