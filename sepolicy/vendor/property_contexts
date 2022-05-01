@@ -49,7 +49,9 @@ ro.boot.factorybuild                            u:object_r:vendor_public_vendor_
 ro.boot.hwversion                               u:object_r:vendor_public_vendor_default_prop:s0
 
 # Mlipay
+vendor.sys.rpmb_state                           u:object_r:vendor_tee_listener_prop:s0
 persist.vendor.sys.pay                          u:object_r:vendor_tee_listener_prop:s0
+persist.vendor.sys.provision.status             u:object_r:vendor_tee_listener_prop:s0
 
 # RIL
 ro.vendor.ril                                   u:object_r:vendor_public_vendor_default_prop:s0
