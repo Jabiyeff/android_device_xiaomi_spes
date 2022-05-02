@@ -305,18 +305,6 @@
         <fqname>@1.0::IQspmhal/default</fqname>
     </hal>
     <hal format="hidl">
-        <name>android.hardware.nfc</name>
-        <transport>hwbinder</transport>
-        <fqname>@1.2::INfc/default</fqname>
-    </hal>
-    <hal format="hidl">
-        <name>android.hardware.secure_element</name>
-        <transport>hwbinder</transport>
-        <fqname>@1.2::ISecureElement/SIM1</fqname>
-        <fqname>@1.2::ISecureElement/SIM2</fqname>
-        <fqname>@1.2::ISecureElement/eSE1</fqname>
-    </hal>
-    <hal format="hidl">
         <name>vendor.xiaomi.hardware.displayfeature</name>
         <transport>hwbinder</transport>
         <fqname>@1.0::IDisplayFeature/default</fqname>
