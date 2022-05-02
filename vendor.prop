@@ -227,6 +227,9 @@ persist.vendor.sensors.enable.rt_task=false
 persist.vendor.sensors.hal_trigger_ssr=false
 persist.vendor.sensors.support_direct_channel=false
 
+# Skia
+renderthread.skia.reduceopstasksplitting=true
+
 # Soundtrigger
 ro.vendor.audio.soundtrigger.appdefine.cnn.level=31
 ro.vendor.audio.soundtrigger.appdefine.gmm.level=55
