@@ -13,12 +13,37 @@ allow hal_mtdservice_client hal_mtdservice_hwservice:hwservice_manager find;
 
 allow hal_mtdservice_default ion_device:chr_file r_file_perms;
 allow hal_mtdservice_default tee_device:chr_file rw_file_perms;
+
 allow hal_mtdservice_default {
   mnt_vendor_file
   camera_persist_file
-  vendor_persist_file
+  file_contexts_file
+  vendor_persist_audio_file
+  vendor_persist_sensors_file
+  vendor_persist_time_file
+}:file r_file_perms;
+
+allow hal_mtdservice_default {
+  mnt_vendor_file
+  file_contexts_file
+  camera_persist_file
+  vendor_persist_data_file
+  vendor_persist_iar_db_file
+  vendor_persist_audio_file
+  vendor_persist_alarm_file
+  vendor_persist_rfs_file
+  vendor_persist_drm_file
+  vendor_persist_vpp_file
+  vendor_persist_display_file
+  vendor_persist_hvdcp_file
+  vendor_persist_sensors_file
+  vendor_persist_secnvm_file
+  vendor_persist_data_file
+  vendor_persist_bluetooth_file
+  vendor_persist_time_file
+  vendor_persist_rfs_shared_hlos_file
 }:dir r_dir_perms;
 
 set_prop(hal_mtdservice_default, vendor_tee_listener_prop)
 
-dontaudit hal_mtdservice_default self:capability { dac_override dac_read_search };
+dontaudit hal_mtdservice_default self:capability { dac_override dac_read_search sys_admin };
