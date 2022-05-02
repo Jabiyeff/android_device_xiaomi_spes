@@ -86,6 +86,9 @@ persist.data.df.ul_mode=5
 persist.data.wda.enable=true
 persist.rmnet.data.enable=true
 
+# Skia
+renderthread.skia.reduceopstasksplitting=true
+
 # SSR
 persist.vendor.ssr.restart_level=ALL_ENABLE
 
