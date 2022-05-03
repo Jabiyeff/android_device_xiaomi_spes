@@ -9,6 +9,14 @@ vendor/etc/acdbdata/IDP/bengal-scubaidp-snd-card/IDP_Scuba_Hdmi_cal.acdb
 vendor/etc/acdbdata/IDP/bengal-scubaidp-snd-card/IDP_Scuba_Headset_cal.acdb
 vendor/etc/acdbdata/IDP/bengal-scubaidp-snd-card/IDP_Scuba_Speaker_cal.acdb
 vendor/etc/acdbdata/IDP/bengal-scubaidp-snd-card/IDP_Scuba_workspaceFile.qwsp
+vendor/etc/acdbdata/IDP/india/INDIA_Bluetooth_cal.acdb
+vendor/etc/acdbdata/IDP/india/INDIA_General_cal.acdb
+vendor/etc/acdbdata/IDP/india/INDIA_Global_cal.acdb
+vendor/etc/acdbdata/IDP/india/INDIA_Handset_cal.acdb
+vendor/etc/acdbdata/IDP/india/INDIA_Hdmi_cal.acdb
+vendor/etc/acdbdata/IDP/india/INDIA_Headset_cal.acdb
+vendor/etc/acdbdata/IDP/india/INDIA_Speaker_cal.acdb
+vendor/etc/acdbdata/IDP/india/INDIA_workspaceFile.qwsp
 vendor/etc/acdbdata/IDP/IDP_Bluetooth_cal.acdb
 vendor/etc/acdbdata/IDP/IDP_General_cal.acdb
 vendor/etc/acdbdata/IDP/IDP_Global_cal.acdb
