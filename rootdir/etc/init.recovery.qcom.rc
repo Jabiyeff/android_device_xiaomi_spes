@@ -26,7 +26,7 @@
 #
 
 on init
-    write /sys/class/backlight/panel0-backlight/brightness 200
+    write /sys/class/backlight/panel0-backlight/brightness 150
     setprop sys.usb.configfs 1
 
 on property:ro.boot.usbcontroller=*
