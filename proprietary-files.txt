@@ -626,7 +626,6 @@ vendor/lib64/hw/displayfeature.default.so
 vendor/lib64/hw/vendor.xiaomi.hardware.displayfeature@1.0-impl.so
 vendor/lib64/libdisplayfeature.so
 vendor/lib64/libdisplayfeatureservice.so
-vendor/lib64/vendor.xiaomi.hardware.displayfeature@1.0.so
 
 # Display HDR
 vendor/lib64/libhdr_tm.so
@@ -1067,11 +1066,6 @@ vendor/lib64/libmlipay@1.1.so
 vendor/lib64/libmt@1.2.so
 vendor/lib64/libwvkeybox.so
 vendor/lib64/vendor.xiaomi.hardware.mfidoca@1.0.so
-vendor/lib64/vendor.xiaomi.hardware.mlipay@1.0.so
-vendor/lib64/vendor.xiaomi.hardware.mlipay@1.1.so
-vendor/lib64/vendor.xiaomi.hardware.mtdservice@1.0.so
-vendor/lib64/vendor.xiaomi.hardware.mtdservice@1.1.so
-vendor/lib64/vendor.xiaomi.hardware.mtdservice@1.2.so
 
 # Modules
 vendor/lib/modules/audio_adsp_loader.ko
