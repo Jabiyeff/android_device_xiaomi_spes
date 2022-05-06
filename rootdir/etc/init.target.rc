@@ -115,6 +115,12 @@ on boot
     chown system system /sys/class/drm/card0-DSI-1/doze_brightness
     chown system system /sys/class/drm/card0-DSI-1/doze_backlight
 
+    # CPU
+    chmod 0644 /sys/devices/system/cpu/cpu0/cpufreq/scaling_min_freq
+    chown system system /sys/devices/system/cpu/cpu0/cpufreq/scaling_min_freq
+    chmod 0644 /sys/devices/system/cpu/cpu4/cpufreq/scaling_min_freq
+    chown system system /sys/devices/system/cpu/cpu4/cpufreq/scaling_min_freq
+
     # DT2W
     chown system system /proc/tp_gesture
     chmod 0644 /proc/tp_gesture
@@ -217,3 +223,7 @@ on property:init.svc.surfaceflinger=running
 
 on property:init.svc.surfaceflinger=restarting
     stop displayfeature
+
+on property:sys.boot_completed=1
+    write /sys/devices/system/cpu/cpu0/cpufreq/scaling_min_freq 300000
+    write /sys/devices/system/cpu/cpu4/cpufreq/scaling_min_freq 300000
