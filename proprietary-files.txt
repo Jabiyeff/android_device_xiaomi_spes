@@ -874,9 +874,6 @@ vendor/lib64/hw/vulkan.adreno.so
 system_ext/etc/permissions/com.android.hotwordenrollment.common.util.xml
 system_ext/framework/com.android.hotwordenrollment.common.util.jar
 
-# IFAA
--system/app/IFAAService/IFAAService.apk
-
 # IMS
 -system_ext/app/uceShimService/uceShimService.apk
 -system_ext/priv-app/ims/ims.apk
