@@ -214,15 +214,16 @@ service vendor.displayfeature /vendor/bin/displayfeature
     user root
     group root
     writepid /dev/cpuset/system-background/tasks
+    disabled
 
 on property:init.svc.surfaceflinger=stopped
-    stop displayfeature
+    stop vendor.displayfeature
 
 on property:init.svc.surfaceflinger=running
-    start displayfeature
+    start vendor.displayfeature
 
 on property:init.svc.surfaceflinger=restarting
-    stop displayfeature
+    stop vendor.displayfeature
 
 on property:sys.boot_completed=1
     write /sys/devices/system/cpu/cpu0/cpufreq/scaling_min_freq 300000
