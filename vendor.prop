@@ -100,13 +100,10 @@ vendor.audio_hal.period_size=192
 vendor.voice.path.for.pcm.voip=true
 
 # Bluetooth
-persist.bluetooth.a2dp_offload.cap=sbc-aac-aptx-aptxhd-ldac
 persist.bluetooth.a2dp_offload.disabled=false
-persist.vendor.bt.aac_frm_ctl.enabled=true
+persist.vendor.bluetooth.drop_power=true
 persist.vendor.qcom.bluetooth.aac_vbr_ctl.enabled=false
-persist.vendor.qcom.bluetooth.a2dp_offload_cap=sbc-aptx-aptxtws-aptxhd-aac-ldac
 persist.vendor.qcom.bluetooth.aac_frm_ctl.enabled=true
-persist.vendor.qcom.bluetooth.enable.splita2dp=true
 persist.vendor.qcom.bluetooth.scram.enabled=false
 persist.vendor.qcom.bluetooth.soc=cherokee
 persist.vendor.qcom.bluetooth.twsp_state.enabled=false
