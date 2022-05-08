@@ -24,7 +24,7 @@ static const variant_info_t spes_info = {
 
 static const variant_info_t spesn_info = {
     .hwc_value = "",
-    .sku_value = "nfc",
+    .sku_value = "k7tn",
 
     .brand = "Redmi",
     .device = "spesn",

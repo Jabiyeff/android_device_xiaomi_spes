@@ -22,7 +22,10 @@ service nfc_hal_service /vendor/bin/hw/android.hardware.nfc@1.2-service.st
     group nfc
     disabled
 
-on boot && property:ro.boot.product.hardware.sku=nfc
+on post-fs && property:ro.boot.hwname=spesn
+    start stflashtool
+    setprop ro.vendor.se.type HCE,UICC
+
+on boot && property:ro.boot.hwname=spesn
     start nfc_hal_service
     start secure_element_hal_service
-    start stflashtool
