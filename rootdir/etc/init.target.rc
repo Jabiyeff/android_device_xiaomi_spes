@@ -122,7 +122,7 @@ on boot
 
     # DT2W
     chown system system /proc/tp_gesture
-    chmod 0644 /proc/tp_gesture
+    chmod 0664 /proc/tp_gesture
 
     # USB controller configuration
     setprop vendor.usb.rndis.func.name "gsi"
