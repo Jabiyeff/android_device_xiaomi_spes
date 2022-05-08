@@ -15,7 +15,7 @@
       "Path": "/sys/devices/system/cpu/cpu0/cpufreq/scaling_min_freq",
       "Values": [
         "9999999",
-        "1248000",
+        "1516000",
         "300000"
       ],
       "ResetOnInit": true
@@ -37,7 +37,7 @@
       "Values": [
         "9999999",
         "1555200",
-        "1248000",
+        "1344000",
         "300000"
       ],
       "ResetOnInit": true
@@ -47,7 +47,7 @@
       "Path": "/sys/class/kgsl/kgsl-3d0/max_pwrlevel",
       "Values": [
         "0",
-        "3"
+        "2"
       ],
       "DefaultIndex": 0,
       "ResetOnInit": true
@@ -261,13 +261,19 @@
       "PowerHint": "SUSTAINED_PERFORMANCE",
       "Node": "GPUMaxFreq",
       "Duration": 0,
-      "Value": "3"
+      "Value": "2"
     },
     {
       "PowerHint": "INTERACTION",
       "Node": "CPULittleClusterMinFreq",
       "Duration": 0,
-      "Value": "1248000"
+      "Value": "1516000"
+    },
+    {
+      "PowerHint": "INTERACTION",
+      "Node": "CPUBigClusterMinFreq",
+      "Duration": 0,
+      "Value": "1344000"
     },
     {
       "PowerHint": "INTERACTION",
