@@ -53,13 +53,10 @@ on property:sys.boot_completed=1
 
     # Setup runtime schedTune
     write /dev/stune/foreground/schedtune.prefer_idle 1
-    write /dev/stune/foreground/schedtune.prefer_high_cap 0
     write /dev/stune/foreground/schedtune.boost 0
     write /dev/stune/schedtune.prefer_idle 0
-    write /dev/stune/schedtune.prefer_high_cap 0
     write /dev/stune/schedtune.boost 0
     write /dev/stune/top-app/schedtune.prefer_idle 1
-    write /dev/stune/top-app/schedtune.prefer_high_cap 0
     write /dev/stune/top-app/schedtune.boost 10
 
     # Setup runtime blkio
@@ -83,13 +80,8 @@ on early-init
     write /sys/devices/system/cpu/cpu4/cpufreq/schedutil/up_rate_limit_us 500
     write /sys/devices/system/cpu/cpu4/cpufreq/schedutil/down_rate_limit_us 20000
 
-    # configure governor settings for big big CPU
-    write /sys/devices/system/cpu/cpu7/cpufreq/scaling_governor schedutil
-    write /sys/devices/system/cpu/cpu7/cpufreq/schedutil/up_rate_limit_us 500
-    write /sys/devices/system/cpu/cpu7/cpufreq/schedutil/down_rate_limit_us 20000
-
     # Disable UFS clock scaling
-    write /sys/bus/platform/devices/1d84000.ufshc/clkscale_enable 0
+    write /sys/bus/platform/devices/4804000.ufshc/clkscale_enable 0
 
 on init
     # Setup permission for Power HAL
@@ -106,13 +98,10 @@ on init
     write /dev/cpuset/system-background/cpus 0-5
     write /dev/cpuset/restricted/cpus 2-5
     write /dev/stune/foreground/schedtune.prefer_idle 1
-    write /dev/stune/foreground/schedtune.prefer_high_cap 1
     write /dev/stune/foreground/schedtune.boost 100
     write /dev/stune/schedtune.prefer_idle 1
-    write /dev/stune/schedtune.prefer_high_cap 1
     write /dev/stune/schedtune.boost 100
     write /dev/stune/top-app/schedtune.prefer_idle 1
-    write /dev/stune/top-app/schedtune.prefer_high_cap 1
     write /dev/stune/top-app/schedtune.boost 100
 
     # Boot time fs tuning
