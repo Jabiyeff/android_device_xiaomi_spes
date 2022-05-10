@@ -16,7 +16,7 @@ allow hal_mtdservice_default tee_device:chr_file rw_file_perms;
 
 allow hal_mtdservice_default {
   mnt_vendor_file
-  camera_persist_file
+  vendor_persist_camera_file
   file_contexts_file
   vendor_persist_audio_file
   vendor_persist_sensors_file
@@ -26,7 +26,7 @@ allow hal_mtdservice_default {
 allow hal_mtdservice_default {
   mnt_vendor_file
   file_contexts_file
-  camera_persist_file
+  vendor_persist_camera_file
   vendor_persist_data_file
   vendor_persist_iar_db_file
   vendor_persist_audio_file
