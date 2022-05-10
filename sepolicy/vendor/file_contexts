@@ -6,6 +6,7 @@
 
 # Camera
 /mnt/vendor/persist/camera(/.*)?                                        u:object_r:vendor_persist_camera_file:s0
+/vendor/bin/f2player                                                    u:object_r:hal_camera_default_exec:s0
 
 # Charger
 /vendor/bin/batterysecret                                               u:object_r:batterysecret_exec:s0
