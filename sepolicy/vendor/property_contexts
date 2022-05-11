@@ -1,3 +1,7 @@
+# Bluetooth
+ro.ril.oem.btmac                                u:object_r:vendor_btmac_prop:s0
+persist.ro.ril.oem.btmac                        u:object_r:vendor_btmac_prop:s0
+
 # Camera
 camera.                                         u:object_r:vendor_camera_prop:s0
 persist.camera.                                 u:object_r:vendor_camera_prop:s0
@@ -74,3 +78,7 @@ ro.vendor.ril                                   u:object_r:vendor_public_vendor_
 
 # Thermal
 vendor.sys.thermal.                             u:object_r:vendor_thermal_normal_prop:s0
+
+# WiFi
+ro.wlan.chip                                    u:object_r:vendor_public_vendor_default_prop:s0
+ro.ril.oem.wifimac                              u:object_r:vendor_wifimac_prop:s0

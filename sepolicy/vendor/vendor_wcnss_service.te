@@ -6,4 +6,5 @@ allow vendor_wcnss_service init:unix_stream_socket { connectto };
 
 get_prop(vendor_wcnss_service, vendor_bluetooth_prop)
 set_prop(vendor_wcnss_service, vendor_radio_prop)
+set_prop(vendor_wcnss_service, vendor_wifimac_prop)
 set_prop(vendor_wcnss_service, vendor_public_vendor_default_prop)
