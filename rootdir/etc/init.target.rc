@@ -102,7 +102,7 @@ on post-fs-data
     chown system system /sys/class/power_supply/usb/typec_cc_orientation
 
 on boot
-    write /dev/cputest/audio-app/cpus 1-2
+    write /dev/cpuset/audio-app/cpus 1-2
     chown system system /sys/class/drm/card0-DSI-1/disp_param
     chmod 0664 /sys/class/drm/card0-DSI-1/disp_param
     chown system system /sys/class/drm/card0-DSI-1/mipi_reg
