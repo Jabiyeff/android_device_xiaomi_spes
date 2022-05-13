@@ -13,3 +13,4 @@ allow init hwservicemanager:binder { transfer };
 allow init nfc:binder { call };
 allow init proc:file { write };
 allow init sysfs:file setattr;
+allow init sysfs_android_usb:file rw_file_perms;

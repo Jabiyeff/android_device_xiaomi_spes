@@ -28,6 +28,8 @@ genfscon sysfs /devices/platform/soc/soc:fpc1020/wakeup_enable                  
 # Health
 genfscon sysfs /class/power_supply/battery/capacity                                                 u:object_r:vendor_sysfs_battery_supply:s0
 genfscon sysfs /devices/platform/soc/soc:maxim_ds28e16/power_supply/batt_verify                     u:object_r:vendor_sysfs_battery_supply:s0
+genfscon sysfs /devices/platform/soc/soc:maxim_ds28e16/power_supply/batt_verify/wakeup1             u:object_r:vendor_sysfs_battery_supply:s0
+genfscon sysfs /devices/platform/soc/soc:maxim_ds28e16/power_supply/batt_verify/wakeup1/event_count u:object_r:vendor_sysfs_battery_supply:s0
 
 # kmsg
 genfscon proc /last_kmsg                                                                            u:object_r:proc_last_kmsg:s0
