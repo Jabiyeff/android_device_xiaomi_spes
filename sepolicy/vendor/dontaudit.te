@@ -7,6 +7,7 @@ dontaudit hal_bootctl_default gsi_metadata_file:dir search;
 # too noisy, and shouldn't even be granted by default unless necessary
 dontaudit { gmscore_app hal_camera_default } property_type:file r_file_perms;
 dontaudit {
+  rild
   vendor_hal_neuralnetworks_default
   vendor_qti_init_shell
 } default_prop:file r_file_perms;
@@ -19,3 +20,18 @@ dontaudit untrusted_app_all selinuxfs:file read;
 
 # all other no-context attempt by apps (as spotted on iQIYI)
 dontaudit untrusted_app_all sysfs_net:dir search;
+
+dontaudit {
+  hal_audio_default
+  hal_graphics_composer_default
+  hal_sensors_default
+  rild
+  vendor_adpl
+  vendor_cnd
+  vendor_dpmd
+  vendor_hal_imsrtp
+  vendor_ims
+  vendor_netmgrd
+  vendor_sensors_qti
+  vendor_qti
+} vendor_diag_device:chr_file rw_file_perms;
