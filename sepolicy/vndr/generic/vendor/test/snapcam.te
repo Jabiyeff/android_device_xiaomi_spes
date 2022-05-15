@@ -42,7 +42,6 @@ allow vendor_snapcam_app audioserver_service:service_manager find;
 allow vendor_snapcam_app mediaextractor_service:service_manager find;
 allow vendor_snapcam_app mediametrics_service:service_manager find;
 allow vendor_snapcam_app mediaserver_service:service_manager find;
-allow vendor_snapcam_app exported3_default_prop:file read;
 
 # Allow vendor_snapcam_apps to open and send ioctl to qdsp device
 allow vendor_snapcam_app vendor_qdsp_device:chr_file r_file_perms;
