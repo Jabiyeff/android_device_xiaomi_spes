@@ -1,1 +1,3 @@
-hal_attribute_lineage(mtdservice)
+attribute hal_mtdservice;
+attribute hal_mtdservice_client;
+attribute hal_mtdservice_server;
