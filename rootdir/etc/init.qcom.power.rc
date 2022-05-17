@@ -46,7 +46,7 @@ on property:sys.boot_completed=1
 
     # Setup runtime cpusets
     write /dev/cpuset/top-app/cpus 0-7
-    write /dev/cpuset/foreground/cpus 0-3,5-6
+    write /dev/cpuset/foreground/cpus 0-3
     write /dev/cpuset/background/cpus 0-1
     write /dev/cpuset/system-background/cpus 0-3
     write /dev/cpuset/restricted/cpus 0-3
@@ -65,6 +65,12 @@ on property:sys.boot_completed=1
     write /dev/blkio/background/blkio.weight 200
     write /dev/blkio/blkio.group_idle 2000
     write /dev/blkio/background/blkio.group_idle 0
+
+    # Enable UFS powersaving
+    write /sys/devices/platform/soc/4804000.ufshc/clkgate_enable 1
+
+    # Enable powersaving
+    write /sys/module/lpm_levels/parameters/sleep_disabled 0
 
 on property:init.svc.recovery=running
     trigger enable-low-power
