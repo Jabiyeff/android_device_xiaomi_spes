@@ -4,8 +4,9 @@
       "Name": "CPULittleClusterMaxFreq",
       "Path": "/sys/devices/system/cpu/cpu0/cpufreq/scaling_max_freq",
       "Values": [
-        "9999999",
-        "1248000"
+        "1900800",
+        "1516800",
+        "1190400"
       ],
       "DefaultIndex": 0,
       "ResetOnInit": true
@@ -14,32 +15,42 @@
       "Name": "CPULittleClusterMinFreq",
       "Path": "/sys/devices/system/cpu/cpu0/cpufreq/scaling_min_freq",
       "Values": [
-        "9999999",
-        "1516000",
+        "1900800",
+        "1804800",
+        "1516800",
+        "1190400",
+        "940800",
+        "691200",
         "300000"
       ],
+      "DefaultIndex": 6,
       "ResetOnInit": true
     },
     {
       "Name": "CPUBigClusterMaxFreq",
       "Path": "/sys/devices/system/cpu/cpu4/cpufreq/scaling_max_freq",
       "Values": [
-        "9999999",
-        "1939200",
-        "1555200"
+        "2400000",
+        "2208000",
+        "1766400",
+        "1344000"
       ],
-      "DefaultIndex": 0,
+      "DefaultIndex": 3,
       "ResetOnInit": true
     },
     {
       "Name": "CPUBigClusterMinFreq",
       "Path": "/sys/devices/system/cpu/cpu4/cpufreq/scaling_min_freq",
       "Values": [
-        "9999999",
-        "1555200",
+        "2400000",
+        "2208000",
+        "1766400",
         "1344000",
+        "1056000",
+        "806400",
         "300000"
       ],
+      "DefaultIndex": 6,
       "ResetOnInit": true
     },
     {
@@ -47,6 +58,7 @@
       "Path": "/sys/class/kgsl/kgsl-3d0/max_pwrlevel",
       "Values": [
         "0",
+        "1",
         "2"
       ],
       "DefaultIndex": 0,
@@ -58,6 +70,7 @@
       "Values": [
         "0",
         "3",
+        "4",
         "5"
       ],
       "ResetOnInit": true
@@ -66,9 +79,11 @@
       "Name": "GPUBusMinFreq",
       "Path": "/sys/class/devfreq/soc:qcom,gpubw/min_freq",
       "Values": [
+        "15960",
         "4173",
         "3440",
         "1525",
+        "762",
         "0"
       ],
       "ResetOnInit": true
@@ -96,7 +111,7 @@
       "Path": "/sys/class/kgsl/kgsl-3d0/idle_timer",
       "Values": [
         "10000",
-        "80"
+        "64"
       ],
       "ResetOnInit": true
     },
@@ -104,8 +119,8 @@
       "Name": "TASchedtuneBoost",
       "Path": "/dev/stune/top-app/schedtune.boost",
       "Values": [
-        "40",
-        "10"
+        "5",
+        "1"
       ],
       "ResetOnInit": true
     },
@@ -167,10 +182,12 @@
       "Name": "CPUBWMinFreq",
       "Path": "/sys/class/devfreq/soc:qcom,cpu-cpu-ddr-bw/min_freq",
       "Values": [
+        "15960",
         "11863",
         "7759",
         "5859",
-        "4173"
+        "4173",
+        "1525"
       ],
       "ResetOnInit": true
     },
@@ -179,6 +196,9 @@
       "Path": "/sys/class/devfreq/soc:qcom,cpu0-cpu-ddr-lat/min_freq",
       "Values": [
         "15960",
+        "11863",
+        "5859",
+        "4173",
         "1525"
       ],
       "ResetOnInit": true
@@ -188,6 +208,9 @@
       "Path": "/sys/class/devfreq/soc:qcom,cpu4-cpu-ddr-lat/min_freq",
       "Values": [
         "15960",
+        "11863",
+        "5859",
+        "4173",
         "1525"
       ],
       "ResetOnInit": true
@@ -249,13 +272,13 @@
       "PowerHint": "SUSTAINED_PERFORMANCE",
       "Node": "CPUBigClusterMaxFreq",
       "Duration": 0,
-      "Value": "1555200"
+      "Value": "1344000"
     },
     {
       "PowerHint": "SUSTAINED_PERFORMANCE",
       "Node": "CPULittleClusterMaxFreq",
       "Duration": 0,
-      "Value": "1248000"
+      "Value": "1190400"
     },
     {
       "PowerHint": "SUSTAINED_PERFORMANCE",
@@ -267,7 +290,7 @@
       "PowerHint": "INTERACTION",
       "Node": "CPULittleClusterMinFreq",
       "Duration": 0,
-      "Value": "1516000"
+      "Value": "1516800"
     },
     {
       "PowerHint": "INTERACTION",
@@ -279,7 +302,7 @@
       "PowerHint": "INTERACTION",
       "Node": "TASchedtuneBoost",
       "Duration": 0,
-      "Value": "40"
+      "Value": "5"
     },
     {
       "PowerHint": "INTERACTION",
@@ -315,19 +338,19 @@
       "PowerHint": "LAUNCH",
       "Node": "CPUBigClusterMaxFreq",
       "Duration": 3000,
-      "Value": "9999999"
+      "Value": "2400000"
     },
     {
       "PowerHint": "LAUNCH",
       "Node": "CPUBigClusterMinFreq",
       "Duration": 3000,
-      "Value": "9999999"
+      "Value": "2400000"
     },
     {
       "PowerHint": "LAUNCH",
       "Node": "CPULittleClusterMinFreq",
       "Duration": 3000,
-      "Value": "9999999"
+      "Value": "1900800"
     },
     {
       "PowerHint": "LAUNCH",
@@ -405,25 +428,25 @@
       "PowerHint": "CAMERA_LAUNCH",
       "Node": "CPUBigClusterMaxFreq",
       "Duration": 1000,
-      "Value": "9999999"
+      "Value": "2400000"
     },
     {
       "PowerHint": "CAMERA_LAUNCH",
       "Node": "CPUBigClusterMinFreq",
       "Duration": 1000,
-      "Value": "9999999"
+      "Value": "2400000"
     },
     {
       "PowerHint": "CAMERA_LAUNCH",
       "Node": "CPULittleClusterMaxFreq",
       "Duration": 1000,
-      "Value": "9999999"
+      "Value": "1900800"
     },
     {
       "PowerHint": "CAMERA_LAUNCH",
       "Node": "CPULittleClusterMinFreq",
       "Duration": 1000,
-      "Value": "9999999"
+      "Value": "1900800"
     },
     {
       "PowerHint": "CAMERA_LAUNCH",
@@ -435,7 +458,7 @@
       "PowerHint": "CAMERA_STREAMING_MID",
       "Node": "CPUBigClusterMaxFreq",
       "Duration": 0,
-      "Value": "1939200"
+      "Value": "1766400"
     },
     {
       "PowerHint": "CAMERA_STREAMING_MID",
@@ -459,7 +482,7 @@
       "PowerHint": "CAMERA_STREAMING_HIGH",
       "Node": "CPUBigClusterMaxFreq",
       "Duration": 0,
-      "Value": "1939200"
+      "Value": "1766400"
     },
     {
       "PowerHint": "CAMERA_STREAMING_HIGH",
@@ -495,7 +518,7 @@
       "PowerHint": "CAMERA_STREAMING_LOW",
       "Node": "CPUBigClusterMaxFreq",
       "Duration": 0,
-      "Value": "1939200"
+      "Value": "1766400"
     },
     {
       "PowerHint": "CAMERA_STREAMING_LOW",
@@ -525,7 +548,7 @@
       "PowerHint": "CAMERA_STREAMING_SECURE",
       "Node": "CPUBigClusterMaxFreq",
       "Duration": 0,
-      "Value": "1939200"
+      "Value": "1766400"
     },
     {
       "PowerHint": "CAMERA_STREAMING_SECURE",
@@ -549,25 +572,25 @@
       "PowerHint": "CAMERA_SHOT",
       "Node": "CPUBigClusterMaxFreq",
       "Duration": 1000,
-      "Value": "9999999"
+      "Value": "2400000"
     },
     {
       "PowerHint": "CAMERA_SHOT",
       "Node": "CPUBigClusterMinFreq",
       "Duration": 1000,
-      "Value": "9999999"
+      "Value": "2400000"
     },
     {
       "PowerHint": "CAMERA_SHOT",
       "Node": "CPULittleClusterMaxFreq",
       "Duration": 1000,
-      "Value": "9999999"
+      "Value": "1900800"
     },
     {
       "PowerHint": "CAMERA_SHOT",
       "Node": "CPULittleClusterMinFreq",
       "Duration": 1000,
-      "Value": "9999999"
+      "Value": "1900800"
     },
     {
       "PowerHint": "CAMERA_SHOT",
