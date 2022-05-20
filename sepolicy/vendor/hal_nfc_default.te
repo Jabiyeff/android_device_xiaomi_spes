@@ -1,7 +1,2 @@
-# Data file accesses.
-add_hwservice(hal_nfc_default, nxpese_hwservice)
-add_hwservice(hal_nfc_default, nxpnfc_hwservice)
-
-allow hal_nfc_default vendor_nfc_vendor_data_file:dir { search write };
 allow hal_nfc_default vendor_nfc_vendor_data_file:dir create_dir_perms;
 allow hal_nfc_default vendor_nfc_vendor_data_file:file create_file_perms;

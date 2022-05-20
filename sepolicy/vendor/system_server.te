@@ -3,6 +3,6 @@ allow system_server proc_last_kmsg:file r_file_perms;
 get_prop(system_server, vendor_display_notch_prop)
 get_prop(system_server, vendor_persist_camera_prop)
 
-allow system_server hal_displayfeature_default : binder {call transfer};
+allow system_server hal_displayfeature_default:binder { call transfer };
 
 allow system_server system_server:capability { sys_module };

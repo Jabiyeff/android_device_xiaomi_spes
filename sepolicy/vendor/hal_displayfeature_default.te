@@ -15,24 +15,31 @@ get_prop(hal_displayfeature_default, vendor_mpctl_prop)
 
 vndbinder_use(hal_displayfeature_default)
 
-allow hal_displayfeature_default vendor_hal_display_config_hwservice:hwservice_manager find;
-allow hal_displayfeature_default fwk_sensor_hwservice:hwservice_manager find;
-allow hal_displayfeature_default vendor_qdisplay_service:service_manager find;
-allow hal_displayfeature_default hwservicemanager:binder { call transfer };
-allow hal_displayfeature_default hal_displayfeature_hwservice:hwservice_manager { add find };
-allow hal_displayfeature_default hal_graphics_composer_default:binder { call transfer };
-allow hal_displayfeature_default hal_graphics_composer_default:unix_stream_socket { connectto };
+allow hal_displayfeature_default {
+  fwk_sensor_hwservice
+  hal_displayfeature_hwservice
+  vendor_hal_display_color_hwservice
+  vendor_hal_display_config_hwservice
+  vendor_hal_display_postproc_hwservice
+}:hwservice_manager find;
+
 allow hal_displayfeature_default hidl_base_hwservice:hwservice_manager add;
+
+allow hal_displayfeature_default display_feature_control_service:service_manager add;
+allow hal_displayfeature_default vendor_qdisplay_service:service_manager find;
+
+allow hal_displayfeature_default {
+  hal_graphics_composer_default
+  hwservicemanager
+  system_server
+  vendor_hal_display_color_default
+}:binder { call transfer };
+
+allow hal_displayfeature_default hal_graphics_composer_default:unix_stream_socket { connectto };
 allow hal_displayfeature_default vendor_display_vendor_data_file:dir {search write add_name};
-allow hal_displayfeature_default vendor_hal_display_postproc_hwservice:hwservice_manager find;
 allow hal_displayfeature_default vendor_sysfs_graphics:file rw_file_perms;
 allow hal_displayfeature_default vendor_sysfs_graphics:dir r_dir_perms;
 allow hal_displayfeature_default vendor_display_vendor_data_file:file {open getattr read create};
-allow hal_displayfeature_default vendor_hal_display_color_default:binder {call};
-allow hal_displayfeature_default system_server:binder { call transfer};
-allow hal_displayfeature_default vendor_display_prop:file {read open getattr map};
-allow hal_displayfeature_default vendor_hal_display_color_hwservice:hwservice_manager {find};
 allow hal_displayfeature_default hal_displayfeature_default:capability { sys_admin };
-allow hal_displayfeature_default display_feature_control_service:service_manager {add};
 allow hal_displayfeature_default vendor_pps_socket:sock_file { write };
 
