@@ -289,87 +289,6 @@
         <item>700.0</item>  <!-- index 2 -->
     </array>
 
-    <!-- Array of hysteresis constraint values for brightening, represented as tenths of a
-         percent. The length of this array is assumed to be one greater than
-         config_dynamicHysteresisLuxLevels. The brightening threshold is calculated as
-         lux * (1.0f + CONSTRAINT_VALUE). When the current lux is higher than this threshold,
-         the screen brightness is recalculated. See the config_dynamicHysteresisLuxLevels
-         description for how the constraint value is chosen. -->
-    <integer-array name="config_dynamicHysteresisBrightLevels">
-        <item>200</item>
-        <item>200</item>
-        <item>200</item>
-        <item>200</item>
-        <item>200</item>
-        <item>200</item>
-        <item>200</item>
-        <item>200</item>
-        <item>250</item>
-        <item>300</item>
-        <item>300</item>
-        <item>300</item>
-        <item>300</item>
-        <item>300</item>
-        <item>300</item>
-        <item>400</item>
-        <item>500</item>
-    </integer-array>
-
-    <!-- Array of hysteresis constraint values for darkening, represented as tenths of a
-         percent. The length of this array is assumed to be one greater than
-         config_dynamicHysteresisLuxLevels. The darkening threshold is calculated as
-         lux * (1.0f - CONSTRAINT_VALUE). When the current lux is lower than this threshold,
-         the screen brightness is recalculated. See the config_dynamicHysteresisLuxLevels
-         description for how the constraint value is chosen. -->
-    <integer-array name="config_dynamicHysteresisDarkLevels">
-        <item>200</item>
-        <item>200</item>
-        <item>200</item>
-        <item>200</item>
-        <item>200</item>
-        <item>200</item>
-        <item>200</item>
-        <item>200</item>
-        <item>300</item>
-        <item>400</item>
-        <item>400</item>
-        <item>400</item>
-        <item>400</item>
-        <item>400</item>
-        <item>400</item>
-        <item>500</item>
-        <item>500</item>
-    </integer-array>
-
-    <!-- Array of ambient lux threshold values. This is used for determining hysteresis constraint
-         values by calculating the index to use for lookup and then setting the constraint value
-         to the corresponding value of the array. The new brightening hysteresis constraint value
-         is the n-th element of config_dynamicHysteresisBrightLevels, and the new darkening
-         hysteresis constraint value is the n-th element of config_dynamicHysteresisDarkLevels.
-         The (zero-based) index is calculated as follows: (MAX is the largest index of the array)
-         condition                      calculated index
-         value < lux[0]                 0
-         lux[n] <= value < lux[n+1]     n+1
-         lux[MAX] <= value              MAX+1 -->
-    <integer-array name="config_dynamicHysteresisLuxLevels">
-        <item>1</item>
-        <item>4</item>
-        <item>12</item>
-        <item>20</item>
-        <item>40</item>
-        <item>65</item>
-        <item>95</item>
-        <item>140</item>
-        <item>200</item>
-        <item>350</item>
-        <item>650</item>
-        <item>1300</item>
-        <item>2000</item>
-        <item>3300</item>
-        <item>6000</item>
-        <item>10000</item>
-    </integer-array>
-
     <!-- Screen brightness used to dim the screen when the user activity
          timeout expires.  May be less than the minimum allowed brightness setting
          that can be set by the user. -->
@@ -478,20 +397,12 @@
          The default is false. -->
     <bool name="config_lidControlsSleep">true</bool>
 
-    <!-- Indicate whether to allow the device to suspend when the screen is off
-         due to the proximity sensor.  This resource should only be set to true
-         if the sensor HAL correctly handles the proximity sensor as a wake-up source.
-         Otherwise, the device may fail to wake out of suspend reliably.
-         The default is false. -->
-    <bool name="config_suspendWhenScreenOffDueToProximity">true</bool>
-
     <!-- ComponentName of a dream to show whenever the system would otherwise have
          gone to sleep.  When the PowerManager is asked to go to sleep, it will instead
          try to start this dream if possible.  The dream should typically call startDozing()
          to put the display into a low power state and allow the application processor
          to be suspended.  When the dream ends, the system will go to sleep as usual.
          Specify the component name or an empty string if none.
-
          Note that doze dreams are not subject to the same start conditions as ordinary dreams.
          Doze dreams will run whenever the power manager is in a dozing state. -->
     <string name="config_dozeComponent">com.android.systemui/com.android.systemui.doze.DozeService</string>
@@ -566,9 +477,6 @@
     <!-- Telephony qualified networks service package name to bind to by default. -->
     <string name="config_qualified_networks_service_package">vendor.qti.iwlan</string>
 
-    <!-- Flag specifying whether or not IMS will use the ImsResolver dynamically -->
-    <bool name="config_dynamic_bind_ims">true</bool>
-
     <!-- Config determines whether to update phone object when voice registration
          state changes. Voice radio tech change will always trigger an update of
          phone object irrespective of this config -->
@@ -582,9 +490,6 @@
 
     <!-- Flag indicating if the speed up audio on mt call code should be executed -->
     <bool name="config_speed_up_audio_on_mt_calls">true</bool>
-
-    <!-- Shutdown if the battery temperature exceeds (this value * 0.1) Celsius. -->
-    <integer name="config_shutdownBatteryTemperature">680</integer>
 
     <!-- Operating volatage for bluetooth controller. 0 by default-->
     <integer name="config_bluetooth_operating_voltage_mv">3300</integer>
@@ -618,7 +523,7 @@
     </string-array>
 
     <!-- Should the pinner service pin the Camera application? -->
-    <bool name="config_pinnerCameraApp">true</bool>
+    <bool name="config_pinnerCameraApp">false</bool>
 
     <!-- Should the pinner service pin the Home application? -->
     <bool name="config_pinnerHomeApp">true</bool>
@@ -668,15 +573,9 @@
     <!-- If not zero, limits the internal screen recorder's framerate to the set value. -->
     <integer name="config_screenRecorderMaxFramerate">90</integer>
 
-    <!-- Is the battery LED intrusive? Used to decide if there should be a disable option -->
-    <bool name="config_intrusiveBatteryLed">true</bool>
-
     <!-- List of comma separated package names for which we the system will not show crash like
          tts, etc. dialogs. -->
     <string name="config_appsNotReportingCrashes">com.google.android.tts</string>
-
-    <!-- Whether device has fingerprint on power button -->
-    <bool name="config_powerButtonFingerprint">true</bool>
     
     <!-- If true, the display will be shifted around in ambient mode. -->
     <bool name="config_enableBurnInProtection">true</bool>
