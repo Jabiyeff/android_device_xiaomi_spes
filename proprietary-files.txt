@@ -354,6 +354,17 @@ vendor/lib64/libarcsoft_portrait_lighting_c.so
 vendor/lib64/libarcsoft_supernight.so
 
 # Camera CamX
+vendor/lib/libcamxexternalformatutils.so
+vendor/lib/libcamxfacialfeatures.so
+vendor/lib/libcamxfdalgo.so
+vendor/lib/libcamxfdengine.so
+vendor/lib/libcamxifestriping.so
+vendor/lib/libcamximageformatutils.so
+vendor/lib/libcamxncs.so
+vendor/lib/libcamxstatscore.so
+vendor/lib/libcamxswispiqmodule.so
+vendor/lib/libcamxswprocessalgo.so
+vendor/lib/libcamxtintlessalgo.so
 vendor/lib64/libcamxexternalformatutils.so
 vendor/lib64/libcamxfacialfeatures.so
 vendor/lib64/libcamxfdalgo.so
