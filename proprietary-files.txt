@@ -439,6 +439,7 @@ vendor/etc/camera/126_Fantasy2.png
 vendor/etc/camera/127_Creamy.png
 vendor/etc/camera/128_Sepia.png
 vendor/etc/camera/camxoverridesettings.txt
+vendor/etc/camera/com.xiaomi.dcal.wd.golden_3
 vendor/etc/camera/dof_mecp.bin
 vendor/etc/camera/hdrcheckerparamsettings.yml
 vendor/etc/camera/intsense_config_undistort.bin
@@ -1044,6 +1045,9 @@ vendor/lib64/libOmxWmaDec.so
 vendor/lib64/libswvdec.so
 
 # Misys
+-vendor/etc/vintf/manifest/vendor.xiaomi.hardware.misys@1.0.xml
+-vendor/etc/vintf/manifest/vendor.xiaomi.hardware.misys@2.0.xml
+-vendor/etc/vintf/manifest/vendor.xiaomi.hardware.misys@3.0.xml
 system/etc/permissions/vendor.xiaomi.hardware.misys-V1.0-java-permission.xml
 system/etc/permissions/vendor.xiaomi.hardware.misys-V2.0-java-permission.xml
 system/etc/permissions/vendor.xiaomi.hardware.misys.V3_0-permission.xml
@@ -1056,9 +1060,6 @@ vendor/bin/hw/vendor.xiaomi.hardware.misys@3.0-service
 vendor/etc/init/vendor.xiaomi.hardware.misys@1.0-service.rc
 vendor/etc/init/vendor.xiaomi.hardware.misys@2.0-service.rc
 vendor/etc/init/vendor.xiaomi.hardware.misys@3.0-service.rc
--vendor/etc/vintf/manifest/vendor.xiaomi.hardware.misys@1.0.xml
--vendor/etc/vintf/manifest/vendor.xiaomi.hardware.misys@2.0.xml
--vendor/etc/vintf/manifest/vendor.xiaomi.hardware.misys@3.0.xml
 vendor/lib64/hw/vendor.xiaomi.hardware.misys@1.0-impl.so
 vendor/lib64/hw/vendor.xiaomi.hardware.misys@2.0-impl.so
 vendor/lib64/hw/vendor.xiaomi.hardware.misys@3.0-impl.so
@@ -1291,6 +1292,9 @@ vendor/lib64/vendor.qti.hardware.radio.uim_remote_client@1.1.so
 vendor/lib64/vendor.qti.hardware.radio.uim_remote_client@1.2.so
 vendor/lib64/vendor.qti.hardware.radio.uim_remote_server@1.0.so
 vendor/radio/qcril_database/upgrade/0_initial.sql
+vendor/radio/qcril_database/upgrade/10_version_update_ecc_table.sql
+vendor/radio/qcril_database/upgrade/11_version_update_ecc_table.sql
+vendor/radio/qcril_database/upgrade/12_version_update_ecc_table.sql
 vendor/radio/qcril_database/upgrade/1_version_intro.sql
 vendor/radio/qcril_database/upgrade/2_version_add_wps_config.sql
 vendor/radio/qcril_database/upgrade/3_version_update_wps_config.sql
@@ -1353,6 +1357,7 @@ vendor/etc/sensors/config/bengal_sc7a20_0.json
 vendor/etc/sensors/config/bmi26x_0.json
 vendor/etc/sensors/config/bmi26x_0_crt.json
 vendor/etc/sensors/config/bmi26x_0_crt_cfg.json
+vendor/etc/sensors/config/bmi3x0_0.json
 vendor/etc/sensors/config/dynamic_sensors.json
 vendor/etc/sensors/config/ginum_qmc6308_0.json
 vendor/etc/sensors/config/holi_tmd2755_0.json
@@ -1360,6 +1365,7 @@ vendor/etc/sensors/config/icm4x6x.json
 vendor/etc/sensors/config/kona_hdk_ak991x_0.json
 vendor/etc/sensors/config/kona_mir3da_0.json
 vendor/etc/sensors/config/msmnile_bmi26x_0.json
+vendor/etc/sensors/config/msmnile_bmi3x0_0.json
 vendor/etc/sensors/config/msmnile_icm4x6x.json
 vendor/etc/sensors/config/sc7a20_0.json
 vendor/etc/sensors/config/sns_amd.json
@@ -1510,12 +1516,17 @@ vendor/etc/thermal-4k.conf
 vendor/etc/thermal-arvr.conf
 vendor/etc/thermal-camera.conf
 vendor/etc/thermal-chg-only.conf
+vendor/etc/thermal-class0.conf
 vendor/etc/thermal-engine.conf
 vendor/etc/thermal-map.conf
+vendor/etc/thermal-navigation.conf
 vendor/etc/thermal-nolimits.conf
 vendor/etc/thermal-normal.conf
 vendor/etc/thermal-phone.conf
 vendor/etc/thermal-tgame.conf
+vendor/etc/thermal-video.conf
+vendor/etc/thermal-videochat.conf
+vendor/etc/thermal-youtube.conf
 vendor/etc/thermald-devices.conf
 
 # Time services
