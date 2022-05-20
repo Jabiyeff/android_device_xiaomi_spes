@@ -68,6 +68,7 @@ persist.backup.ntpServer=0.pool.ntp.org
 # Radio
 DEVICE_PROVISIONED=1
 persist.sys.fflag.override.settings_provider_model=false
+persist.vendor.ims.no_stapa=1
 rild.libpath=/vendor/lib64/libril-qc-hal-qmi.so
 ril.subscription.types=NV,RUIM
 
