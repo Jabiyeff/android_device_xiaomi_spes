@@ -22,4 +22,15 @@
     <string name="refresh_default">Default</string>
     <string name="refresh_standard">Standard (60Hz)</string>
     <string name="refresh_high">High (90Hz)</string>
+
+    <!-- Thermal Profiles -->
+    <string name="thermal_title">Thermal Profiles</string>
+    <string name="thermal_summary">Adjust per-app thermal profiles for optimum performance</string>
+    <string name="thermal_default">Default</string>
+    <string name="thermal_benchmark">Benchmark</string>
+    <string name="thermal_browser">Browser</string>
+    <string name="thermal_camera">Camera</string>
+    <string name="thermal_dialer">Dialer</string>
+    <string name="thermal_gaming">Gaming</string>
+    <string name="thermal_streaming">Streaming</string>
 </resources>
