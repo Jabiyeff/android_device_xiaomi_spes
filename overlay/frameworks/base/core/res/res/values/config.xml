@@ -621,9 +621,6 @@
          -->
     <string name="config_mainBuiltInDisplayCutout">M 0,0 H -37 V 93 H 37 V 0 H 0 Z</string>
 
-    <!-- Whether to force enable multi resolution configuration for camera -->
-    <bool name="config_forceMultiResolution">true</bool>
-
     <!-- An array of arrays of side fingerprint sensor properties relative to each display.
          Note: this value is temporary and is expected to be queried directly
          from the HAL in the future. -->
