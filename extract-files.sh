@@ -51,6 +51,9 @@ fi
 
 function blob_fixup() {
     case "${1}" in
+        vendor/lib64/vendor.qti.hardware.camera.postproc@1.0-service-impl.so)
+            "${SIGSCAN}" -p "13 0A 00 94" -P "1F 20 03 D5" -f "${2}"
+            ;;
     esac
 }
 
