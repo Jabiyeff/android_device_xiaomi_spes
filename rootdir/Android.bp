@@ -12,6 +12,12 @@ sh_binary {
 }
 
 sh_binary {
+    name: "init.display.refresh.sh",
+    src: "bin/init.display.refresh.sh",
+    vendor: true,
+}
+
+sh_binary {
     name: "init.mdm.sh",
     src: "bin/init.mdm.sh",
     vendor: true,
