@@ -17,7 +17,7 @@
  * limitations under the License.
  */
 
-#define LOG_TAG "android.hardware.usb.gadget@1.0-service-qti"
+#define LOG_TAG "android.hardware.usb.gadget@1.0-service-spes"
 
 #include "UsbGadget.h"
 #include <dirent.h>

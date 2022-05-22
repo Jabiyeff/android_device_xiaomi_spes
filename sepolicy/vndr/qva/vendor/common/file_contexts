@@ -135,8 +135,8 @@
 /(vendor|system/vendor)/bin/wigighalsvc                                            u:object_r:vendor_wigighalsvc_exec:s0
 /(vendor|system/vendor)/bin/wigignpt                                               u:object_r:vendor_wigignpt_exec:s0
 /(vendor|system/vendor)/bin/sensingdaemon                                          u:object_r:vendor_sensingdaemon_exec:s0
-/vendor/bin/hw/android\.hardware\.usb\@1\.[0-3]-service-qti                        u:object_r:vendor_hal_usb_qti_exec:s0
-/vendor/bin/hw/android\.hardware\.usb\.gadget\@1\.[0-2]-service-qti                u:object_r:vendor_hal_usb_qti_exec:s0
+/vendor/bin/hw/android\.hardware\.usb\@1\.[0-3]-service-spes                        u:object_r:vendor_hal_usb_qti_exec:s0
+/vendor/bin/hw/android\.hardware\.usb\.gadget\@1\.[0-2]-service-spes                u:object_r:vendor_hal_usb_qti_exec:s0
 /vendor/bin/vendor\.qti\.qspmhal@1\.0-service                                      u:object_r:vendor_hal_qspmhal_default_exec:s0
 /vendor/bin/qesdk-manager                                                          u:object_r:vendor_hal_qesdhal_default_exec:s0
 /(vendor|system/vendor)/bin/mutualex                                               u:object_r:vendor_mutualex_exec:s0

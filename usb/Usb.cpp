@@ -17,7 +17,7 @@
  * limitations under the License.
  */
 
-#define LOG_TAG "android.hardware.usb@1.3-service-qti"
+#define LOG_TAG "android.hardware.usb@1.3-service-spes"
 
 #include <android-base/logging.h>
 #include <assert.h>
@@ -1100,8 +1100,8 @@ int main() {
   using android::hardware::usb::V1_3::implementation::Usb;
 
   android::sp<IUsb> service = new Usb(
-      GetProperty(USB_DEVICE_PROP, "a600000.ssusb"),
-      GetProperty(USB_CONTROLLER_PROP, "a600000.dwc3"));
+      GetProperty(USB_DEVICE_PROP, "4e00000.ssusb"),
+      GetProperty(USB_CONTROLLER_PROP, "4e00000.dwc3"));
 
   configureRpcThreadpool(1, true /*callerWillJoin*/);
   android::status_t status = service->registerAsService();
