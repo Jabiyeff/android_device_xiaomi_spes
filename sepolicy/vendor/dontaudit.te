@@ -21,6 +21,7 @@ dontaudit untrusted_app_all selinuxfs:file read;
 # all other no-context attempt by apps (as spotted on iQIYI)
 dontaudit untrusted_app_all sysfs_net:dir search;
 
+# clear up diagnostics denials on user build
 dontaudit {
   hal_audio_default
   hal_graphics_composer_default
@@ -35,3 +36,9 @@ dontaudit {
   vendor_sensors_qti
   vendor_qti
 } vendor_diag_device:chr_file rw_file_perms;
+
+# clear up tracing denials on user build
+dontaudit {
+  hal_atrace_default
+  traced_probes
+} debugfs_tracing_debug:file rw_file_perms;
