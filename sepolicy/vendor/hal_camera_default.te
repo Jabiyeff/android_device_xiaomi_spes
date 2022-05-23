@@ -11,10 +11,14 @@ allow hal_camera_default {
 }:dir r_dir_perms;
 
 allow hal_camera_default {
+  mnt_vendor_file
   vendor_persist_camera_file
   vendor_persist_sensors_file
   vendor_sysfs_kgsl
-}:file r_file_perms;
+}:{ 
+  file
+  lnk_file
+} r_file_perms;
 
 allow hal_camera_default proc_stat:file read;
 
