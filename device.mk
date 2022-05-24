@@ -427,14 +427,11 @@ PRODUCT_PACKAGES += \
 
 # Rootdir
 PRODUCT_PACKAGES += \
-    init.class_main.sh \
     init.display.refresh.sh \
     init.mdm.sh \
-    init.qcom.early_boot.sh \
     init.qcom.post_boot.sh \
     init.qcom.sh \
-    init.qcom.usb.sh \
-    init.qti.dcvs.sh
+    init.qcom.usb.sh
 
 PRODUCT_PACKAGES += \
     fstab.qcom \
