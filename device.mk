@@ -277,8 +277,14 @@ PRODUCT_PACKAGES += \
     android.hardware.gatekeeper@1.0.vendor
 
 # Health
+ifneq ($(wildcard vendor/qcom/opensource/healthd-ext/Android.bp),)
 PRODUCT_PACKAGES += \
-    android.hardware.health@2.1-impl \
+    android.hardware.health@2.1-impl-qti
+else
+PRODUCT_PACKAGES += \
+    android.hardware.health@2.1-impl
+endif
+PRODUCT_PACKAGES += \
     android.hardware.health@2.1-service
 
 # HIDL
