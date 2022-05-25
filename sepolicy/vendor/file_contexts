@@ -143,9 +143,6 @@
 # SSR
 /sys/devices(/platform)?/soc/[a-z0-9\.:]+,[a-z0-9\-\_]+/subsys[0-9]+/name         u:object_r:vendor_sysfs_ssr:s0
 
-# Secure Element
-/vendor/bin/hw/android\.hardware\.secure_element@1\.2-service\.st       u:object_r:hal_secure_element_default_exec:s0
-
 # Thermal
 /vendor/bin/mi_thermald                                                 u:object_r:mi_thermald_exec:s0
 /data/vendor/thermal(/.*)?                                              u:object_r:thermal_data_file:s0

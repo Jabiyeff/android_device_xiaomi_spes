@@ -8,13 +8,6 @@ service stflashtool /vendor/bin/STFlashTool
     disabled
     oneshot
 
-service secure_element_hal_service /vendor/bin/hw/android.hardware.secure_element@1.2-service.st
-    override
-    class hal
-    user secure_element
-    group secure_element nfc
-    disabled
-
 service nfc_hal_service /vendor/bin/hw/android.hardware.nfc@1.2-service.st
     override
     class hal
@@ -28,4 +21,3 @@ on post-fs && property:ro.boot.hwname=spesn
 
 on boot && property:ro.boot.hwname=spesn
     start nfc_hal_service
-    start secure_element_hal_service
