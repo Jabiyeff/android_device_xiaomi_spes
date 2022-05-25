@@ -13,3 +13,7 @@ allow init nfc:binder call;
 allow init proc:file write;
 allow init sysfs:file setattr;
 allow init sysfs_android_usb:file rw_file_perms;
+
+# Dolby
+allow init vendor_data_file:file lock;
+allow init hal_audio_default:binder call;
