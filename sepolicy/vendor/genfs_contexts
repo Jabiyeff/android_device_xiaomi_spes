@@ -38,6 +38,14 @@ genfscon sysfs /devices/platform/soc/4a84000.i2c/i2c-0/0-0066/max77729-fuelgauge
 genfscon sysfs /devices/platform/soc/4a84000.i2c/i2c-0/0-0066/max77729-fuelgauge/power_supply/bms/wakeup29/active_count  u:object_r:vendor_sysfs_battery_supply:s0
 genfscon sysfs /devices/platform/soc/4a84000.i2c/i2c-0/0-0066/max77729-fuelgauge/power_supply/bms/wakeup29/event_count   u:object_r:vendor_sysfs_battery_supply:s0
 genfscon sysfs /devices/platform/soc/4a84000.i2c/i2c-0/0-0066/max77729-fuelgauge/power_supply/bms/wakeup29/wakeup_count  u:object_r:vendor_sysfs_battery_supply:s0
+genfscon sysfs /devices/platform/soc/4a84000.i2c/i2c-0/0-0071/power_supply/bms                      u:object_r:vendor_sysfs_battery_supply:s0
+genfscon sysfs /devices/platform/soc/4a84000.i2c/i2c-0/0-0071/power_supply/bms/charge_counter       u:object_r:vendor_sysfs_battery_supply:s0
+genfscon sysfs /devices/platform/soc/4a84000.i2c/i2c-0/0-0071/power_supply/bms/charge_full          u:object_r:vendor_sysfs_battery_supply:s0
+genfscon sysfs /devices/platform/soc/4a84000.i2c/i2c-0/0-0071/power_supply/bms/cycle_count          u:object_r:vendor_sysfs_battery_supply:s0
+genfscon sysfs /devices/platform/soc/4a84000.i2c/i2c-0/0-0071/power_supply/bms/wakeup39             u:object_r:vendor_sysfs_battery_supply:s0
+genfscon sysfs /devices/platform/soc/4a84000.i2c/i2c-0/0-0071/power_supply/bms/wakeup39/active_count  u:object_r:vendor_sysfs_battery_supply:s0
+genfscon sysfs /devices/platform/soc/4a84000.i2c/i2c-0/0-0071/power_supply/bms/wakeup39/event_count   u:object_r:vendor_sysfs_battery_supply:s0
+genfscon sysfs /devices/platform/soc/4a84000.i2c/i2c-0/0-0071/power_supply/bms/wakeup39/wakeup_count  u:object_r:vendor_sysfs_battery_supply:s0
 genfscon sysfs /devices/platform/soc/soc:qcom,nopmi-chg/power_supply/battery                        u:object_r:vendor_sysfs_battery_supply:s0
 genfscon sysfs /devices/platform/soc/soc:qcom,nopmi-chg/power_supply/battery/charge_counter         u:object_r:vendor_sysfs_battery_supply:s0
 genfscon sysfs /devices/platform/soc/soc:qcom,nopmi-chg/power_supply/battery/charge_full            u:object_r:vendor_sysfs_battery_supply:s0
