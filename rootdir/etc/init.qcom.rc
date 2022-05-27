@@ -153,9 +153,6 @@ on post-fs-data
     # Gsort
     chmod 777 /dev/block/sde59
 
-    # Create directory used for dump collection
-    mkdir /data/vendor/ssrdump 0770 root system
-
     # Create directory used by display clients
     mkdir /data/vendor/display 0770 system graphics
 

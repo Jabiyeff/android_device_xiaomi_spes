@@ -96,9 +96,6 @@ persist.rmnet.data.enable=true
 # Skia
 renderthread.skia.reduceopstasksplitting=true
 
-# SSR
-persist.vendor.ssr.restart_level=ALL_ENABLE
-
 # Time-services
 persist.timed.enable=true
 
