@@ -99,6 +99,7 @@ vendor.display.svi.config_path=/vendor/etc/SVIConfig.xml
 # Dolby
 persist.vendor.audio_fx.current=dolby
 ro.vendor.dolby.dax.version=DS1_2.2.0.0_r1
+vendor.audio.dolby.ds2.enabled=true
 
 # DPM
 persist.dpm.feature=1
