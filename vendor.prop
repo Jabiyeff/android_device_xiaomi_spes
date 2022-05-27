@@ -231,6 +231,9 @@ telephony.lteOnCdmaDevice=1
 # QSPM
 ro.vendor.qspm.enable=true
 
+# Seamless transfer
+sys.fflag.override.settings_seamless_transfer=true
+
 # Sensors
 persist.vendor.sensors.debug.ssc_qmi_debug=true
 persist.vendor.sensors.enable.bypass_worker=true
