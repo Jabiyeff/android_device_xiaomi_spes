@@ -42,3 +42,13 @@ dontaudit {
   hal_atrace_default
   traced_probes
 } debugfs_tracing_debug:file rw_file_perms;
+
+# clear up many untrusted_app denials
+dontaudit untrusted_app {
+  app_data_file
+  cache_file
+  proc
+  proc_pid_max
+  proc_zoneinfo
+  rootfs
+}:{ file dir lnk_file chr_file } rw_file_perms;
