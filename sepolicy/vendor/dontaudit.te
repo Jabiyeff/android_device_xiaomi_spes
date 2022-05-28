@@ -46,9 +46,45 @@ dontaudit {
 # clear up many untrusted_app denials
 dontaudit untrusted_app {
   app_data_file
+  block_device
   cache_file
   proc
   proc_pid_max
+  proc_tty_drivers
+  proc_kmsg
+  proc_net
+  proc_net_tcp_udp
   proc_zoneinfo
+  sysfs_net
   rootfs
-}:{ file dir lnk_file chr_file } rw_file_perms;
+}:dir rw_dir_perms;
+
+dontaudit untrusted_app {
+  app_data_file
+  block_device
+  cache_file
+  proc
+  proc_pid_max
+  proc_tty_drivers
+  proc_kmsg
+  proc_net
+  proc_net_tcp_udp
+  proc_zoneinfo
+  sysfs_net
+  rootfs
+}:{ lnk_file chr_file } rw_file_perms;
+
+dontaudit untrusted_app {
+  app_data_file
+  block_device
+  cache_file
+  proc
+  proc_pid_max
+  proc_tty_drivers
+  proc_kmsg
+  proc_net
+  proc_net_tcp_udp
+  proc_zoneinfo
+  sysfs_net
+  rootfs
+}:file rwx_file_perms;
