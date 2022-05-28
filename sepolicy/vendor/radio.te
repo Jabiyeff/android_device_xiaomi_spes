@@ -1,1 +1,2 @@
 get_prop(radio, vendor_audio_prop)
+allow radio proc_tp_gesture:file rw_file_perms;

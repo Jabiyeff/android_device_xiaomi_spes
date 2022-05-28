@@ -5,5 +5,6 @@ allow system_app sysfs_thermal:file rw_file_perms;
 allow system_app sysfs_zram:dir r_dir_perms;
 allow system_app sysfs_zram:file r_file_perms;
 allow system_app sysfs_msm_subsys:dir search;
+allow system_app proc_tp_gesture:file rw_file_perms;
 
 get_prop(system_app, vendor_persist_camera_prop)

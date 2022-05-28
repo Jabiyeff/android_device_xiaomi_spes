@@ -15,7 +15,13 @@ genfscon sysfs /devices/platform/soc/soc:qcom,gpubw                             
 genfscon sysfs /devices/platform/soc/soc:qcom,gpubw/devfreq                                         u:object_r:sysfs_msm_subsys:s0
 
 # DT2W
+genfscon proc /tp_lockdown_info                                                                     u:object_r:proc_tp_gesture:s0
+genfscon proc /tp_grip_area                                                                         u:object_r:proc_tp_gesture:s0
+genfscon proc /tp_selftest                                                                          u:object_r:proc_tp_gesture:s0
 genfscon proc /tp_gesture                                                                           u:object_r:proc_tp_gesture:s0
+genfscon proc /tp_info                                                                              u:object_r:proc_tp_gesture:s0
+genfscon proc /tp_work                                                                              u:object_r:proc_tp_gesture:s0
+genfscon proc /tp_palm                                                                              u:object_r:proc_tp_gesture:s0
 
 # Fingerprint
 genfscon sysfs /devices/platform/soc/soc:fpc1020/device_prepare                                     u:object_r:vendor_sysfs_fingerprint:s0
