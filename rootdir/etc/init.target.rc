@@ -144,9 +144,12 @@ on property:vendor.usb.controller=*
     setprop sys.usb.controller ${vendor.usb.controller}
 
 on charger
-    start vendor.power_off_alarm
-    setprop vendor.usb.controller 4e00000.dwc3
+    chown system system /sys/class/backlight/panel0-backlight/brightness
+    setprop persist.sys.usb.config mass_storage
     setprop sys.usb.configfs 1
+    setprop vendor.usb.controller 4e00000.dwc3
+    start mi_thermald
+    start vendor.power_off_alarm
     start vendor.qcom-post-boot
 
 on property:init.svc.vendor.charger=running
