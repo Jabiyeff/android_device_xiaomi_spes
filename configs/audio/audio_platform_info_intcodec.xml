@@ -83,8 +83,8 @@
     <acdb_ids>
         <!-- lct modify begin-->
         <device name="SND_DEVICE_OUT_SPEAKER" acdb_id="15"/>
-        <device name="SND_DEVICE_OUT_SPEAKER_TOP" acdb_id="10031"/>
-        <device name="SND_DEVICE_OUT_SPEAKER_BOTTOM" acdb_id="10030"/>
+        <device name="SND_DEVICE_OUT_SPEAKER_TOP" acdb_id="15"/>
+        <device name="SND_DEVICE_OUT_SPEAKER_BOTTOM" acdb_id="15"/>
         <device name="SND_DEVICE_OUT_SPEAKER_REVERSE" acdb_id="15"/>
         <!-- lct modify end-->
         <device name="SND_DEVICE_OUT_SPEAKER_PROTECTED" acdb_id="124"/>
@@ -107,33 +107,6 @@
         <device name="SND_DEVICE_IN_UNPROCESSED_QUAD_MIC" acdb_id="146"/>
         <device name="SND_DEVICE_IN_UNPROCESSED_HEADSET_MIC" acdb_id="147"/>
         <device name="SND_DEVICE_IN_HANDSET_GENERIC_QMIC" acdb_id="191"/>
-        <device name="SND_DEVICE_IN_VOICE_REC_MIC" acdb_id="10003"/>
-        <!-- lct modify for misound begin-->
-        <device name="SND_DEVICE_OUT_HEADPHONES" acdb_id="10012"/>
-        <device name="SND_DEVICE_OUT_HEADPHONES_44_1" acdb_id="10012"/>
-        <device name="SND_DEVICE_OUT_USB_HEADSET" acdb_id="10013"/>
-        <device name="SND_DEVICE_OUT_USB_HEADPHONES" acdb_id="10013"/>
-        <!-- add for ce and no_ce begin -->
-        <device name="SND_DEVICE_OUT_HEADPHONES_CE" acdb_id="10012"/>
-        <device name="SND_DEVICE_OUT_HEADPHONES_NO_CE" acdb_id="10012"/>
-        <!-- add for ce and no_ce end -->
-        <device name="SND_DEVICE_OUT_SPEAKER_AND_HEADPHONES" acdb_id="10015"/>
-        <device name="SND_DEVICE_OUT_SPEAKER_AND_LINE" acdb_id="10015"/>
-        <!-- add for ce and no_ce begin -->
-        <device name="SND_DEVICE_OUT_SPEAKER_AND_HEADPHONES_CE" acdb_id="10015"/>
-        <device name="SND_DEVICE_OUT_SPEAKER_AND_HEADPHONES_NO_CE" acdb_id="10015"/>
-        <!-- add for ce and no_ce end -->
-        <device name="SND_DEVICE_OUT_SPEAKER_AND_HEADPHONES_HIFI_FILTER" acdb_id="10015"/>
-        <!-- lct modify for misound end-->
-	<!-- for cts proaudio -->
-	<device name="SND_DEVICE_IN_VOICE_REC_HEADSET_MIC_CTS" acdb_id="10032"/>
-        <!-- lct modify begin-->
-        <device name="SND_DEVICE_OUT_ULTRASOUND" acdb_id="11007"/>
-        <device name="SND_DEVICE_OUT_ULTRASOUND_SUBSET" acdb_id="11007"/>
-        <device name="SND_DEVICE_OUT_ULTRASOUND_STEREO" acdb_id="11010"/>
-        <device name="SND_DEVICE_IN_ULTRASOUND" acdb_id="11004"/>
-        <device name="SND_DEVICE_IN_ULTRASOUND_SECONDARY" acdb_id="11004"/>
-        <!-- lct modify end-->
     </acdb_ids>
     <backend_names>
         <device name="SND_DEVICE_OUT_HEADPHONES" backend="headphones" interface="RX_CDC_DMA_RX_0"/>
