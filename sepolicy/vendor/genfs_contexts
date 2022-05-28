@@ -1,3 +1,9 @@
+# Block
+genfscon sysfs /devices/platform/soc/4804000.ufshc/host0/target0:0:0/0:0:0:0/block/                 u:object_r:sysfs_devices_block:s0
+
+# Charger
+genfscon sysfs /devices/platform/soc/4a84000.i2c/i2c-0/0-0066/Charging_Adapter/pd_adapter           u:object_r:vendor_sysfs_usbpd_device:s0
+
 # DSP
 genfscon sysfs /kernel/boot_cdsp/boot                                                               u:object_r:sysfs_msm_boot:s0
 
@@ -53,6 +59,14 @@ genfscon sysfs /devices/platform/soc/soc:qcom,nopmi-chg/power_supply/usb/real_ty
 
 # kmsg
 genfscon proc /last_kmsg                                                                            u:object_r:proc_last_kmsg:s0
+
+# Memory
+genfscon sysfs /devices/platform/soc/4804000.ufshc/host0/target0:0:0/0:0:0:0/                       u:object_r:vendor_sysfs_memory:s0
+genfscon sysfs /devices/virtual/mi_memory/mi_memory_device/ddr/ddr_vendor                           u:object_r:vendor_sysfs_memory:s0
+genfscon sysfs /devices/virtual/mi_memory/mi_memory_device/ufshcd0/                                 u:object_r:vendor_sysfs_memory:s0
+
+# Power Supply
+genfscon sysfs /devices/platform/soc/soc:qcom,nopmi-chg/power_supply/usb                            u:object_r:vendor_sysfs_usb_supply:s0
 
 # UFS
 genfscon sysfs /devices/platform/soc/4804000.ufshc/clkgate_enable                                   u:object_r:vendor_sysfs_scsi_host:s0
