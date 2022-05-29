@@ -117,7 +117,6 @@ ro.frp.pst=/dev/block/bootdevice/by-name/frp
 # Graphics
 debug.sf.enable_advanced_sf_phase_offset=1
 debug.sf.enable_gl_backpressure=1
-debug.sf.frame_rate_multiple_threshold=90
 debug.sf.high_fps_early_gl_phase_offset_ns=-5000000
 debug.sf.high_fps_early_phase_offset_ns=-5000000
 debug.sf.high_fps_late_app_phase_offset_ns=1000000
