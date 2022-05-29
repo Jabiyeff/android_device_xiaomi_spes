@@ -84,12 +84,14 @@
 
 # Fingerprint
 /vendor/bin/hw/android\.hardware\.biometrics\.fingerprint@2.1-service\.spes                             u:object_r:hal_fingerprint_default_exec:s0
+/sys/devices/platform/soc/soc:fpc1020(/.*?)                                                             u:object_r:vendor_sysfs_fps_attr:s0
 
 # Fingerprint - devices
 /dev/goodix_fp                                                          u:object_r:fingerprint_device:s0
 
 # Fingerprint - data
 /data/gf_data(/.*)?                                                     u:object_r:goodix_fingerprint_data_file:s0
+/data/vendor/goodix/gf_data(/.*)?                                       u:object_r:fingerprint_data_file:s0
 /data/vendor/goodix(/.*)?                                               u:object_r:fingerprint_data_file:s0
 /data/vendor/fpc(/.*)?                                                  u:object_r:fingerprint_data_file:s0
 /data/vendor/fpdump(/.*)?                                               u:object_r:fingerprint_data_file:s0
@@ -101,6 +103,10 @@
 
 # Health
 /sys/devices/platform/soc/soc:maxim_ds28e16/power_supply/batt_verify(/.*)?                                                                      u:object_r:vendor_sysfs_battery_supply:s0
+/sys/devices/platform/soc/4a84000.i2c/i2c-0/0-0066/max77729-fuelgauge/power_supply/bms(/.*)?	                                                u:object_r:vendor_sysfs_battery_supply:s0
+/sys/devices/platform/soc/4a84000.i2c/i2c-0/0-0065/power_supply/sc8551-standalone/charging_enabled                                              u:object_r:vendor_sysfs_battery_supply:s0
+/sys/devices/platform/soc/4a84000.i2c/i2c-0/0-0066/power_supply/sc8551-standalone/charging_enabled                                              u:object_r:vendor_sysfs_battery_supply:s0
+/sys/devices/platform/soc/4a84000.i2c/i2c-0/0-0071/power_supply/bms(/.*)?                                                                       u:object_r:vendor_sysfs_battery_supply:s0
 
 # IR
 /dev/ir_spi                                                             u:object_r:lirc_device:s0
@@ -110,6 +116,7 @@
 # LED
 /sys/devices/platform/soc/[a-z0-9]+.qcom,spmi/spmi-[0-1]/spmi0-0[0-9]/[a-z0-9]+.qcom,spmi:qcom,[a-z0-9]+@[0-9]:qcom,leds@d000/leds(/.*)?            u:object_r:sysfs_leds:s0
 /sys/devices/platform/soc/[a-z0-9]+.i2c/i2c-[0-9]/[0-9]-[0-9]+/leds(/.*)?                                                                           u:object_r:sysfs_leds:s0
+/sys/devices/platform/soc/5c1b000.qcom,cci0/5c1b000.qcom,cci0:qcom,camera-flash@0/leds/led:torch/brightness                                         u:object_r:sysfs_leds:s0
 
 # Lights
 /vendor/bin/hw/android\.hardware\.lights-service\.spes                  u:object_r:hal_light_default_exec:s0
@@ -145,6 +152,8 @@
 
 # SSR
 /sys/devices(/platform)?/soc/[a-z0-9\.:]+,[a-z0-9\-\_]+/subsys[0-9]+/name         u:object_r:vendor_sysfs_ssr:s0
+/sys/bus/msm_subsys/devices/subsys[0-9]+/name                                     u:object_r:vendor_sysfs_ssr:s0
+/sys/bus/msm_subsys/devices/subsys[0-9]+/restart_level                            u:object_r:vendor_sysfs_ssr_toggle:s0
 
 # Thermal
 /vendor/bin/mi_thermald                                                 u:object_r:mi_thermald_exec:s0

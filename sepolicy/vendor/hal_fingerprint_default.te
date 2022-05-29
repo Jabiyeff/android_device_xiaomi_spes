@@ -32,6 +32,7 @@ get_prop(system_server, vendor_fp_prop);
 
 set_prop(hal_fingerprint_default, vendor_fp_prop)
 
+allow hal_fingerprint_default vendor_sysfs_fps_attr:file rw_file_perms;
 allow hal_fingerprint_default vendor_sysfs_spss:dir { search };
 allow hal_fingerprint_default vendor_sysfs_spss:file { open read };
 allow hal_fingerprint_default sysfs:file { write };
