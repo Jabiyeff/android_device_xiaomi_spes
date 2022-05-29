@@ -232,6 +232,7 @@ vendor/lib64/camera/com.qti.sensormodule.k7t_ofilm_s5kjn1_wide_i.bin
 vendor/lib64/camera/com.qti.sensormodule.k7t_qtech_gc08a3_ultra_ii.bin
 vendor/lib64/camera/com.qti.sensormodule.k7t_qtech_s5k3l6_front_i.bin
 vendor/lib64/camera/com.qti.sensormodule.k7t_sunny_ov02b1b_depth_i.bin
+vendor/lib64/camera/com.qti.sensormodule.k7t_sunny_ov02b1b_depth_iii.bin
 vendor/lib64/camera/com.qti.sensormodule.k7t_truly_ov02b1b_depth_ii.bin
 vendor/lib64/camera/com.qti.tuned.agatti_lce_s5k3p9.bin
 vendor/lib64/camera/com.qti.tuned.agatti_lce_s5k4h7.bin
@@ -280,6 +281,10 @@ vendor/lib64/camera/com.qti.tuned.k7t_sunny_ov02b1b_depth_i.bin
 vendor/lib64/camera/com.qti.tuned.k7t_sunny_ov02b1b_depth_i_factory.bin
 vendor/lib64/camera/com.qti.tuned.k7t_sunny_ov02b1b_depth_i_global.bin
 vendor/lib64/camera/com.qti.tuned.k7t_sunny_ov02b1b_depth_i_india.bin
+vendor/lib64/camera/com.qti.tuned.k7t_sunny_ov02b1b_depth_iii.bin
+vendor/lib64/camera/com.qti.tuned.k7t_sunny_ov02b1b_depth_iii_factory.bin
+vendor/lib64/camera/com.qti.tuned.k7t_sunny_ov02b1b_depth_iii_global.bin
+vendor/lib64/camera/com.qti.tuned.k7t_sunny_ov02b1b_depth_iii_india.bin
 vendor/lib64/camera/com.qti.tuned.k7t_truly_ov02b1b_depth_ii.bin
 vendor/lib64/camera/com.qti.tuned.k7t_truly_ov02b1b_depth_ii_factory.bin
 vendor/lib64/camera/com.qti.tuned.k7t_truly_ov02b1b_depth_ii_global.bin
@@ -452,6 +457,8 @@ vendor/etc/camera/126_Fantasy2.png
 vendor/etc/camera/127_Creamy.png
 vendor/etc/camera/128_Sepia.png
 vendor/etc/camera/camxoverridesettings.txt
+vendor/etc/camera/com.xiaomi.dcal.wd.golden
+vendor/etc/camera/com.xiaomi.dcal.wd.golden_2
 vendor/etc/camera/com.xiaomi.dcal.wd.golden_3
 vendor/etc/camera/dof_mecp.bin
 vendor/etc/camera/hdrcheckerparamsettings.yml
@@ -767,8 +774,11 @@ vendor/lib64/vendor.qti.esepowermanager@1.0.so
 vendor/lib64/vendor.qti.esepowermanager@1.1.so
 
 # Fingerprint
-vendor/lib64/hw/fingerprint.fpc.default.so:vendor/lib64/hw/fingerprint.fpc.bengal.so
-vendor/lib64/hw/fingerprint.goodix.default.so:vendor/lib64/hw/fingerprint.goodix.bengal.so
+vendor/etc/permissions/com.fingerprints.extension.xml
+vendor/framework/com.fingerprints.extension.jar
+vendor/lib/vendor.qti.hardware.fingerprint@1.0.so
+vendor/lib64/hw/fingerprint.fpc.default.so
+vendor/lib64/hw/fingerprint.goodix.default.so
 vendor/lib64/com.fingerprints.extension@1.0.so
 vendor/lib64/libgf_ca.so
 vendor/lib64/libgf_hal.so
