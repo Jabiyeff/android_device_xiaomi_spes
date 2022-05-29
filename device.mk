@@ -194,7 +194,8 @@ PRODUCT_PACKAGES += \
     android.hardware.graphics.mapper@3.0-impl-qti-display \
     android.hardware.graphics.mapper@4.0-impl-qti-display \
     android.hardware.memtrack@1.0-impl \
-    android.hardware.memtrack@1.0-service
+    android.hardware.memtrack@1.0-service \
+    memtrack.bengal
 
 PRODUCT_PACKAGES += \
     vendor.display.config@1.14 \
@@ -209,24 +210,18 @@ PRODUCT_PACKAGES += \
     vendor.qti.hardware.display.mapper@2.0.vendor \
     vendor.qti.hardware.display.mapper@3.0.vendor \
     vendor.qti.hardware.display.mapper@4.0.vendor \
-    vendor.qti.hardware.display.mapperextensions@1.0.vendor \
     vendor.qti.hardware.display.mapperextensions@1.1.vendor \
     vendor.xiaomi.hardware.displayfeature@1.0.vendor
 
 PRODUCT_PACKAGES += \
-    memtrack.bengal \
-    gralloc.bengal \
-    hwcomposer.bengal
-
-PRODUCT_PACKAGES += \
     libdisplayconfig.qti \
     libdisplayconfig.qti.vendor \
+    libdisplayconfig.system.qti \
     libqdMetaData \
+    libqdMetaData.system \
     libsdmcore \
     libsdmutils \
-    libtinyxml
-
-PRODUCT_PACKAGES += \
+    libtinyxml \
     libvulkan
 
 PRODUCT_PACKAGES += \
