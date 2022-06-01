@@ -145,6 +145,7 @@ vendor.display.disable_hw_recovery_dump=1
 vendor.display.disable_idle_time_hdr=1
 vendor.display.disable_idle_time_video=1
 vendor.display.disable_layer_stitch=1
+vendor.display.disable_rotator_downscale=1
 vendor.display.disable_rotator_ubwc=1
 vendor.display.disable_rounded_corner_thread=1
 vendor.display.disable_scaler=0
