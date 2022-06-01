@@ -243,6 +243,7 @@ vendor.usb.use_ffs_mtp=0
 wifi.aware.interface=wifi-aware0
 
 # WLAN
+persist.vendor.sys.cnd.iwlan=1
 ro.telephony.iwlan_operation_mode=legacy
 
 # SoC
