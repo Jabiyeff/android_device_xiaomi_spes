@@ -20,6 +20,7 @@ vendor.camera.aux.packagelist=org.codeaurora.snapcam
 # Charger
 persist.vendor.quick.charge=1
 ro.charger.disable_init_blank=true
+ro.charger.enable_suspend=1
 
 # CNE
 persist.vendor.cne.feature=1
