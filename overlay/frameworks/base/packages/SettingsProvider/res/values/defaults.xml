@@ -20,5 +20,11 @@
 
     <!-- Set the automatic brightness mode on by default -->
     <bool name="def_screen_brightness_automatic_mode">true</bool>
+    <!-- Disable bluetooth by default -->
+    <bool name="def_bluetooth_on">false</bool>
+    <!-- Default state of tap to wake -->
+    <bool name="def_double_tap_to_wake">false</bool>
+    <!-- Default setting for Settings.Global.MOBILE_DATA_ALWAYS_ON -->
+    <bool name="def_mobile_data_always_on">false</bool>
 
 </resources>
