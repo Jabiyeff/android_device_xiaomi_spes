@@ -1,6 +1,9 @@
 # Bluetooth
 persist.log.tag.a2dp_codec=S
 persist.log.tag.vendor.qti.bluetooth@1.0-ibs_handler=S
+persist.vendor.bt.a2dp.aac_whitelist=false
+persist.vendor.bt.a2dp.mac_whitelist=false
+persist.vendor.bt.aac_frm_ctl.enabled=true
 persist.vendor.btstack.a2dp_offload_cap=sbc-aptx-aptxtws-aac
 persist.vendor.btstack.aac_frm_ctl.enabled=true
 persist.vendor.btstack.enable.twsplus=false
