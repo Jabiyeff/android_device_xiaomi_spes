@@ -170,6 +170,7 @@ debug.stagefright.ccodec=1
 debug.stagefright.omx_default_rank=0
 debug.stagefright.omx_default_rank.sw-audio=16
 vendor.media.target.version=3
+vendor.sys.media.target.version=3
 
 # OTG
 persist.sys.oem.otg_support=true
