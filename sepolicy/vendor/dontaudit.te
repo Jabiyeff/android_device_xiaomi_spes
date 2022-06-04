@@ -5,7 +5,7 @@ dontaudit { fsck toolbox vdc zygote } self:capability kill;
 dontaudit hal_bootctl_default gsi_metadata_file:dir search;
 
 # too noisy, and shouldn't even be granted by default unless necessary
-dontaudit { gmscore_app hal_camera_default } property_type:file r_file_perms;
+dontaudit { gmscore_app hal_camera_default flags_health_check } property_type:file r_file_perms;
 dontaudit {
   rild
   vendor_hal_neuralnetworks_default
