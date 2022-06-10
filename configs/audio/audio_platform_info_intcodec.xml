@@ -83,8 +83,6 @@
     <acdb_ids>
         <!-- lct modify begin-->
         <device name="SND_DEVICE_OUT_SPEAKER" acdb_id="15"/>
-        <device name="SND_DEVICE_OUT_SPEAKER_TOP" acdb_id="15"/>
-        <device name="SND_DEVICE_OUT_SPEAKER_BOTTOM" acdb_id="15"/>
         <device name="SND_DEVICE_OUT_SPEAKER_REVERSE" acdb_id="15"/>
         <!-- lct modify end-->
         <device name="SND_DEVICE_OUT_SPEAKER_PROTECTED" acdb_id="124"/>
