@@ -512,8 +512,10 @@ PRODUCT_PACKAGES += \
     libnl \
     libwfdaac_vendor
 
-#PRODUCT_BOOT_JARS += \
+ifdef CR_VERSION
+PRODUCT_BOOT_JARS += \
     WfdCommon
+endif
 
 # XiaomiParts
 PRODUCT_PACKAGES += \
