@@ -637,6 +637,8 @@ vendor/bin/hw/vendor.dolby.hardware.dms@1.0-service|7207a97fd3f00c854be4e4ddee98
 vendor/etc/init/vendor.dolby.hardware.dms@1.0-service.rc|e91adb7565e4fa126880917ed4d8f9ba4f9391d9
 vendor/lib/soundfx/libswdap.so|0bd57dec350fb40ef3222723e59a7d5fe503ca7f
 vendor/lib/libdapparamstorage.so|6fce779d3b4f21783d3d96e82f9b185107bbab38
+vendor/lib/libstagefright_soft_ac4dec.so|0d1fc4ab24b8f1d99468cceff3fe086b56500bd7
+vendor/lib/libstagefright_soft_ddpdec.so|31f63b7189829ca194766da67823b3fe7e92e9d2
 vendor/lib/libstagefrightdolby.so|130b9da07e3c4a4ec04142049246eba18f1c350f
 vendor/lib/vendor.dolby.hardware.dms@1.0.so|c1d8cea6e281a2d5c497b24d55f5703f0bcc2860
 vendor/lib64/soundfx/libswdap.so|be0056eb6359158a5f6aa5e2a8ed0fa260a82949
