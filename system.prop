@@ -18,7 +18,7 @@ ro.bluetooth.wipower=false
 
 # Camera
 camera.disable_zsl_mode=true
-vendor.camera.aux.packagelist=org.codeaurora.snapcam
+vendor.camera.aux.packagelist=org.codeaurora.snapcam,com.android.camera,app.grapheneos.camera
 
 # Charger
 persist.vendor.quick.charge=1
