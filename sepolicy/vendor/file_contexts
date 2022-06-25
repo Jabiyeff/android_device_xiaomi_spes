@@ -83,7 +83,7 @@
 /avb(/.*)?                                                              u:object_r:avb_file:s0
 
 # Fingerprint
-/vendor/bin/hw/android\.hardware\.biometrics\.fingerprint@2.1-service\.spes                             u:object_r:hal_fingerprint_default_exec:s0
+/vendor/bin/hw/android\.hardware\.biometrics\.fingerprint@2.3-service\.xiaomi                           u:object_r:hal_fingerprint_default_exec:s0
 /sys/devices/platform/soc/soc:fpc1020(/.*?)                                                             u:object_r:vendor_sysfs_fps_attr:s0
 
 # Fingerprint - devices

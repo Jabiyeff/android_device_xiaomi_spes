@@ -65,6 +65,10 @@ on post-fs-data
     mkdir /data/vendor/thermal/config 0771 root system
     mkdir /data/vendor/wlan_logs 0770 system wifi
 
+    # Fingerprint
+    mkdir /data/vendor/fpc 0777 system system
+    mkdir /data/vendor/goodix 0777 system system
+
      # Camera duacal calibration
     mkdir /mnt/vendor/persist/camera
     chown root system /mnt/vendor/persist/camera
@@ -99,6 +103,17 @@ on boot
     chmod 0444 /sys/class/drm/card0-DSI-1/panel_info
     chown system system /sys/class/drm/card0-DSI-1/doze_brightness
     chown system system /sys/class/drm/card0-DSI-1/doze_backlight
+
+    # Fingerprint
+    chown system system /sys/bus/platform/devices/soc:fpc1020/irq
+    chown system system /sys/bus/platform/devices/soc:fpc1020/wakeup_enable
+    chown system system /sys/bus/platform/devices/soc:fpc1020/modalias
+    chown system system /sys/bus/platform/devices/soc:fpc1020/compatible_all
+    chmod 0660 /sys/bus/platform/devices/soc:fpc1020/irq
+    chmod 0660 /sys/bus/platform/devices/soc:fpc1020/wakeup_enable
+    chmod 0660 /sys/bus/platform/devices/soc:fpc1020/modalias
+    chmod 0660 /sys/bus/platform/devices/soc:fpc1020/compatible_all
+    chmod 0777 /dev/goodix_fp
 
     # Governor settings
     write /sys/devices/system/cpu/cpu0/cpufreq/scaling_min_freq 300000
@@ -221,3 +236,6 @@ on property:sys.boot_completed=1
 
 on property:ro.boot.hwversion=*
     setprop vendor.boot.hwversion ${ro.boot.hwversion}
+
+on property:vendor.fps_hal.restartimes=max
+    stop vendor.fps_hal
