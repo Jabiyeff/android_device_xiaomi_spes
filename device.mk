@@ -19,6 +19,10 @@ $(call inherit-product, $(SRC_TARGET_DIR)/product/virtual_ab_ota/launch_with_ven
 # Inherit the proprietary files
 $(call inherit-product, vendor/xiaomi/spes/spes-vendor.mk)
 
+ifeq ($(wildcard hardware/xiaomi/Android.bp),)
+$(error Error: cannot found hardware/xiaomi repository, please clone it and try to build again!)
+endif
+
 # Enable Dynamic partition
 PRODUCT_BUILD_SUPER_PARTITION := false
 PRODUCT_USE_DYNAMIC_PARTITIONS := true
