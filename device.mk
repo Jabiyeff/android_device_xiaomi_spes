@@ -233,10 +233,6 @@ TARGET_EXCLUDES_AUDIOFX := true
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/dolby/dax-default.xml:$(TARGET_COPY_OUT_VENDOR)/etc/dolby/dax-default.xml
 
-# DPM
-PRODUCT_SYSTEM_EXT_PROPERTIES += \
-    persist.vendor.dpm.feature=11
-
 # DRM
 PRODUCT_PACKAGES += \
     android.hardware.drm@1.4.vendor \
