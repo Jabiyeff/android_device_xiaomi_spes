@@ -13,6 +13,7 @@ allow hal_mtdservice_client hal_mtdservice_hwservice:hwservice_manager find;
 
 allow hal_mtdservice_default ion_device:chr_file r_file_perms;
 allow hal_mtdservice_default tee_device:chr_file rw_file_perms;
+allow hal_mtdservice_default vendor_qce_device:chr_file rw_file_perms;
 
 allow hal_mtdservice_default {
   mnt_vendor_file
@@ -45,5 +46,6 @@ allow hal_mtdservice_default {
 }:dir r_dir_perms;
 
 set_prop(hal_mtdservice_default, vendor_tee_listener_prop)
+set_prop(hal_mtdservice_default, vendor_mtdservice_prop)
 
 dontaudit hal_mtdservice_default self:capability { dac_override dac_read_search sys_admin };
