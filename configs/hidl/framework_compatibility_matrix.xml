@@ -686,7 +686,7 @@
     </hal>
     <hal format="hidl" optional="true">
         <name>vendor.xiaomi.hardware.mtdservice</name>
-        <version>1.0-2</version>
+        <version>1.0-3</version>
         <interface>
             <name>IMTService</name>
             <instance>default</instance>
@@ -749,6 +749,14 @@
         <version>1.0</version>
         <interface>
             <name>IDms</name>
+            <instance>default</instance>
+        </interface>
+    </hal>
+    <hal format="hidl" optional="true">
+        <name>vendor.xiaomi.hardware.micharge</name>
+        <version>1.0</version>
+        <interface>
+            <name>IMiCharge</name>
             <instance>default</instance>
         </interface>
     </hal>

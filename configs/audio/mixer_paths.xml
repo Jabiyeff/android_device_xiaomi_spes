@@ -209,6 +209,7 @@
     <ctl name="Ultrasound RampDown" value="Off"/>
     <ctl name="Ultrasound Event" value="0"/>
     <ctl name="Ultrasound Mode" value="918"/>
+    <ctl name="Ultrasound Custom Setting 4" value="1"/>
     <ctl name="Ultrasound Rx Port" value="Off"/>
     <ctl name="Ultrasound Microphone Index" value="0"/>
     <ctl name="Ultrasound Debug Mode" value="3" />
@@ -481,6 +482,7 @@
     <path name="ultrasound-proximity">
         <ctl name="Ultrasound Enable" value="On" />
         <ctl name="Ultrasound Mode" value="918" />
+        <ctl name="Ultrasound Custom Setting 4" value="1"/>
         <ctl name="Ultrasound Debug Mode" value="0" />
         <ctl name="Ultrasound Log Level" value="0" />
     </path>

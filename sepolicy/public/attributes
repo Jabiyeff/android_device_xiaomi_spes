@@ -2,6 +2,10 @@ attribute hal_dms;
 attribute hal_dms_client;
 attribute hal_dms_server;
 
+attribute hal_micharge;
+attribute hal_micharge_client;
+attribute hal_micharge_server;
+
 attribute hal_misys;
 attribute hal_misys_client;
 attribute hal_misys_server;

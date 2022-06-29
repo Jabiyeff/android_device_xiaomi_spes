@@ -66,6 +66,7 @@
 
 # Charger
 /vendor/bin/batterysecret                                               u:object_r:batterysecret_exec:s0
+/vendor/bin/hw/vendor.xiaomi.hardware.micharge@1.0-service              u:object_r:hal_micharge_default_exec:s0
 
 # Display
 /vendor/bin/hw/vendor\.xiaomi\.hardware\.displayfeature@1\.0-service                                    u:object_r:hal_displayfeature_default_exec:s0
@@ -130,7 +131,7 @@
 /vendor/bin/mlipayd@1\.1                                                u:object_r:hal_mlipay_default_exec:s0
 
 # MTD
-/vendor/bin/mtd@1\.2                                                    u:object_r:hal_mtdservice_default_exec:s0
+/vendor/bin/mtd@1\.3                                                    u:object_r:hal_mtdservice_default_exec:s0
 
 # NFC
 /vendor/bin/STFlashTool                                                 u:object_r:stflashtool_exec:s0

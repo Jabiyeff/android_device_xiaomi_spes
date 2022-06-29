@@ -21,6 +21,5 @@ libwa_widelens_undistort.so 64
 libarcsoft_beautyshot.so 64
 libwa_depth.so 64
 
-libc++_shared.so
 libmpbase.so
 libalCFR.so

@@ -40,7 +40,7 @@ on charger
     symlink /config/usb_gadget/g1/configs/b.1 /config/usb_gadget/g1/os_desc/b.1
     exec u:r:vendor_qti_init_shell:s0 -- /vendor/bin/init.qcom.usb.sh
     write /config/usb_gadget/g1/strings/0x409/product ${vendor.usb.product_string}
-    setprop sys.usb.config mass_storage
+
     setprop sys.usb.configfs 1
 
 on boot
@@ -95,6 +95,9 @@ on boot
     write /config/usb_gadget/g1/os_desc/b_vendor_code 0x1
     write /config/usb_gadget/g1/os_desc/qw_sign "MSFT100"
     write /config/usb_gadget/g1/functions/diag.diag/serial ${ro.serialno}
+    write /config/usb_gadget/g1/functions/rndis.rndis/class ef
+    write /config/usb_gadget/g1/functions/rndis.rndis/subclass 04
+    write /config/usb_gadget/g1/functions/rndis.rndis/protocol 01
     symlink /config/usb_gadget/g1/configs/b.1 /config/usb_gadget/g1/os_desc/b.1
     mkdir /dev/usb-ffs 0775 shell system
     mkdir /dev/usb-ffs/adb 0770 shell system

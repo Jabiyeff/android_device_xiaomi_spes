@@ -82,6 +82,7 @@ persist.sys.fflag.override.settings_provider_model=false
 persist.vendor.ims.no_stapa=1
 rild.libpath=/vendor/lib64/libril-qc-hal-qmi.so
 ril.subscription.types=NV,RUIM
+ro.vendor.radio.features_common=3
 
 # Radio (IMS)
 persist.vendor.ims.disableIMSLogs=1

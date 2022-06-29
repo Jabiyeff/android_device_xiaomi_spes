@@ -111,8 +111,8 @@ Only the three quirks included above are recognized at this point:
  ______________________________________________________
  | Codec    | W       H      fps     Mbps     MB/s    |
  |__________|_________________________________________|
- | h264     | 1920    1088    30      60     244800   |
- | hevc     | 1920    1088    30      60     244800   |
+ | h264     | 1920    1088    60      60     489600   |
+ | hevc     | 1920    1088    60      60     489600   |
  | mpeg4-sw | 864     480     30      8       48600   |
  | h263-sw  | 864     480     30      2       48600   |
  |__________|_________________________________________|
@@ -133,13 +133,12 @@ Only the three quirks included above are recognized at this point:
             <Limit name="size" min="128x128" max="1920x1088" />
             <Limit name="alignment" value="2x2" />
             <Limit name="block-size" value="16x16" />
-            <Limit name="blocks-per-second" min="64" max="244800" />
+            <Limit name="blocks-per-second" min="64" max="489600" />
             <Limit name="bitrate" range="1-60000000" />
             <Limit name="frame-rate" range="1-120" />
             <Limit name="concurrent-instances" max="16" />
-            <Limit name="performance-point-1920x1080" value="30" />
-            <Limit name="performance-point-1280x720" value="60" />
-            <Limit name="performance-point-720x480" value="120" />
+            <Limit name="performance-point-1920x1080" value="60" />
+            <Limit name="performance-point-1280x720" value="120" />
         </MediaCodec>
         <MediaCodec name="OMX.qcom.video.encoder.hevc" type="video/hevc" >
             <Quirk name="requires-allocate-on-input-ports" />
@@ -148,15 +147,14 @@ Only the three quirks included above are recognized at this point:
             <Limit name="size" min="128x128" max="1920x1088" />
             <Limit name="alignment" value="2x2" />
             <Limit name="block-size" value="16x16" />
-            <Limit name="blocks-per-second" min="64" max="244800" />
+            <Limit name="blocks-per-second" min="64" max="489600" />
             <Limit name="bitrate" range="1-60000000" />
             <Limit name="frame-rate" range="1-120" />
             <Limit name="concurrent-instances" max="16" />
             <Limit name="quality" range="0-100" default="80" />
             <Feature name="bitrate-modes" value="VBR,CBR" />
-            <Limit name="performance-point-1920x1080" value="30" />
-            <Limit name="performance-point-1280x720" value="60" />
-            <Limit name="performance-point-720x480" value="120" />
+            <Limit name="performance-point-1920x1080" value="60" />
+            <Limit name="performance-point-1280x720" value="120" />
         </MediaCodec>
         <MediaCodec name="OMX.qcom.video.encoder.hevc.cq" type="video/hevc" >
                 <Quirk name="requires-allocate-on-input-ports" />
