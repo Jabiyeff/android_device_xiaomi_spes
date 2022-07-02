@@ -1161,6 +1161,7 @@ system_ext/etc/permissions/telephony_system-ext_privapp-permissions-qti.xml
 system_ext/etc/sysconfig/qti_whitelist_system_ext.xml
 system_ext/framework/embmslibrary.jar
 system_ext/framework/qcrilhook.jar
+system_ext/framework/qti-telephony-common.jar
 vendor/bin/hw/qcrild
 vendor/bin/ATFWD-daemon
 vendor/bin/adpl
