@@ -1,6 +1,6 @@
 /*
  * Copyright (c) 2011-2021, The Linux Foundation. All rights reserved.
-
+ *
  * Redistribution and use in source and binary forms, with or without
  * modification, are permitted provided that the following conditions are
  * met:
@@ -24,6 +24,40 @@
  * BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY,
  * WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE
  * OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN
+ * IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+ *
+ * Changes from Qualcomm Innovation Center are provided under the following license:
+ *
+ * Copyright (c) 2022 Qualcomm Innovation Center, Inc. All rights reserved.
+ *
+ * Redistribution and use in source and binary forms, with or without
+ * modification, are permitted (subject to the limitations in the
+ * disclaimer below) provided that the following conditions are met:
+ *
+ *    * Redistributions of source code must retain the above copyright
+ *      notice, this list of conditions and the following disclaimer.
+ *
+ *    * Redistributions in binary form must reproduce the above
+ *      copyright notice, this list of conditions and the following
+ *      disclaimer in the documentation and/or other materials provided
+ *      with the distribution.
+ *
+ *    * Neither the name of Qualcomm Innovation Center, Inc. nor the names of its
+ *      contributors may be used to endorse or promote products derived
+ *      from this software without specific prior written permission.
+ *
+ * NO EXPRESS OR IMPLIED LICENSES TO ANY PARTY'S PATENT RIGHTS ARE
+ * GRANTED BY THIS LICENSE. THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT
+ * HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED
+ * WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF
+ * MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED.
+ * IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR
+ * ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
+ * DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE
+ * GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+ * INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER
+ * IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR
+ * OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN
  * IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
@@ -156,6 +190,13 @@ bool IsCompressedRGBFormat(int format) {
 bool IsCameraCustomFormat(int format) {
   switch (format) {
     case HAL_PIXEL_FORMAT_NV21_ZSL:
+      if (CameraInfo::GetInstance() &&
+          !(CameraInfo::GetInstance()->IsCameraUtilsPresent())) {
+        // If the mapping is made to a camera custom format and lib
+        // is absent, we return false and handle internally.
+        return false;
+      }
+      [[fallthrough]];
     case HAL_PIXEL_FORMAT_NV12_UBWC_FLEX:
     case HAL_PIXEL_FORMAT_NV12_UBWC_FLEX_2_BATCH:
     case HAL_PIXEL_FORMAT_NV12_UBWC_FLEX_4_BATCH:
@@ -395,6 +436,10 @@ unsigned int GetSize(const BufferInfo &info, unsigned int alignedw, unsigned int
         break;
       case HAL_PIXEL_FORMAT_NV12_HEIF:
         size = VENUS_BUFFER_SIZE(COLOR_FMT_NV12_512, width, height);
+        break;
+      case HAL_PIXEL_FORMAT_NV21_ZSL:
+        size = ALIGN((alignedw * alignedh) + (alignedw * alignedh) / 2,
+                     SIZE_4K);
         break;
 #endif
       default:ALOGE("%s: Unrecognized pixel format: 0x%x", __FUNCTION__, format);
@@ -1082,17 +1127,12 @@ void GetAlignedWidthAndHeight(const BufferInfo &info, unsigned int *alignedw,
   // Below should be only YUV family
   switch (format) {
     case HAL_PIXEL_FORMAT_YCrCb_420_SP:
-      /*
-       * Todo: relook this alignment again
-       * Change made to unblock the software EIS feature from camera
-       * Currently using same alignment as camera doing
-       */
-      aligned_w = INT(VENUS_Y_STRIDE(COLOR_FMT_NV21, width));
-      aligned_h = INT(VENUS_Y_SCANLINES(COLOR_FMT_NV21, height));
-      break;
     case HAL_PIXEL_FORMAT_YCbCr_420_SP:
-      aligned_w = INT(VENUS_Y_STRIDE(COLOR_FMT_NV12, width));
-      aligned_h = INT(VENUS_Y_SCANLINES(COLOR_FMT_NV12, height));
+      if (AdrenoMemInfo::GetInstance() == nullptr) {
+        return;
+      }
+      alignment = AdrenoMemInfo::GetInstance()->GetGpuPixelAlignment();
+      aligned_w = ALIGN(width, alignment);
       break;
     case HAL_PIXEL_FORMAT_YCrCb_420_SP_ADRENO:
       aligned_w = ALIGN(width, alignment);
@@ -1156,6 +1196,10 @@ void GetAlignedWidthAndHeight(const BufferInfo &info, unsigned int *alignedw,
     case HAL_PIXEL_FORMAT_NV12_HEIF:
       aligned_w = INT(VENUS_Y_STRIDE(COLOR_FMT_NV12_512, width));
       aligned_h = INT(VENUS_Y_SCANLINES(COLOR_FMT_NV12_512, height));
+      break;
+    case HAL_PIXEL_FORMAT_NV21_ZSL:
+      aligned_w = ALIGN(width, 64);
+      aligned_h = ALIGN(height, 64);
       break;
 #endif
     default:
@@ -1471,6 +1515,7 @@ int GetYUVPlaneInfo(const BufferInfo &info, int32_t format, int32_t width, int32
     case HAL_PIXEL_FORMAT_YCrCb_422_SP:
     case HAL_PIXEL_FORMAT_YCrCb_420_SP_ADRENO:
     case HAL_PIXEL_FORMAT_YCrCb_420_SP_VENUS:
+    case HAL_PIXEL_FORMAT_NV21_ZSL:
       *plane_count = 2;
       GetYuvSPPlaneInfo(info, format, width, height, 1, plane_info);
       GetYuvSubSamplingFactor(format, &h_subsampling, &v_subsampling);
@@ -1705,6 +1750,7 @@ void GetYuvSubSamplingFactor(int32_t format, int *h_subsampling, int *v_subsampl
     case HAL_PIXEL_FORMAT_NV21_ENCODEABLE:
     case HAL_PIXEL_FORMAT_YV12:
     case HAL_PIXEL_FORMAT_NV12_HEIF:
+    case HAL_PIXEL_FORMAT_NV21_ZSL:
       *h_subsampling = 1;
       *v_subsampling = 1;
       break;

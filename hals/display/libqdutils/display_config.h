@@ -27,6 +27,42 @@
  * IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
+/*
+* Changes from Qualcomm Innovation Center are provided under the following license:
+*
+* Copyright (c) 2022 Qualcomm Innovation Center, Inc. All rights reserved.
+*
+* Redistribution and use in source and binary forms, with or without
+* modification, are permitted (subject to the limitations in the
+* disclaimer below) provided that the following conditions are met:
+*
+*    * Redistributions of source code must retain the above copyright
+*      notice, this list of conditions and the following disclaimer.
+*
+*    * Redistributions in binary form must reproduce the above
+*      copyright notice, this list of conditions and the following
+*      disclaimer in the documentation and/or other materials provided
+*      with the distribution.
+*
+*    * Neither the name of Qualcomm Innovation Center, Inc. nor the names of its
+*      contributors may be used to endorse or promote products derived
+*      from this software without specific prior written permission.
+*
+* NO EXPRESS OR IMPLIED LICENSES TO ANY PARTY'S PATENT RIGHTS ARE
+* GRANTED BY THIS LICENSE. THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT
+* HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED
+* WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF
+* MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED.
+* IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR
+* ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
+* DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE
+* GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+* INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER
+* IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR
+* OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN
+* IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+*/
+
 #ifndef _DISPLAY_CONFIG_H
 #define _DISPLAY_CONFIG_H
 
@@ -170,11 +206,21 @@ int getSupportedBitClk(int dpy, std::vector<uint64_t>& bit_rates);
 // Sets the specified min and max luminance values.
 int setPanelLuminanceAttributes(int dpy, float min_lum, float max_lum);
 
-// Sets display standy mode
-extern "C" int setStandByMode(int mode);
+// Informs HWC about TWM entry/exit based on which NULL Display is connected
+// or disconnected.
+// mode   -> 0 for exit sequence, 1 for entry sequence.
+// is_twm ->
+//    0 for regular ambient mode
+//    1 for TWM with framework shutdown mode (If display is in ON state, then
+//      this would put display in DOZE state).
+//      Using 0 for mode value and 1 for is_twm is not valid, it may lead to
+//      state inconsistency between Android Framework and HAL.
+int setStandByMode(int mode, int is_twm);
 
 // Get Panel Resolution
 extern "C" int getPanelResolution(int *width, int *height);
+
+extern "C" int delayFirstCommit(void);
 
 }; //namespace
 

@@ -20,6 +20,40 @@
 * OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT,
 * STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
 * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+*
+* Changes from Qualcomm Innovation Center are provided under the following license:
+*
+* Copyright (c) 2022 Qualcomm Innovation Center, Inc. All rights reserved.
+*
+* Redistribution and use in source and binary forms, with or without
+* modification, are permitted (subject to the limitations in the
+* disclaimer below) provided that the following conditions are met:
+*
+*    * Redistributions of source code must retain the above copyright
+*      notice, this list of conditions and the following disclaimer.
+*
+*    * Redistributions in binary form must reproduce the above
+*      copyright notice, this list of conditions and the following
+*      disclaimer in the documentation and/or other materials provided
+*      with the distribution.
+*
+*    * Neither the name of Qualcomm Innovation Center, Inc. nor the names of its
+*      contributors may be used to endorse or promote products derived
+*      from this software without specific prior written permission.
+*
+* NO EXPRESS OR IMPLIED LICENSES TO ANY PARTY'S PATENT RIGHTS ARE
+* GRANTED BY THIS LICENSE. THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT
+* HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED
+* WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF
+* MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED.
+* IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR
+* ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
+* DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE
+* GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+* INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER
+* IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR
+* OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN
+* IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 */
 
 #include <utils/constants.h>
@@ -34,7 +68,9 @@
 #include <vector>
 
 #include "display_builtin.h"
+#ifndef TARGET_HEADLESS
 #include "drm_interface.h"
+#endif
 #include "drm_master.h"
 #include "hw_info_interface.h"
 #include "hw_interface.h"
@@ -276,6 +312,7 @@ HWAVRModes DisplayBuiltIn::GetAvrMode(QSyncMode mode) {
 
 void DisplayBuiltIn::initColorSamplingState() {
   samplingState = SamplingState::Off;
+#ifndef TARGET_HEADLESS
   histogramCtrl.object_type = DRM_MODE_OBJECT_CRTC;
   histogramCtrl.feature_id = sde_drm::DRMDPPSFeatureID::kFeatureAbaHistCtrl;
   histogramCtrl.value = sde_drm::HistModes::kHistDisabled;
@@ -284,10 +321,12 @@ void DisplayBuiltIn::initColorSamplingState() {
   histogramIRQ.feature_id = sde_drm::DRMDPPSFeatureID::kFeatureAbaHistIRQ;
   histogramIRQ.value = sde_drm::HistModes::kHistDisabled;
   histogramSetup = true;
+#endif
 }
 
 DisplayError DisplayBuiltIn::setColorSamplingState(SamplingState state) {
   samplingState = state;
+#ifndef TARGET_HEADLESS
   if (samplingState == SamplingState::On) {
     histogramCtrl.value = sde_drm::HistModes::kHistEnabled;
     histogramIRQ.value = sde_drm::HistModes::kHistEnabled;
@@ -298,6 +337,9 @@ DisplayError DisplayBuiltIn::setColorSamplingState(SamplingState state) {
 
   // effectively drmModeAtomicAddProperty for the SDE_DSPP_HIST_CTRL_V1
   return DppsProcessOps(kDppsSetFeature, &histogramCtrl, sizeof(histogramCtrl));
+#else
+  return kErrorNone;
+#endif
 }
 
 DisplayError DisplayBuiltIn::colorSamplingOn() {
@@ -354,7 +396,9 @@ DisplayError DisplayBuiltIn::Commit(LayerStack *layer_stack) {
   }
   // effectively drmModeAtomicAddProperty for SDE_DSPP_HIST_IRQ_V1
   if (histogramSetup) {
+#ifndef TARGET_HEADLESS
     DppsProcessOps(kDppsSetFeature, &histogramIRQ, sizeof(histogramIRQ));
+#endif
   }
 
   error = DisplayBase::Commit(layer_stack);
@@ -565,6 +609,7 @@ DisplayError DisplayBuiltIn::SetPanelBrightness(float brightness) {
   DisplayError err = hw_intf_->SetPanelBrightness(level);
   if (err == kErrorNone) {
     level_remainder_ = level_remainder;
+    pending_brightness_ = false;
     DLOGI_IF(kTagDisplay, "Setting brightness to level %d (%f percent)", level,
              brightness * 100);
   } else if (err == kErrorDeferred) {

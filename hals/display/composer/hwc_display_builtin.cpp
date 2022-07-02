@@ -27,6 +27,42 @@
 * IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 */
 
+/*
+* Changes from Qualcomm Innovation Center are provided under the following license:
+*
+* Copyright (c) 2022 Qualcomm Innovation Center, Inc. All rights reserved.
+*
+* Redistribution and use in source and binary forms, with or without
+* modification, are permitted (subject to the limitations in the
+* disclaimer below) provided that the following conditions are met:
+*
+*    * Redistributions of source code must retain the above copyright
+*      notice, this list of conditions and the following disclaimer.
+*
+*    * Redistributions in binary form must reproduce the above
+*      copyright notice, this list of conditions and the following
+*      disclaimer in the documentation and/or other materials provided
+*      with the distribution.
+*
+*    * Neither the name of Qualcomm Innovation Center, Inc. nor the names of its
+*      contributors may be used to endorse or promote products derived
+*      from this software without specific prior written permission.
+*
+* NO EXPRESS OR IMPLIED LICENSES TO ANY PARTY'S PATENT RIGHTS ARE
+* GRANTED BY THIS LICENSE. THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT
+* HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED
+* WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF
+* MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED.
+* IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR
+* ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
+* DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE
+* GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+* INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER
+* IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR
+* OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN
+* IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+*/
+
 #include <cutils/properties.h>
 #include <sync/sync.h>
 #include <utils/constants.h>
@@ -153,13 +189,6 @@ int HWCDisplayBuiltIn::Init() {
                       &window_rect_.right, &window_rect_.bottom) != kErrorUndefined;
     DLOGI("Window rect : [%f %f %f %f]", window_rect_.left, window_rect_.top,
           window_rect_.right, window_rect_.bottom);
-
-    value = 0;
-    HWCDebugHandler::Get()->GetProperty(ENABLE_POMS_DURING_DOZE, &value);
-    enable_poms_during_doze_ = (value == 1);
-    if (enable_poms_during_doze_) {
-      DLOGI("Enable POMS during Doze mode %" PRIu64 , id_);
-    }
   }
 
   value = 0;
@@ -188,7 +217,9 @@ int HWCDisplayBuiltIn::Init() {
 
 void HWCDisplayBuiltIn::Dump(std::ostringstream *os) {
   HWCDisplay::Dump(os);
+#ifndef TARGET_HEADLESS
   *os << histogram.Dump();
+#endif
 }
 
 void HWCDisplayBuiltIn::ValidateUiScaling() {
@@ -298,6 +329,9 @@ HWC2::Error HWCDisplayBuiltIn::Validate(uint32_t *out_num_types, uint32_t *out_n
     // Avoid flush for Command mode panel.
     flush_ = !client_connected_;
     validated_ = true;
+    layer_changes_.clear();
+    layer_requests_.clear();
+    DLOGV_IF(kTagDisplay, "layer_set is empty");
     return status;
   }
 
@@ -1213,11 +1247,13 @@ HWC2::Error HWCDisplayBuiltIn::SetDisplayedContentSamplingEnabledVndService(bool
   std::unique_lock<decltype(sampling_mutex)> lk(sampling_mutex);
   vndservice_sampling_vote = enabled;
   if (api_sampling_vote || vndservice_sampling_vote) {
+#ifndef TARGET_HEADLESS
     histogram.start();
     display_intf_->colorSamplingOn();
   } else {
     display_intf_->colorSamplingOff();
     histogram.stop();
+#endif
   }
   return HWC2::Error::None;
 }
@@ -1238,6 +1274,7 @@ HWC2::Error HWCDisplayBuiltIn::SetDisplayedContentSamplingEnabled(int32_t enable
 
   auto start = api_sampling_vote || vndservice_sampling_vote;
   if (start && max_frames == 0) {
+#ifndef TARGET_HEADLESS
     histogram.start();
     display_intf_->colorSamplingOn();
   } else if (start) {
@@ -1246,20 +1283,26 @@ HWC2::Error HWCDisplayBuiltIn::SetDisplayedContentSamplingEnabled(int32_t enable
   } else {
     display_intf_->colorSamplingOff();
     histogram.stop();
+#endif
   }
   return HWC2::Error::None;
 }
 
 HWC2::Error HWCDisplayBuiltIn::GetDisplayedContentSamplingAttributes(
     int32_t *format, int32_t *dataspace, uint8_t *supported_components) {
-  return histogram.getAttributes(format, dataspace, supported_components);
+#ifndef TARGET_HEADLESS
+ return histogram.getAttributes(format, dataspace, supported_components);
+#endif
+ return HWC2::Error::None;
 }
 
 HWC2::Error HWCDisplayBuiltIn::GetDisplayedContentSample(
     uint64_t max_frames, uint64_t timestamp, uint64_t *numFrames,
     int32_t samples_size[NUM_HISTOGRAM_COLOR_COMPONENTS],
     uint64_t *samples[NUM_HISTOGRAM_COLOR_COMPONENTS]) {
+#ifndef TARGET_HEADLESS
   histogram.collect(max_frames, timestamp, samples_size, samples, numFrames);
+#endif
   return HWC2::Error::None;
 }
 
@@ -1331,11 +1374,31 @@ DisplayError HWCDisplayBuiltIn::GetSupportedDSIClock(std::vector<uint64_t> *bitc
   return kErrorNotSupported;
 }
 
-DisplayError HWCDisplayBuiltIn::SetStandByMode(bool enable) {
+DisplayError HWCDisplayBuiltIn::SetStandByMode(bool enable, bool is_twm) {
   if (enable) {
     if (!display_null_.IsActive()) {
       stored_display_intf_ = display_intf_;
       display_intf_ = &display_null_;
+      shared_ptr<Fence> release_fence = nullptr;
+
+      if (is_twm && current_power_mode_ == HWC2::PowerMode::On) {
+        DLOGD("Display is in ON state and device is entering TWM mode.");
+        DisplayError error = stored_display_intf_->SetDisplayState(kStateDoze,
+                                false /* teardown */,
+                                &release_fence);
+        if (error != kErrorNone) {
+          if (error == kErrorShutDown) {
+            shutdown_pending_ = true;
+            return error;
+          }
+          DLOGE("Set state failed. Error = %d", error);
+          return error;
+        } else {
+          current_power_mode_ = HWC2::PowerMode::Doze;
+          DLOGD("Display moved to DOZE state.");
+        }
+      }
+
       display_null_.SetActive(true);
       DLOGD("Null display is connected successfully");
     } else {
@@ -1343,6 +1406,10 @@ DisplayError HWCDisplayBuiltIn::SetStandByMode(bool enable) {
     }
   } else {
     if (display_null_.IsActive()) {
+      if (is_twm) {
+        DLOGE("Unexpected event. Display state may be inconsistent.");
+        return kErrorNotSupported;
+      }
       display_intf_ = stored_display_intf_;
       validated_ = false;
       display_null_.SetActive(false);
@@ -1352,6 +1419,14 @@ DisplayError HWCDisplayBuiltIn::SetStandByMode(bool enable) {
     }
   }
   return kErrorNone;
+}
+
+DisplayError HWCDisplayBuiltIn::DelayFirstCommit() {
+  if (display_intf_) {
+    return display_intf_->DelayFirstCommit();
+  }
+
+  return kErrorNotSupported;
 }
 
 HWC2::Error HWCDisplayBuiltIn::UpdateDisplayId(hwc2_display_t id) {
@@ -1450,13 +1525,7 @@ bool HWCDisplayBuiltIn::HasSmartPanelConfig(void) {
     return IsSmartPanelConfig(config);
   }
 
-  for (auto &config : variable_config_map_) {
-    if (config.second.smart_panel) {
-      return true;
-    }
-  }
-
-  return false;
+  return smart_panel_config_;
 }
 
 int HWCDisplayBuiltIn::Deinit() {
@@ -1464,8 +1533,9 @@ int HWCDisplayBuiltIn::Deinit() {
   if (gl_layer_stitch_) {
     layer_stitch_task_.PerformTask(LayerStitchTaskCode::kCodeDestroyInstance, nullptr);
   }
-
+#ifndef TARGET_HEADLESS
   histogram.stop();
+#endif
   return HWCDisplay::Deinit();
 }
 
@@ -1598,7 +1668,9 @@ void HWCDisplayBuiltIn::AppendStitchLayer() {
 }
 
 DisplayError HWCDisplayBuiltIn::HistogramEvent(int fd, uint32_t blob_id) {
+#ifndef TARGET_HEADLESS
   histogram.notify_histogram_event(fd, blob_id);
+#endif
   return kErrorNone;
 }
 

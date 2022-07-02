@@ -27,6 +27,42 @@
 * IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 */
 
+/*
+* Changes from Qualcomm Innovation Center are provided under the following license:
+*
+* Copyright (c) 2022 Qualcomm Innovation Center, Inc. All rights reserved.
+*
+* Redistribution and use in source and binary forms, with or without
+* modification, are permitted (subject to the limitations in the
+* disclaimer below) provided that the following conditions are met:
+*
+*    * Redistributions of source code must retain the above copyright
+*      notice, this list of conditions and the following disclaimer.
+*
+*    * Redistributions in binary form must reproduce the above
+*      copyright notice, this list of conditions and the following
+*      disclaimer in the documentation and/or other materials provided
+*      with the distribution.
+*
+*    * Neither the name of Qualcomm Innovation Center, Inc. nor the names of its
+*      contributors may be used to endorse or promote products derived
+*      from this software without specific prior written permission.
+*
+* NO EXPRESS OR IMPLIED LICENSES TO ANY PARTY'S PATENT RIGHTS ARE
+* GRANTED BY THIS LICENSE. THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT
+* HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED
+* WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF
+* MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED.
+* IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR
+* ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
+* DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE
+* GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+* INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER
+* IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR
+* OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN
+* IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+*/
+
 #ifndef __HW_DEVICE_DRM_H__
 #define __HW_DEVICE_DRM_H__
 
@@ -92,6 +128,7 @@ class HWDeviceDRM : public HWInterface {
   virtual DisplayError Flush(HWLayers *hw_layers);
   virtual DisplayError GetPPFeaturesVersion(PPFeatureVersion *vers);
   virtual DisplayError SetPPFeatures(PPFeaturesConfig *feature_list);
+  virtual DisplayError DelayFirstCommit() { return kErrorNotSupported; };
   // This API is no longer supported, expectation is to call the correct API on HWEvents
   virtual DisplayError SetVSyncState(bool enable);
   virtual void SetIdleTimeoutMs(uint32_t timeout_ms);
@@ -212,6 +249,11 @@ class HWDeviceDRM : public HWInterface {
   };
 
  protected:
+  bool IsSeamlessTransition() {
+    return (hw_panel_info_.dynamic_fps && (vrefresh_ || seamless_mode_switch_)) ||
+     panel_mode_changed_ || bit_clk_rate_;
+  }
+
   const char *device_name_ = {};
   bool default_mode_ = false;
   int32_t display_id_ = -1;
@@ -253,6 +295,7 @@ class HWDeviceDRM : public HWInterface {
   // Destination scaler blocks in use by all HWDeviceDRM instances.
   static std::atomic<uint32_t> hw_dest_scaler_blocks_used_;
   bool null_display_commit_ = false;
+  bool delay_first_commit_ = false;
 
  private:
   void SetDisplaySwitchMode(uint32_t index);
@@ -261,6 +304,7 @@ class HWDeviceDRM : public HWInterface {
   bool resolution_switch_enabled_ = false;
   bool autorefresh_ = false;
   std::unique_ptr<HWColorManagerDrm> hw_color_mgr_ = {};
+  bool seamless_mode_switch_ = false;
 };
 
 }  // namespace sdm

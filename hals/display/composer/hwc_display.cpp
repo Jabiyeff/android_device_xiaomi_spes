@@ -519,6 +519,16 @@ int HWCDisplay::Init() {
     return -EINVAL;
   }
 
+  bool is_primary_ = display_intf_->IsPrimaryDisplay();
+  if (is_primary_) {
+    int value = 0;
+    HWCDebugHandler::Get()->GetProperty(ENABLE_POMS_DURING_DOZE, &value);
+    enable_poms_during_doze_ = (value == 1);
+    if (enable_poms_during_doze_) {
+      DLOGI("Enable POMS during Doze mode %" PRIu64 , id_);
+    }
+  }
+
   UpdateConfigs();
 
   tone_mapper_ = new HWCToneMapper(buffer_allocator_);
@@ -556,11 +566,18 @@ void HWCDisplay::UpdateConfigs() {
     DisplayConfigVariableInfo info = {};
     GetDisplayAttributesForConfig(INT(i), &info);
     bool config_exists = false;
+
+    if (!smart_panel_config_ && info.smart_panel) {
+      smart_panel_config_ = true;
+    }
+
     for (auto &config : variable_config_map_) {
       if (config.second == info) {
-        config_exists = true;
-        hwc_config_map_.at(i) = config.first;
-        break;
+        if (enable_poms_during_doze_ || (config.second.smart_panel == info.smart_panel)) {
+          config_exists = true;
+          hwc_config_map_.at(i) = config.first;
+          break;
+        }
       }
     }
 
@@ -578,7 +595,7 @@ void HWCDisplay::UpdateConfigs() {
 
   // Update num config count.
   num_configs_ = UINT32(variable_config_map_.size());
-  DLOGI("num_configs = %d", num_configs_);
+  DLOGI("num_configs = %d smart_panel_config_ = %d", num_configs_, smart_panel_config_);
 }
 
 int HWCDisplay::Deinit() {

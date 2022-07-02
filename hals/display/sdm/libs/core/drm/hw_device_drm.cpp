@@ -27,6 +27,42 @@
 * IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 */
 
+/*
+* Changes from Qualcomm Innovation Center are provided under the following license:
+*
+* Copyright (c) 2022 Qualcomm Innovation Center, Inc. All rights reserved.
+*
+* Redistribution and use in source and binary forms, with or without
+* modification, are permitted (subject to the limitations in the
+* disclaimer below) provided that the following conditions are met:
+*
+*    * Redistributions of source code must retain the above copyright
+*      notice, this list of conditions and the following disclaimer.
+*
+*    * Redistributions in binary form must reproduce the above
+*      copyright notice, this list of conditions and the following
+*      disclaimer in the documentation and/or other materials provided
+*      with the distribution.
+*
+*    * Neither the name of Qualcomm Innovation Center, Inc. nor the names of its
+*      contributors may be used to endorse or promote products derived
+*      from this software without specific prior written permission.
+*
+* NO EXPRESS OR IMPLIED LICENSES TO ANY PARTY'S PATENT RIGHTS ARE
+* GRANTED BY THIS LICENSE. THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT
+* HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED
+* WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF
+* MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED.
+* IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR
+* ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
+* DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE
+* GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+* INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER
+* IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR
+* OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN
+* IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+*/
+
 #define __STDC_FORMAT_MACROS
 
 #include <ctype.h>
@@ -651,14 +687,14 @@ DisplayError HWDeviceDRM::PopulateDisplayAttributes(uint32_t index) {
 
   DLOGI("Display attributes[%d]: WxH: %dx%d, DPI: %fx%f, FPS: %d, LM_SPLIT: %d, V_BACK_PORCH: %d," \
         " V_FRONT_PORCH: %d, V_PULSE_WIDTH: %d, V_TOTAL: %d, H_TOTAL: %d, CLK: %dKHZ," \
-        " TOPOLOGY: %d, HW_SPLIT: %d", index, display_attributes_[index].x_pixels,
+        " TOPOLOGY: %d, HW_SPLIT: %d SMART_PANEL: %d", index, display_attributes_[index].x_pixels,
         display_attributes_[index].y_pixels, display_attributes_[index].x_dpi,
         display_attributes_[index].y_dpi, display_attributes_[index].fps,
         display_attributes_[index].is_device_split, display_attributes_[index].v_back_porch,
         display_attributes_[index].v_front_porch, display_attributes_[index].v_pulse_width,
         display_attributes_[index].v_total, display_attributes_[index].h_total,
         display_attributes_[index].clock_khz, display_attributes_[index].topology,
-        mixer_attributes_.split_type);
+        mixer_attributes_.split_type, display_attributes_[index].smart_panel);
 
   return kErrorNone;
 }
@@ -932,6 +968,10 @@ void HWDeviceDRM::SetDisplaySwitchMode(uint32_t index) {
       cmd_mode_index_ = current_mode_index_;
     }
   }
+  if (current_mode.hdisplay == to_set.hdisplay &&
+    current_mode.vdisplay == to_set.vdisplay) {
+    seamless_mode_switch_ = true;
+  }
 }
 
 DisplayError HWDeviceDRM::SetDisplayAttributes(uint32_t index) {
@@ -1016,14 +1056,18 @@ DisplayError HWDeviceDRM::PowerOff(bool teardown) {
   ResetROI();
   int64_t retire_fence_fd = -1;
   drmModeModeInfo current_mode = connector_info_.modes[current_mode_index_].mode;
-  drm_atomic_intf_->Perform(DRMOps::CRTC_SET_MODE, token_.crtc_id, &current_mode);
+  if (!IsSeamlessTransition()) {
+    drm_atomic_intf_->Perform(DRMOps::CRTC_SET_MODE, token_.crtc_id, &current_mode);
+  }
   drm_atomic_intf_->Perform(DRMOps::CONNECTOR_SET_POWER_MODE, token_.conn_id, DRMPowerMode::OFF);
   drm_atomic_intf_->Perform(DRMOps::CRTC_SET_ACTIVE, token_.crtc_id, 0);
   drm_atomic_intf_->Perform(DRMOps::CONNECTOR_GET_RETIRE_FENCE, token_.conn_id, &retire_fence_fd);
 
   int ret = NullCommit(false /* asynchronous */, false /* retain_planes */);
   if (ret) {
-    DLOGE("Failed with error: %d", ret);
+    DLOGE("Failed with error: %d, dynamic_fps=%d, seamless_mode_switch_=%d, vrefresh_=%d,"
+     "panel_mode_changed_=%d bit_clk_rate_=%" PRIu64 , ret, hw_panel_info_.dynamic_fps,
+     seamless_mode_switch_, vrefresh_, panel_mode_changed_, bit_clk_rate_);
     return kErrorHardware;
   }
 
@@ -1391,13 +1435,17 @@ void HWDeviceDRM::SetupAtomic(Fence::ScopedRef &scoped_ref, HWLayers *hw_layers,
     }
   }
 
-  if (first_cycle_) {
+  if (first_cycle_ || delay_first_commit_) {
     drm_atomic_intf_->Perform(DRMOps::CONNECTOR_SET_TOPOLOGY_CONTROL, token_.conn_id,
                               topology_control_);
     drm_atomic_intf_->Perform(DRMOps::CRTC_SET_ACTIVE, token_.crtc_id, 1);
     drm_atomic_intf_->Perform(DRMOps::CONNECTOR_SET_CRTC, token_.conn_id, token_.crtc_id);
     drm_atomic_intf_->Perform(DRMOps::CONNECTOR_SET_POWER_MODE, token_.conn_id, DRMPowerMode::ON);
-    last_power_mode_ = DRMPowerMode::ON;
+    // Don't reset delay_first_commit_ during Validate, should reset only in actual Commit
+    if (!validate) {
+      last_power_mode_ = DRMPowerMode::ON;
+      delay_first_commit_ = false;
+    }
   } else if (pending_doze_ && !validate) {
     drm_atomic_intf_->Perform(DRMOps::CRTC_SET_ACTIVE, token_.crtc_id, 1);
     drm_atomic_intf_->Perform(DRMOps::CONNECTOR_SET_POWER_MODE, token_.conn_id, DRMPowerMode::DOZE);
@@ -1475,6 +1523,7 @@ DisplayError HWDeviceDRM::Validate(HWLayers *hw_layers) {
     DumpHWLayers(hw_layers);
     vrefresh_ = 0;
     panel_mode_changed_ = 0;
+    seamless_mode_switch_ = false;
     err = kErrorHardware;
   }
 
@@ -1572,6 +1621,7 @@ DisplayError HWDeviceDRM::AtomicCommit(HWLayers *hw_layers) {
     DumpHWLayers(hw_layers);
     vrefresh_ = 0;
     panel_mode_changed_ = 0;
+    seamless_mode_switch_ = false;
     return kErrorHardware;
   }
 
@@ -1640,6 +1690,7 @@ DisplayError HWDeviceDRM::AtomicCommit(HWLayers *hw_layers) {
   update_mode_ = false;
   hw_layers->updates_mask = 0;
   pending_doze_ = false;
+  seamless_mode_switch_ = false;
 
   return kErrorNone;
 }

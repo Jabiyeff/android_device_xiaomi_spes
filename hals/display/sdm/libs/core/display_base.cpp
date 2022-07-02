@@ -22,6 +22,42 @@
 * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 */
 
+/*
+* Changes from Qualcomm Innovation Center are provided under the following license:
+*
+* Copyright (c) 2022 Qualcomm Innovation Center, Inc. All rights reserved.
+*
+* Redistribution and use in source and binary forms, with or without
+* modification, are permitted (subject to the limitations in the
+* disclaimer below) provided that the following conditions are met:
+*
+*    * Redistributions of source code must retain the above copyright
+*      notice, this list of conditions and the following disclaimer.
+*
+*    * Redistributions in binary form must reproduce the above
+*      copyright notice, this list of conditions and the following
+*      disclaimer in the documentation and/or other materials provided
+*      with the distribution.
+*
+*    * Neither the name of Qualcomm Innovation Center, Inc. nor the names of its
+*      contributors may be used to endorse or promote products derived
+*      from this software without specific prior written permission.
+*
+* NO EXPRESS OR IMPLIED LICENSES TO ANY PARTY'S PATENT RIGHTS ARE
+* GRANTED BY THIS LICENSE. THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT
+* HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED
+* WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF
+* MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED.
+* IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR
+* ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
+* DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE
+* GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+* INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER
+* IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR
+* OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN
+* IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+*/
+
 #include <stdio.h>
 #include <utils/constants.h>
 #include <utils/debug.h>
@@ -461,6 +497,9 @@ void DisplayBase::SetRCData(LayerStack *layer_stack) {
   if (!ret) {
     DLOGD_IF(kTagDisplay, "RC top_height = %d, RC bot_height = %d", rc_out_config->top_height,
              rc_out_config->bottom_height);
+    if (rc_out_config->rc_needs_full_roi) {
+      DisablePartialUpdateOneFrame();
+    }
     hw_layers_info.rc_config = true;
     hw_layers_info.rc_layers_info.top_width = rc_out_config->top_width;
     hw_layers_info.rc_layers_info.top_height = rc_out_config->top_height;
@@ -501,6 +540,7 @@ DisplayError DisplayBase::Commit(LayerStack *layer_stack) {
     } else {
       DLOGI_IF(kTagDisplay, "Status of RC mask data: %d.", (*mask_status).rc_mask_state);
       if ((*mask_status).rc_mask_state == kStatusRcMaskStackDirty) {
+        DisablePartialUpdateOneFrame();
         needs_validate_ = true;
         DLOGI_IF(kTagDisplay, "Mask is ready for display %d-%d, call Corresponding Prepare()",
                  display_id_, display_type_);
@@ -2264,6 +2304,10 @@ bool DisplayBase::GameEnhanceSupported() {
 DisplayError DisplayBase::OnMinHdcpEncryptionLevelChange(uint32_t min_enc_level) {
   lock_guard<recursive_mutex> obj(recursive_mutex_);
   return hw_intf_->OnMinHdcpEncryptionLevelChange(min_enc_level);
+}
+
+DisplayError DisplayBase::DelayFirstCommit() {
+  return hw_intf_->DelayFirstCommit();
 }
 
 }  // namespace sdm

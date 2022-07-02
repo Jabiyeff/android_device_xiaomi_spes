@@ -51,6 +51,7 @@ struct RCOutputConfig {
   int32_t top_height = 0;
   int32_t bottom_width = 0;
   int32_t bottom_height = 0;
+  bool rc_needs_full_roi = false;
 };
 
 // These value is to get the status of the mask
