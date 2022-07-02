@@ -1345,6 +1345,9 @@ int audio_extn_utils_get_license_params(const struct audio_device *adev,  struct
 #ifndef AUDIO_OUTPUT_FLAG_PHONE
 #define AUDIO_OUTPUT_FLAG_PHONE 0x800000
 #endif
+#ifndef AUDIO_OUTPUT_FLAG_ALERTS
+#define AUDIO_OUTPUT_FLAG_ALERTS 0x4000000
+#endif
 #ifndef AUDIO_OUTPUT_FLAG_FRONT_PASSENGER
 #define AUDIO_OUTPUT_FLAG_FRONT_PASSENGER 0x1000000
 #endif
@@ -1427,6 +1430,17 @@ typedef struct synth_init_config {
     fp_select_devices_t                          fp_select_devices;
 } synth_init_config_t;
 // END: SYNTH_HAL FEATURE ==================================================
+
+// START: POWER_POLICY FEATURE ==================================================
+
+typedef void (*fp_in_set_power_policy_t) (uint8_t);
+typedef void (*fp_out_set_power_policy_t) (uint8_t);
+
+typedef struct power_policy_init_config {
+    fp_in_set_power_policy_t                      fp_in_set_power_policy;
+    fp_out_set_power_policy_t                     fp_out_set_power_policy;
+} power_policy_init_config_t;
+// END: POWER_POLICY FEATURE ==================================================
 
 bool audio_extn_edid_is_supported_sr(edid_audio_info* info, int sr);
 bool audio_extn_edid_is_supported_bps(edid_audio_info* info, int bps);

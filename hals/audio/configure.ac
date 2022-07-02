@@ -50,9 +50,19 @@ AC_ARG_ENABLE(target,
                         [sa81*],      [TARGET_SUPPORT=msmnile_au],
                         [sa61*],      [TARGET_SUPPORT=msmsteppe_au],
                         [qrbx210],    [TARGET_SUPPORT=qrbx210],
+                        [qrb5165],    [TARGET_SUPPORT=qrb5165],
+                        [sdmsteppe],    [TARGET_SUPPORT=sdmsteppe],
                         [TARGET_SUPPORT=none])],
                [TARGET_SUPPORT=none]
 )
+
+AC_ARG_WITH(hal-path,
+        AS_HELP_STRING([--with-hal-path=DIR], [Specify the HAL modules location in run time]),
+        [HAL_PATH="$withval"],
+        [HAL_PATH="no"])
+
+AM_CONDITIONAL([HAL_PATH_SPECIFIED], [test "x${HAL_PATH}" != "xno"])
+AC_SUBST(HAL_PATH)
 
 if (test "x${with_glib}" = "xyes"); then
         PKG_CHECK_MODULES(GTHREAD, gthread-2.0 >= 2.16, dummy=yes,
@@ -104,10 +114,18 @@ fi
 if (test x$TARGET_SUPPORT = xsdmsteppe); then
          AC_SUBST([TARGET_PLATFORM], ["msm8974"])
          TARGET_CFLAGS="-DPLATFORM_MSMSTEPPE"
+         TARGET_CFLAGS+=" -DMAX_TARGET_SPECIFIC_CHANNEL_CNT=\"4\""
+         TARGET_CFLAGS+=" -DINCALL_STEREO_CAPTURE_ENABLED"
 fi
 if (test x$TARGET_SUPPORT = xqrbx210); then
          AC_SUBST([TARGET_PLATFORM], ["msm8974"])
          TARGET_CFLAGS=" -DPLATFORM_BENGAL"
+         TARGET_CFLAGS+=" -DMAX_TARGET_SPECIFIC_CHANNEL_CNT=\"4\""
+         TARGET_CFLAGS+=" -DINCALL_STEREO_CAPTURE_ENABLED"
+fi
+if (test x$TARGET_SUPPORT = xqrb5165); then
+         AC_SUBST([TARGET_PLATFORM], ["msm8974"])
+         TARGET_CFLAGS=" -DPLATFORM_KONA"
          TARGET_CFLAGS+=" -DMAX_TARGET_SPECIFIC_CHANNEL_CNT=\"4\""
          TARGET_CFLAGS+=" -DINCALL_STEREO_CAPTURE_ENABLED"
 fi
@@ -119,6 +137,8 @@ if (test x$TARGET_SUPPORT = xmsmsteppe_au); then
          AC_SUBST([TARGET_PLATFORM], ["msm8974"])
          TARGET_CFLAGS="-DPLATFORM_MSMSTEPPE"
 fi
+
+TARGET_CFLAGS+=' -DLE_LIBDIR=\"${libdir}\" '
 AC_SUBST([TARGET_CFLAGS])
 
 AM_CONDITIONAL([QTI_AUDIO_SERVER_ENABLED],[test x$BOARD_SUPPORTS_QTI_AUDIO_SERVER = xtrue])

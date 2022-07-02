@@ -111,6 +111,11 @@
 #define VNDK_FWK_LIB_PATH "/vendor/lib/libqti_vndfwk_detect.so"
 #endif
 
+/* 24 KHz ECNR support */
+#define ECNS_USE_CASE_ACDB_DEV_ID 95
+#define ECNS_UNSUPPORTED_CAPTURE_SAMPLE_RATE_FOR_ADM 24000
+#define ECNS_SUPPORTED_CAPTURE_SAMPLE_RATE_FOR_ADM 48000
+
 typedef struct vndkfwk_s {
     void *lib_handle;
     int (*isVendorEnhancedFwk)(void);
@@ -150,6 +155,7 @@ const struct string_to_enum s_flag_name_to_enum_table[] = {
     STRING_TO_ENUM(AUDIO_OUTPUT_FLAG_SYS_NOTIFICATION),
     STRING_TO_ENUM(AUDIO_OUTPUT_FLAG_NAV_GUIDANCE),
     STRING_TO_ENUM(AUDIO_OUTPUT_FLAG_PHONE),
+    STRING_TO_ENUM(AUDIO_OUTPUT_FLAG_ALERTS),
     STRING_TO_ENUM(AUDIO_OUTPUT_FLAG_FRONT_PASSENGER),
     STRING_TO_ENUM(AUDIO_OUTPUT_FLAG_REAR_SEAT),
     STRING_TO_ENUM(AUDIO_INPUT_FLAG_NONE),
@@ -750,6 +756,12 @@ void audio_extn_utils_update_stream_input_app_type_cfg(void *platform,
     app_type_cfg->app_type = platform_get_default_app_type_v2(platform, PCM_CAPTURE);
     app_type_cfg->sample_rate = CODEC_BACKEND_DEFAULT_SAMPLE_RATE;
     app_type_cfg->bit_width = 16;
+    if ((flags & AUDIO_INPUT_FLAG_TIMESTAMP) == 0 &&
+        (flags & AUDIO_INPUT_FLAG_COMPRESS) == 0 &&
+        (flags & AUDIO_INPUT_FLAG_FAST) != 0) {
+        // Support low latency record for different sample rates
+        app_type_cfg->sample_rate = sample_rate;
+    }
 }
 
 void audio_extn_utils_update_stream_output_app_type_cfg(void *platform,
@@ -838,6 +850,11 @@ void audio_extn_utils_update_stream_output_app_type_cfg(void *platform,
     app_type_cfg->app_type = platform_get_default_app_type(platform);
     app_type_cfg->sample_rate = CODEC_BACKEND_DEFAULT_SAMPLE_RATE;
     app_type_cfg->bit_width = 16;
+    if (compare_device_type(devices, AUDIO_DEVICE_OUT_BUS) && (flags &
+                        (audio_output_flags_t)AUDIO_OUTPUT_FLAG_FAST)) {
+        // Support low latency playback for different sample rates
+        app_type_cfg->sample_rate = sample_rate;
+    }
 }
 
 static bool audio_is_this_native_usecase(struct audio_usecase *uc)
@@ -1304,6 +1321,7 @@ int audio_extn_utils_get_app_sample_rate_for_device(
 {
     char value[PROPERTY_VALUE_MAX] = {0};
     int sample_rate = DEFAULT_OUTPUT_SAMPLING_RATE;
+    int acdb_dev_id;
 
     if ((usecase->type == PCM_PLAYBACK) && (usecase->stream.out != NULL)) {
         property_get("vendor.audio.playback.mch.downsample",value,"");
@@ -1342,8 +1360,12 @@ int audio_extn_utils_get_app_sample_rate_for_device(
             usecase->stream.out->sample_rate == OUTPUT_SAMPLING_RATE_44100) ||
             (usecase->stream.out->sample_rate < OUTPUT_SAMPLING_RATE_44100)) ||
             (compare_device_type(&usecase->stream.out->device_list,AUDIO_DEVICE_OUT_SPEAKER))) {
-            /* Reset to default if no native stream is active or default device is speaker*/
-            usecase->stream.out->app_type_cfg.sample_rate = DEFAULT_OUTPUT_SAMPLING_RATE;
+                if (!((compare_device_type(&usecase->device_list, AUDIO_DEVICE_OUT_BUS)) && ((usecase->stream.out->flags &
+                    (audio_output_flags_t)AUDIO_OUTPUT_FLAG_SYS_NOTIFICATION) || (usecase->stream.out->flags &
+                    (audio_output_flags_t)AUDIO_OUTPUT_FLAG_PHONE)))) {
+                    /* Reset to default if no native stream is active or default device is speaker*/
+                    usecase->stream.out->app_type_cfg.sample_rate = DEFAULT_OUTPUT_SAMPLING_RATE;
+                }
         }
         audio_extn_btsco_get_sample_rate(snd_device, &usecase->stream.out->app_type_cfg.sample_rate);
         sample_rate = usecase->stream.out->app_type_cfg.sample_rate;
@@ -1377,6 +1399,15 @@ int audio_extn_utils_get_app_sample_rate_for_device(
                 sample_rate = atoi(value);
             else
                 sample_rate = SAMPLE_RATE_8000;
+        }
+
+        /* ECNR module in DSP does not support 24 KHz sample rate. As a workaround,
+           run ADM at 48 KHz when ECNR is enabled in ACDB topology (e.g. device id = 95)
+        */
+        acdb_dev_id = platform_get_snd_device_acdb_id(snd_device);
+        if (sample_rate == ECNS_UNSUPPORTED_CAPTURE_SAMPLE_RATE_FOR_ADM && acdb_dev_id == ECNS_USE_CASE_ACDB_DEV_ID) {
+            sample_rate = ECNS_SUPPORTED_CAPTURE_SAMPLE_RATE_FOR_ADM;
+            ALOGD("%s: update sample rate from 24K to 48K to support ECNR in PCM_CAPTURE, sample_rate=%d",__func__,sample_rate);
         }
     } else if (usecase->type == TRANSCODE_LOOPBACK_RX) {
         sample_rate = usecase->stream.inout->out_config.sample_rate;

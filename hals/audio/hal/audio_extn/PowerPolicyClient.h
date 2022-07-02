@@ -32,11 +32,19 @@ IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.*/
 #include "audio_hal_plugin.h"
 
 typedef int32_t (*hal_plugin_send_msg_t) (audio_hal_plugin_msg_type_t, void*, uint32_t);
+typedef void (*fp_in_set_power_policy_t) (uint8_t);
+typedef void (*fp_out_set_power_policy_t) (uint8_t);
+
+typedef struct power_policy_init_config {
+    fp_in_set_power_policy_t                      fp_in_set_power_policy;
+    fp_out_set_power_policy_t                     fp_out_set_power_policy;
+} power_policy_init_config_t;
+
 
 class PowerPolicyClient
     : public ::android::frameworks::automotive::powerpolicy::PowerPolicyClientBase {
   public:
-    explicit PowerPolicyClient();
+    explicit PowerPolicyClient(power_policy_init_config init_config);
     ~PowerPolicyClient();
 
     void onInitFailed();
@@ -48,6 +56,8 @@ class PowerPolicyClient
   private:
         void* plugin_handle;
         hal_plugin_send_msg_t hal_plugin_send_msg;
+        fp_out_set_power_policy_t fp_out_set_power_policy;
+        fp_in_set_power_policy_t fp_in_set_power_policy;
 };
 
 #endif  // QTI_AUDIO_POWERPOLICYCLIENT_H_

@@ -34,11 +34,11 @@ IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.*/
 
 extern "C" {
 
-    int launchPowerPolicyClient() {
+    int launchPowerPolicyClient(power_policy_init_config_t init_config) {
         ALOGD("%s: power policy launcher called", __func__);
         ABinderProcess_setThreadPoolMaxThreadCount(0);
         std::shared_ptr<PowerPolicyClient> powerPolicyClient =
-                ::ndk::SharedRefBase::make<PowerPolicyClient>();
+                ::ndk::SharedRefBase::make<PowerPolicyClient>(init_config);
         ALOGD("%s:Instantiating power policy client from launcher", __func__);
         powerPolicyClient->init();
         ALOGD("%s: Power Policy class inited, joining threadpool", __func__);

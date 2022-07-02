@@ -58,9 +58,6 @@
 /* default timestamp metadata definition if not defined in kernel*/
 #ifndef COMPRESSED_TIMESTAMP_FLAG
 #define COMPRESSED_TIMESTAMP_FLAG 0
-struct snd_codec_metadata {
-uint64_t timestamp;
-};
 #define compress_config_set_timstamp_flag(config) (-ENOSYS)
 #else
 #ifdef AUDIO_GKI_ENABLED

@@ -33,6 +33,40 @@
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
+
+ *  Changes from Qualcomm Innovation Center are provided under the following license:
+
+ * Copyright (c) 2022 Qualcomm Innovation Center, Inc. All rights reserved.
+
+ * Redistribution and use in source and binary forms, with or without
+ * modification, are permitted (subject to the limitations in the
+ * disclaimer below) provided that the following conditions are met:
+
+ *  * Redistributions of source code must retain the above copyright
+ *    notice, this list of conditions and the following disclaimer.
+
+ *   * Redistributions in binary form must reproduce the above
+ *     copyright notice, this list of conditions and the following
+ *     disclaimer in the documentation and/or other materials provided
+ *     with the distribution.
+
+ *   * Neither the name of Qualcomm Innovation Center, Inc. nor the names of its
+ *    contributors may be used to endorse or promote products derived
+ *    from this software without specific prior written permission.
+
+ * NO EXPRESS OR IMPLIED LICENSES TO ANY PARTY'S PATENT RIGHTS ARE
+ * GRANTED BY THIS LICENSE. THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT
+ * HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED
+ * WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF
+ * MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED.
+ * IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR
+ * ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
+ * DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE
+ * GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+ * INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER
+ * IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR
+ * OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN
+ * IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
 #ifndef QCOM_AUDIO_HW_H
@@ -160,6 +194,10 @@ typedef enum card_status_t {
     CARD_STATUS_ONLINE
 } card_status_t;
 
+typedef enum power_policy_status_t {
+    POWER_POLICY_STATUS_OFFLINE,
+    POWER_POLICY_STATUS_ONLINE
+} power_policy_status_t;
 /* These are the supported use cases by the hardware.
  * Each usecase is mapped to a specific PCM device.
  * Refer to pcm_device_table[].
@@ -265,6 +303,7 @@ enum {
     USECASE_AUDIO_PLAYBACK_SYS_NOTIFICATION,
     USECASE_AUDIO_PLAYBACK_NAV_GUIDANCE,
     USECASE_AUDIO_PLAYBACK_PHONE,
+    USECASE_AUDIO_PLAYBACK_ALERTS,
     USECASE_AUDIO_PLAYBACK_FRONT_PASSENGER,
     USECASE_AUDIO_PLAYBACK_REAR_SEAT,
     USECASE_AUDIO_RECORD_BUS,
@@ -366,6 +405,7 @@ enum {
     CAR_AUDIO_STREAM_NAV_GUIDANCE       = 0x4,
     CAR_AUDIO_STREAM_PHONE              = 0x8,
     CAR_AUDIO_STREAM_IN_PRIMARY         = 0x10,
+    CAR_AUDIO_STREAM_ALERTS             = 0x20,
     CAR_AUDIO_STREAM_FRONT_PASSENGER    = 0x100,
     CAR_AUDIO_STREAM_IN_FRONT_PASSENGER = 0x200,
     CAR_AUDIO_STREAM_REAR_SEAT          = 0x10000,
@@ -718,6 +758,8 @@ struct audio_device {
 
     int snd_card;
     card_status_t card_status;
+    power_policy_status_t out_power_policy;
+    power_policy_status_t in_power_policy;
     unsigned int cur_codec_backend_samplerate;
     unsigned int cur_codec_backend_bit_width;
     bool is_channel_status_set;
@@ -805,6 +847,17 @@ struct audio_patch_record {
     audio_usecase_t usecase;
     struct audio_patch patch;
 };
+
+#ifdef SOFT_VOLUME
+/* this struct is used for set/get values from AHAL*/
+struct soft_step_volume_params {
+    int period;
+    int step;
+    int curve;
+};
+#endif
+void out_set_power_policy(uint8_t enable);
+void in_set_power_policy(uint8_t enable);
 
 int select_devices(struct audio_device *adev,
                           audio_usecase_t uc_id);

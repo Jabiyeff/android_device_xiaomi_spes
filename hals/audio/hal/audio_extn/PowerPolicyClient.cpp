@@ -51,7 +51,11 @@ constexpr PowerComponent kMicComponent = PowerComponent::MICROPHONE;
 
 }  // namespace
 
-PowerPolicyClient::PowerPolicyClient() {
+PowerPolicyClient::PowerPolicyClient(power_policy_init_config_t init_config) {
+
+    fp_in_set_power_policy = init_config.fp_in_set_power_policy;
+    fp_out_set_power_policy = init_config.fp_out_set_power_policy;
+
     plugin_handle = dlopen(LIB_AUDIO_HAL_PLUGIN, RTLD_NOW);
     if (plugin_handle == NULL) {
         LOG(ERROR) << "Failed to open plugin library";
@@ -89,12 +93,16 @@ ScopedAStatus PowerPolicyClient::onPolicyChanged(const CarPowerPolicy& powerPoli
     if (hasComponent(powerPolicy.enabledComponents, kAudioComponent)) {
         LOG(ERROR) << "Power policy: Audio component is enabled";
         disable = 0;
+
+        fp_out_set_power_policy(!disable);
         if (hal_plugin_send_msg != NULL)
             hal_plugin_send_msg(AUDIO_HAL_PLUGIN_MSG_SILENT_MODE,
                                 &disable, sizeof(disable));
     } else if (hasComponent(powerPolicy.disabledComponents, kAudioComponent)) {
         LOG(ERROR) << "Power policy: Audio component is disabled";
         disable = 1;
+
+        fp_out_set_power_policy(!disable);
         if (hal_plugin_send_msg != NULL)
             hal_plugin_send_msg(AUDIO_HAL_PLUGIN_MSG_SILENT_MODE,
                                 &disable, sizeof(disable));
@@ -103,11 +111,15 @@ ScopedAStatus PowerPolicyClient::onPolicyChanged(const CarPowerPolicy& powerPoli
     if (hasComponent(powerPolicy.enabledComponents, kMicComponent)) {
         LOG(ERROR) << "Power policy: Microphone component is enabled";
         disable = 0;
+
+        fp_in_set_power_policy(!disable);
         if (hal_plugin_send_msg != NULL)
             hal_plugin_send_msg(AUDIO_HAL_PLUGIN_MSG_MIC_STATE,
                                 &disable, sizeof(disable));
     } else if (hasComponent(powerPolicy.disabledComponents, kMicComponent)) {
         disable = 1;
+
+        fp_in_set_power_policy(!disable);
         if (hal_plugin_send_msg != NULL)
             hal_plugin_send_msg(AUDIO_HAL_PLUGIN_MSG_MIC_STATE,
                                 &disable, sizeof(disable));

@@ -108,6 +108,10 @@ ifeq ($(TARGET_COMPILE_WITH_MSM_KERNEL),true)
         LOCAL_ADDITIONAL_DEPENDENCIES += $(TARGET_OUT_INTERMEDIATES)/KERNEL_OBJ/usr
 endif
 
+ifeq ($(ENABLE_AUDIO_LEGACY_TECHPACK),true)
+LOCAL_HEADER_LIBRARIES += qti_legacy_audio_kernel_uapi
+endif
+
 ifneq ($(filter kona lahaina holi,$(TARGET_BOARD_PLATFORM)),)
 LOCAL_SANITIZE := integer_overflow
 endif

@@ -59,11 +59,63 @@ struct pcm_config pcm_config_system = {
     .avail_min = LOW_LATENCY_OUTPUT_PERIOD_SIZE / 4,
 };
 
+struct pcm_config pcm_config_system_48KHz = {
+    .channels = 2,
+    .rate = 48000,
+    .period_size = 240,
+    .period_count = LOW_LATENCY_OUTPUT_PERIOD_COUNT,
+    .format = PCM_FORMAT_S16_LE,
+    .start_threshold = 240 / 4,
+    .stop_threshold = INT_MAX,
+    .avail_min = 240 / 4,
+};
+struct pcm_config pcm_config_system_32KHz = {
+    .channels = 2,
+    .rate = 32000,
+    .period_size = 160,
+    .period_count = LOW_LATENCY_OUTPUT_PERIOD_COUNT,
+    .format = PCM_FORMAT_S16_LE,
+    .start_threshold = 160 / 4,
+    .stop_threshold = INT_MAX,
+    .avail_min = 160 / 4,
+};
+struct pcm_config pcm_config_system_24KHz = {
+    .channels = 2,
+    .rate = 24000,
+    .period_size = 120,
+    .period_count = LOW_LATENCY_OUTPUT_PERIOD_COUNT,
+    .format = PCM_FORMAT_S16_LE,
+    .start_threshold = 120 / 4,
+    .stop_threshold = INT_MAX,
+    .avail_min = 120 / 4,
+};
+struct pcm_config pcm_config_system_16KHz = {
+    .channels = 2,
+    .rate = 16000,
+    .period_size = 80,
+    .period_count = LOW_LATENCY_OUTPUT_PERIOD_COUNT,
+    .format = PCM_FORMAT_S16_LE,
+    .start_threshold = 80 / 4,
+    .stop_threshold = INT_MAX,
+    .avail_min = 80 / 4,
+};
+struct pcm_config pcm_config_system_8KHz = {
+    .channels = 2,
+    .rate = 8000,
+    .period_size = 40,
+    .period_count = LOW_LATENCY_OUTPUT_PERIOD_COUNT,
+    .format = PCM_FORMAT_S16_LE,
+    .start_threshold = 40 / 4,
+    .stop_threshold = INT_MAX,
+    .avail_min = 40 / 4,
+};
+
 static const audio_usecase_t bus_device_usecases[] = {
     USECASE_AUDIO_PLAYBACK_MEDIA,
     USECASE_AUDIO_PLAYBACK_SYS_NOTIFICATION,
     USECASE_AUDIO_PLAYBACK_NAV_GUIDANCE,
     USECASE_AUDIO_PLAYBACK_PHONE,
+    USECASE_AUDIO_PLAYBACK_ALERTS,
     USECASE_AUDIO_PLAYBACK_FRONT_PASSENGER,
     USECASE_AUDIO_PLAYBACK_REAR_SEAT,
     USECASE_AUDIO_RECORD_BUS,

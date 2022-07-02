@@ -25,6 +25,40 @@
  * WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE
  * OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN
  * IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+
+ * Changes from Qualcomm Innovation Center are provided under the following license:
+
+ * Copyright (c) 2022 Qualcomm Innovation Center, Inc. All rights reserved.
+
+ * Redistribution and use in source and binary forms, with or without
+ * modification, are permitted (subject to the limitations in the
+ * disclaimer below) provided that the following conditions are met:
+
+ *  * Redistributions of source code must retain the above copyright
+ *    notice, this list of conditions and the following disclaimer.
+
+ *   * Redistributions in binary form must reproduce the above
+ *     copyright notice, this list of conditions and the following
+ *     disclaimer in the documentation and/or other materials provided
+ *     with the distribution.
+
+ *   * Neither the name of Qualcomm Innovation Center, Inc. nor the names of its
+ *    contributors may be used to endorse or promote products derived
+ *    from this software without specific prior written permission.
+
+ * NO EXPRESS OR IMPLIED LICENSES TO ANY PARTY'S PATENT RIGHTS ARE
+ * GRANTED BY THIS LICENSE. THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT
+ * HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED
+ * WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF
+ * MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED.
+ * IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR
+ * ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
+ * DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE
+ * GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+ * INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER
+ * IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR
+ * OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN
+ * IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
 #define LOG_TAG "platform_info"
@@ -85,6 +119,9 @@ typedef enum {
     CUSTOM_MTMX_PARAM_IN_CH_INFO,
     MMSECNS,
     AUDIO_SOURCE_DELAY,
+#ifdef SOFT_VOLUME
+    SOFT_VOLUME_PARAMS,
+#endif
 } section_t;
 
 typedef void (* section_process_fn)(const XML_Char **attr);
@@ -122,6 +159,9 @@ static void process_custom_mtmx_in_params(const XML_Char **attr);
 static void process_custom_mtmx_param_in_ch_info(const XML_Char **attr);
 static void process_fluence_mmsecns(const XML_Char **attr);
 static void process_audio_source_delay(const XML_Char **attr);
+#ifdef SOFT_VOLUME
+static void process_soft_volume_params(const XML_Char **attr);
+#endif
 
 static section_process_fn section_table[] = {
     [ROOT] = process_root,
@@ -147,6 +187,9 @@ static section_process_fn section_table[] = {
     [CUSTOM_MTMX_PARAM_IN_CH_INFO] = process_custom_mtmx_param_in_ch_info,
     [MMSECNS] = process_fluence_mmsecns,
     [AUDIO_SOURCE_DELAY] = process_audio_source_delay,
+#ifdef SOFT_VOLUME
+    [SOFT_VOLUME_PARAMS] = process_soft_volume_params,
+#endif
 };
 
 static section_t section;
@@ -256,53 +299,58 @@ static bool find_enum_by_string(const struct audio_string_to_enum * table, const
 static struct audio_custom_mtmx_params_info mtmx_params_info;
 static struct audio_custom_mtmx_in_params_info mtmx_in_params_info;
 
-/*
- * <audio_platform_info>
- * <acdb_ids>
- * <device name="???" acdb_id="???"/>
- * ...
- * ...
- * </acdb_ids>
- * <module_ids>
- * <device name="???" module_id="???"/>
- * ...
- * ...
- * </module_ids>
- * <backend_names>
- * <device name="???" backend="???"/>
- * ...
- * ...
- * </backend_names>
- * <pcm_ids>
- * <usecase name="???" type="in/out" id="???"/>
- * ...
- * ...
- * </pcm_ids>
- * <interface_names>
- * <device name="Use audio device name here, not sound device name" interface="PRIMARY_I2S" codec_type="external/internal"/>
- * ...
- * ...
- * </interface_names>
- * <config_params>
- *      <param key="snd_card_name" value="msm8994-tomtom-mtp-snd-card"/>
- *      <param key="operator_info" value="tmus;aa;bb;cc"/>
- *      <param key="operator_info" value="sprint;xx;yy;zz"/>
- *      ...
- *      ...
- * </config_params>
- *
- * <operator_specific>
- *      <device name="???" operator="???" mixer_path="???" acdb_id="???"/>
- *      ...
- *      ...
- * </operator_specific>
- *
- * </audio_platform_info>
- */
-
 static void process_root(const XML_Char **attr __unused)
 {
 }
+
+#ifdef SOFT_VOLUME
+/**mapping usecase and soft volume params **/
+static void process_soft_volume_params(const XML_Char **attr)
+{
+    int index;
+
+    if (strcmp(attr[0], "name") != 0) {
+        ALOGE("%s: 'name' not found, no pcm_id set!", __func__);
+        goto done;
+    }
+
+    index = platform_get_usecase_index((char *)attr[1]);
+    if (index < 0) {
+        ALOGE("%s: usecase %s not found!",
+                                __func__, attr[1]);
+        goto done;
+    }
+
+    if (strcmp(attr[2], "period") != 0) {
+        ALOGE("%s: ramp period not mentioned", __func__);
+        goto done;
+    }
+
+    int period = atoi((char *)attr[3]);
+
+    if (strcmp(attr[4], "step") != 0) {
+        ALOGE("%s: ramp period not mentioned", __func__);
+        goto done;
+    }
+    int step = atoi((char *)attr[5]);
+
+    if (strcmp(attr[6], "curve") != 0) {
+        ALOGE("%s: usecase id not mentioned", __func__);
+        goto done;
+    }
+
+    int curve = atoi((char *)attr[7]);
+
+    if (platform_set_soft_step_volume_params(index, period, step, curve) < 0) {
+        ALOGE("%s: usecase %s period %d  step %d  curve %d ",
+                            __func__, attr[1], period, step, curve);
+    goto done;
+    }
+
+done:
+    return;
+}
+#endif
 
 /* mapping from usecase to pcm dev id */
 static void process_pcm_id(const XML_Char **attr)
@@ -1349,7 +1397,11 @@ static void start_tag(void *userdata __unused, const XML_Char *tag_name,
             section = MICROPHONE_CHARACTERISTIC;
         } else if (strcmp(tag_name, "snd_devices") == 0) {
             section = SND_DEVICES;
-        } else if (strcmp(tag_name, "device") == 0) {
+#ifdef SOFT_VOLUME
+        } else if (strcmp(tag_name, "soft_vol_params") == 0) {
+            section = SOFT_VOLUME_PARAMS;
+#endif
+		} else if (strcmp(tag_name, "device") == 0) {
             if ((section != ACDB) && (section != AEC) && (section != NS) && (section != MMSECNS) &&
                 (section != BACKEND_NAME) && (section != BITWIDTH) &&
                 (section != INTERFACE_NAME) && (section != OPERATOR_SPECIFIC)) {
@@ -1495,6 +1547,12 @@ static void start_tag(void *userdata __unused, const XML_Char *tag_name,
         } else if (strcmp(tag_name, "audio_source_delay") == 0) {
             section_process_fn fn = section_table[section];
             fn(attr);
+#ifdef SOFT_VOLUME
+        } else if (strcmp(tag_name, "vol_params") == 0) {
+            section = SOFT_VOLUME_PARAMS;
+            section_process_fn fn = section_table[section];
+            fn(attr);
+#endif
         }
     } else {
         if(strcmp(tag_name, "config_params") == 0) {
@@ -1528,6 +1586,10 @@ static void end_tag(void *userdata __unused, const XML_Char *tag_name)
         section = MODULE;
     } else if (strcmp(tag_name, "pcm_ids") == 0) {
         section = ROOT;
+#ifdef SOFT_VOLUME
+    } else if (strcmp(tag_name, "soft_volume_params") == 0) {
+        section = ROOT;
+#endif
     } else if (strcmp(tag_name, "backend_names") == 0) {
         section = ROOT;
     } else if (strcmp(tag_name, "config_params") == 0) {

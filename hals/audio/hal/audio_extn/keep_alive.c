@@ -236,6 +236,7 @@ void keep_alive_start(ka_mode_t ka_mode)
     }
 
 exit:
+    clear_devices(&out_devices);
     pthread_mutex_unlock(&ka.lock);
 }
 

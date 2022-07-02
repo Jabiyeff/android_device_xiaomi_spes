@@ -380,7 +380,26 @@ int auto_hal_open_output_stream(struct stream_out *out)
     case CAR_AUDIO_STREAM_SYS_NOTIFICATION:
         /* sys notification bus stream shares pcm device with low-latency */
         out->usecase = USECASE_AUDIO_PLAYBACK_SYS_NOTIFICATION;
-        out->config = pcm_config_system;
+        switch(out->sample_rate)
+        {
+            case 48000:
+                out->config=pcm_config_system_48KHz;
+                break;
+            case 32000:
+                out->config=pcm_config_system_32KHz;
+                break;
+            case 24000:
+                out->config=pcm_config_system_24KHz;
+                break;
+            case 16000:
+                out->config=pcm_config_system_16KHz;
+                break;
+            case 8000:
+                out->config=pcm_config_system_8KHz;
+                break;
+            default:
+                out->config=pcm_config_system_48KHz;
+        }
         if (out->flags == AUDIO_OUTPUT_FLAG_NONE)
             out->flags |= AUDIO_OUTPUT_FLAG_SYS_NOTIFICATION;
         out->volume_l = out->volume_r = MAX_VOLUME_GAIN;
@@ -401,9 +420,35 @@ int auto_hal_open_output_stream(struct stream_out *out)
         break;
     case CAR_AUDIO_STREAM_PHONE:
         out->usecase = USECASE_AUDIO_PLAYBACK_PHONE;
-        out->config = pcm_config_system;
+        switch(out->sample_rate)
+        {
+            case 48000:
+                out->config=pcm_config_system_48KHz;
+                break;
+            case 32000:
+                out->config=pcm_config_system_32KHz;
+                break;
+            case 24000:
+                out->config=pcm_config_system_24KHz;
+                break;
+            case 16000:
+                out->config=pcm_config_system_16KHz;
+                break;
+            case 8000:
+                out->config=pcm_config_system_8KHz;
+                break;
+            default:
+                out->config=pcm_config_system_48KHz;
+        }
         if (out->flags == AUDIO_OUTPUT_FLAG_NONE)
             out->flags |= AUDIO_OUTPUT_FLAG_PHONE;
+        out->volume_l = out->volume_r = MAX_VOLUME_GAIN;
+        break;
+    case CAR_AUDIO_STREAM_ALERTS:
+        out->usecase = USECASE_AUDIO_PLAYBACK_ALERTS;
+        out->config = pcm_config_system;
+        if (out->flags == AUDIO_OUTPUT_FLAG_NONE)
+            out->flags |= AUDIO_OUTPUT_FLAG_ALERTS;
         out->volume_l = out->volume_r = MAX_VOLUME_GAIN;
         break;
     case CAR_AUDIO_STREAM_FRONT_PASSENGER:
@@ -463,6 +508,9 @@ snd_device_t auto_hal_get_snd_device_for_car_audio_stream(int car_audio_stream)
         break;
     case CAR_AUDIO_STREAM_PHONE:
         snd_device = SND_DEVICE_OUT_BUS_PHN;
+        break;
+    case CAR_AUDIO_STREAM_ALERTS:
+        snd_device = SND_DEVICE_OUT_BUS_ALR;
         break;
     case CAR_AUDIO_STREAM_FRONT_PASSENGER:
         snd_device = SND_DEVICE_OUT_BUS_PAX;
@@ -899,6 +947,9 @@ snd_device_t auto_hal_get_output_snd_device(struct audio_device *adev,
                     case CAR_AUDIO_STREAM_PHONE:
                         snd_device = SND_DEVICE_OUT_BUS_PHN;
                         break;
+                    case CAR_AUDIO_STREAM_ALERTS:
+                        snd_device = SND_DEVICE_OUT_BUS_ALR;
+                        break;
                     case CAR_AUDIO_STREAM_FRONT_PASSENGER:
                         snd_device = SND_DEVICE_OUT_BUS_PAX;
                         break;
@@ -920,6 +971,9 @@ snd_device_t auto_hal_get_output_snd_device(struct audio_device *adev,
             break;
         case USECASE_AUDIO_PLAYBACK_PHONE:
             snd_device = SND_DEVICE_OUT_BUS_PHN;
+            break;
+        case USECASE_AUDIO_PLAYBACK_ALERTS:
+            snd_device = SND_DEVICE_OUT_BUS_ALR;
             break;
         case USECASE_AUDIO_PLAYBACK_FRONT_PASSENGER:
             snd_device = SND_DEVICE_OUT_BUS_PAX;
