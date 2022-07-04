@@ -27,7 +27,6 @@ $(error Error: cannot found hardware/xiaomi repository, please clone it and try 
 endif
 
 # Enable Dynamic partition
-PRODUCT_BUILD_SUPER_PARTITION := false
 PRODUCT_USE_DYNAMIC_PARTITIONS := true
 
 # API level
