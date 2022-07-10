@@ -27,4 +27,7 @@
     <string name="config_batCurCap" translatable="false">/sys/class/power_supply/bms/charge_counter</string>
     <string name="config_batDesCap" translatable="false">/sys/class/power_supply/bms/charge_full</string>
     <string name="config_batChargeCycle" translatable="false">/sys/class/power_supply/bms/cycle_count</string>
+
+    <!-- Whether to show Smooth Display feature in Settings Options -->
+    <bool name="config_show_smooth_display">true</bool>
 </resources>
