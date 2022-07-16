@@ -102,9 +102,6 @@ TARGET_USES_ION := true
 # DTBO image
 BOARD_KERNEL_SEPARATED_DTBO := true
 
-# Firmware
--include vendor/xiaomi/spes-firmware/BoardConfigVendor.mk
-
 # FM
 BOARD_HAVE_QCOM_FM := true
 
