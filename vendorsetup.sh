@@ -22,7 +22,7 @@ patch_check=$(grep -c "TARGET_USES_CUSTOM_DISPLAY_INTERFACE" ${ROM_VENDOR_PATH}/
 if [ ${patch_check} -eq 0 ]
 then
 cd ${ROM_VENDOR_PATH}
-git am ../../${DEVICE_PATH}/patches/custom-display-commonsys-intf.patch
+#git am ../../${DEVICE_PATH}/patches/custom-display-commonsys-intf.patch
 cd ${MY_DIR}
 else
 echo -e "${color}Source patches already merged${end}"
