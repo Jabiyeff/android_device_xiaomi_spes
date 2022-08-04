@@ -6,7 +6,6 @@ end="\033[0m"
 echo -e "${color}Applying patches${end}"
 sleep 1
 
-MY_DIR="${BASH_SOURCE%/*}"
 DEVICE_PATH="device/xiaomi/spes"
 
 # ROM codename check
@@ -23,7 +22,7 @@ if [ ${patch_check} -eq 0 ]
 then
 cd ${ROM_VENDOR_PATH}
 git am ../../${DEVICE_PATH}/patches/custom-display-commonsys-intf.patch
-cd ${MY_DIR}
+cd ../..
 else
 echo -e "${color}Source patches already merged${end}"
 fi
