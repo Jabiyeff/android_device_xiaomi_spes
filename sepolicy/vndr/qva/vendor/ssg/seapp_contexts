@@ -1,4 +1,0 @@
-# SSG apps for Connection Security
-user=_app seinfo=ssgapp domain=vendor_ssg_app name=com.qualcomm.qti.qms.service.connectionsecurity type=app_data_file levelFrom=all
-user=_app seinfo=ssgapp domain=vendor_ssg_app name=com.qualcomm.qti.qms.service.telemetry type=app_data_file levelFrom=all
-user=_app seinfo=ssgapp domain=vendor_ssg_app name=com.qualcomm.qti.qms.service.trustzoneaccess type=app_data_file levelFrom=all
