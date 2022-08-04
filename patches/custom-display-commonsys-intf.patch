@@ -1,6 +1,6 @@
-From 50b22c9ea9d159618b1a496169f0157b43133035 Mon Sep 17 00:00:00 2001
+From 30d05bcabc22b2448f82bf0353a4a726fb7cf160 Mon Sep 17 00:00:00 2001
 From: Jabiyeff <cebiyevanar@gmail.com>
-Date: Sun, 3 Jul 2022 14:03:40 +0400
+Date: Thu, 4 Aug 2022 19:05:33 +0000
 Subject: [PATCH] config: Add option for custom display-commonsys interfaces
 
 Signed-off-by: Jabiyeff <cebiyevanar@gmail.com>
@@ -9,18 +9,15 @@ Signed-off-by: Jabiyeff <cebiyevanar@gmail.com>
  1 file changed, 2 insertions(+)
 
 diff --git a/config/BoardConfigQcom.mk b/config/BoardConfigQcom.mk
-index 72933218..91e6729d 100644
+index 70c947dbc..ab7c1c805 100644
 --- a/config/BoardConfigQcom.mk
 +++ b/config/BoardConfigQcom.mk
-@@ -144,10 +144,12 @@ PRODUCT_SOONG_NAMESPACES += $(QCOM_SOONG_NAMESPACE)
+@@ -143,7 +143,9 @@ PRODUCT_SOONG_NAMESPACES += $(QCOM_SOONG_NAMESPACE)
  
- # Add display-commonsys to PRODUCT_SOONG_NAMESPACES for QSSI supported platforms
+ # Add display-commonsys-intf to PRODUCT_SOONG_NAMESPACES for QSSI supported platforms
  ifneq ($(filter $(QSSI_SUPPORTED_PLATFORMS),$(TARGET_BOARD_PLATFORM)),)
 +ifneq ($(TARGET_USES_CUSTOM_DISPLAY_INTERFACE),true)
- PRODUCT_SOONG_NAMESPACES += \
-     vendor/qcom/opensource/commonsys/display \
-     vendor/qcom/opensource/commonsys-intf/display \
-     vendor/qcom/opensource/display
+     PRODUCT_SOONG_NAMESPACES += vendor/qcom/opensource/commonsys-intf/display
 +endif # TARGET_USES_CUSTOM_DISPLAY_INTERFACE
  endif
  
