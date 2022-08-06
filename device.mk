@@ -511,7 +511,5 @@ PRODUCT_PACKAGES += \
     libnl \
     libwfdaac_vendor
 
-ifdef CR_VERSION
 PRODUCT_BOOT_JARS += \
     WfdCommon
-endif
