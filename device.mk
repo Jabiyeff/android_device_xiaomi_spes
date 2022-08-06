@@ -425,6 +425,7 @@ PRODUCT_PACKAGES += \
 # Rootdir
 PRODUCT_PACKAGES += \
     init.display.refresh.sh \
+    init.enforce.sh \
     init.mdm.sh \
     init.qcom.post_boot.sh \
     init.qcom.sh \
