@@ -16,6 +16,11 @@ ro.bluetooth.emb_wp_mode=false
 ro.bluetooth.library_name=libbluetooth_qti.so
 ro.bluetooth.wipower=false
 
+# Blur
+ro.sf.blurs_are_expensive=0
+ro.surface_flinger.supports_background_blur=0
+ro.launcher.blur.appLaunch=0
+
 # Camera
 camera.disable_zsl_mode=true
 vendor.camera.aux.packagelist=org.codeaurora.snapcam,com.android.camera,app.grapheneos.camera
