@@ -258,7 +258,7 @@ USE_SENSOR_MULTI_HAL := true
 BOARD_VNDK_VERSION := current
 
 # Sepolicy
-include device/qcom/sepolicy_vndr/SEPolicy.mk
+include device/xiaomi/spes/sepolicy/vndr/SEPolicy.mk
 
 BOARD_PLAT_PRIVATE_SEPOLICY_DIR += $(DEVICE_PATH)/sepolicy/private
 ifdef CR_VERSION

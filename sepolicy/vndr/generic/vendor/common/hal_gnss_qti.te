@@ -1,0 +1,68 @@
+# Copyright (c) 2018-2019, The Linux Foundation. All rights reserved.
+#
+# Redistribution and use in source and binary forms, with or without
+# modification, are permitted provided that the following conditions are
+# met:
+#     * Redistributions of source code must retain the above copyright
+#       notice, this list of conditions and the following disclaimer.
+#     * Redistributions in binary form must reproduce the above
+#       copyright notice, this list of conditions and the following
+#       disclaimer in the documentation and/or other materials provided
+#       with the distribution.
+#     * Neither the name of The Linux Foundation nor the names of its
+#       contributors may be used to endorse or promote products derived
+#       from this software without specific prior written permission.
+#
+# THIS SOFTWARE IS PROVIDED "AS IS" AND ANY EXPRESS OR IMPLIED
+# WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF
+# MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NON-INFRINGEMENT
+# ARE DISCLAIMED.  IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS
+# BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+# CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
+# SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR
+# BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY,
+# WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE
+# OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN
+# IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+
+# generic/vendor_hal_gnss_qti.te - generic sepolicy rules for vendor_location hidl
+
+type vendor_hal_gnss_qti, domain;
+hal_server_domain(vendor_hal_gnss_qti, hal_gnss)
+
+type vendor_hal_gnss_qti_exec, exec_type, vendor_file_type, file_type;
+init_daemon_domain(vendor_hal_gnss_qti)
+
+# vendor binder
+use_vendor_per_mgr(vendor_hal_gnss_qti)
+
+# /data/vendor/vendor_location
+allow vendor_hal_gnss_qti vendor_location_data_file:fifo_file { open read setattr write };
+allow vendor_hal_gnss_qti vendor_location_data_file:dir create_dir_perms;
+allow vendor_hal_gnss_qti vendor_location_data_file:file create_file_perms;
+
+# /dev/socket/vendor_location
+allow vendor_hal_gnss_qti vendor_location_socket: {sock_file lnk_file } create_file_perms;
+allow vendor_hal_gnss_qti vendor_location_socket:dir rw_dir_perms;
+allow vendor_hal_gnss_qti vendor_location:unix_stream_socket connectto;
+allow vendor_hal_gnss_qti vendor_location:unix_dgram_socket sendto;
+
+# allow reading /sys/bus/mhi/devices/.../time_us files, this files hold the
+# time offset between local and remote for dual SoC architectures
+allow vendor_hal_gnss_qti vendor_sysfs_mhi:file r_file_perms;
+
+# Allow Gnss HAL to get updates from health hal
+hal_client_domain(vendor_hal_gnss_qti, hal_health)
+
+# Most HALs are not allowed to use network sockets. QTI library
+# libqdi is used across multiple processes which are clients of
+# netmgrd including the GNSS HAL. libqdi first attempts to get the network
+# interface using an IOCTL on a UDP INET socket, which isn't allowed here.
+# If that fails, it falls back to using libc's if_nameindex() which requires
+# a netlink route socket, which HALs may use. Due to the initial
+# attempt to use a UDP socket, we still see a selinux denial,
+# but it is safe to ignore.
+# TODO (b/37730994) Remove udp_socket requirement from
+# libqdi and have all its clients use netlink route
+# sockets.
+dontaudit vendor_hal_gnss_qti self:udp_socket create;
