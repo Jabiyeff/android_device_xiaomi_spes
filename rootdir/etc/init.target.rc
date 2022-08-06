@@ -108,6 +108,9 @@ on boot
     write /sys/module/cpu_boost/parameters/input_boost_freq "0:1344000"
     write /sys/module/cpu_boost/parameters/input_boost_ms 120
 
+    # Thermal
+    write /sys/class/thermal/thermal_message/sconfig 9
+
     # DT2W
     chown system system /proc/tp_gesture
     chmod 0664 /proc/tp_gesture
