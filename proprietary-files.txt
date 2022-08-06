@@ -893,8 +893,6 @@ system_ext/lib64/vendor.qti.hardware.radio.ims@1.7.so
 system_ext/lib64/vendor.qti.hardware.radio.ims@1.8.so
 system_ext/lib64/vendor.qti.ims.callcapability@1.0.so
 system_ext/lib64/vendor.qti.ims.callinfo@1.0.so
-system_ext/lib64/vendor.qti.ims.configservice@1.0.so
-system_ext/lib64/vendor.qti.ims.connection@1.0.so
 system_ext/lib64/vendor.qti.ims.factory@1.0.so
 system_ext/lib64/vendor.qti.ims.factory@1.1.so
 system_ext/lib64/vendor.qti.ims.rcsconfig@1.0.so
