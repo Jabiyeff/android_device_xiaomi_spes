@@ -30,3 +30,6 @@ sleep 1
 
 # Remove pixel headers to avoid conflicts
 rm -rf hardware/google/pixel/kernel_headers/Android.bp
+
+# Remove megvii libs on hardware/xiaomi to avoid conflicts
+rm -rf hardware/xiaomi/megvii
