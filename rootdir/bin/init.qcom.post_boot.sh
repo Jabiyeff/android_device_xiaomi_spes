@@ -81,7 +81,7 @@ if [ "$low_ram" == "true" ]; then
     fi
 else
     #Set PPR nomap parameters for bengal targets
-    echo 1 > /sys/module/process_reclaim/parameters/enable_process_reclaim
+    echo 0 > /sys/module/process_reclaim/parameters/enable_process_reclaim
     echo 50 > /sys/module/process_reclaim/parameters/pressure_min
     echo 70 > /sys/module/process_reclaim/parameters/pressure_max
     echo 30 > /sys/module/process_reclaim/parameters/swap_opt_eff
