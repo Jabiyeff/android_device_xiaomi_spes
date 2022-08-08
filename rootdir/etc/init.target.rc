@@ -59,7 +59,6 @@ on late-fs
     wait_for_prop hwservicemanager.ready true
     exec_start wait_for_keymaster
     mount_all /vendor/etc/fstab.qcom --late
-    exec u:r:vendor_qti_init_shell:s0 -- /vendor/bin/init.enforce.sh
 
 on post-fs-data
     mkdir /data/vendor/thermal 0771 root system
