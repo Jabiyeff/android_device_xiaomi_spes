@@ -1,3 +1,0 @@
-soong_namespace {
-    imports: ["device/xiaomi/spes/hals/display/display-commonsys-intf"],
-}
