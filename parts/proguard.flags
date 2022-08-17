@@ -1,7 +1,0 @@
--keep class org.lineageos.settings.refreshrate.* {
-  *;
-}
-
--keep class org.lineageos.settings.thermal.* {
-  *;
-}
