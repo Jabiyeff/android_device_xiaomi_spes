@@ -79,6 +79,7 @@ vendor/lib64/vendor.qti.hardware.alarm@1.0.so
 
 # ANT+
 vendor/lib64/hw/com.dsi.ant@1.0-impl.so
+vendor/lib64/com.dsi.ant@1.0.so
 
 # Audio Firmware
 vendor/firmware/aw87xxx_acf.bin
