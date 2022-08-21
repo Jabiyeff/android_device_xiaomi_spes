@@ -513,8 +513,17 @@
     <!-- Flag indicating if the speed up audio on mt call code should be executed -->
     <bool name="config_speed_up_audio_on_mt_calls">true</bool>
 
+    <!-- Idle current for bluetooth controller. 0 by default-->
+    <integer translatable="false" name="config_bluetooth_idle_cur_ma">7</integer>
+
+    <!-- Rx current for bluetooth controller. 0 by default-->
+    <integer translatable="false" name="config_bluetooth_rx_cur_ma">75</integer>
+
+    <!-- Tx current for bluetooth controller. 0 by default-->
+    <integer translatable="false" name="config_bluetooth_tx_cur_ma">93</integer>
+
     <!-- Operating volatage for bluetooth controller. 0 by default-->
-    <integer name="config_bluetooth_operating_voltage_mv">3300</integer>
+    <integer translatable="false" name="config_bluetooth_operating_voltage_mv">3700</integer>
 
     <!-- Vibrator pattern for feedback about a long screen/key press -->
     <integer-array name="config_longPressVibePattern">
