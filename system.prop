@@ -13,7 +13,6 @@ persist.vendor.btstack.enable.swb=true
 persist.vendor.btstack.enable.swbpm=true
 persist.vendor.service.bdroid.soc.alwayson=true
 ro.bluetooth.emb_wp_mode=false
-ro.bluetooth.library_name=libbluetooth_qti.so
 ro.bluetooth.wipower=false
 
 # Camera
