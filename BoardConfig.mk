@@ -245,8 +245,9 @@ VENDOR_SECURITY_PATCH := 2022-06-05
 # Sensor multi HAL
 USE_SENSOR_MULTI_HAL := true
 
-# Treble flag
+# VNDK
 BOARD_VNDK_VERSION := current
+NEED_AIDL_NDK_PLATFORM_BACKEND := true
 
 # Sepolicy
 include device/xiaomi/spes/sepolicy/vndr/SEPolicy.mk
