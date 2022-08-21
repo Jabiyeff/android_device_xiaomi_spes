@@ -3,6 +3,12 @@ audio.offload.min.duration.secs=30
 audio.sys.offload.pstimeout.secs=3
 ro.config.vc_call_vol_steps=11
 
+# Bluetooth
+bluetooth.hardware.power.idle_cur_ma=7
+bluetooth.hardware.power.operating_voltage_mv=3700
+bluetooth.hardware.power.rx_cur_ma=75
+bluetooth.hardware.power.tx_cur_ma=93
+
 # Bluetooth profiles
 bluetooth.profile.asha.central.enabled=true
 bluetooth.profile.a2dp.source.enabled=true
