@@ -28,6 +28,6 @@
     <string name="config_batDesCap" translatable="false">/sys/class/power_supply/bms/charge_full</string>
     <string name="config_batChargeCycle" translatable="false">/sys/class/power_supply/bms/cycle_count</string>
 
-    <!-- Whether to show Smooth Display feature in Settings Options -->
-    <bool name="config_show_smooth_display">true</bool>
+    <!-- Whether to show min/max refresh rate in display settings -->
+    <bool name="config_show_refresh_rate_controls">true</bool>
 </resources>
