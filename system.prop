@@ -109,6 +109,9 @@ persist.rmnet.data.enable=true
 # Skia
 renderthread.skia.reduceopstasksplitting=true
 
+# System
+persist.sys.binary_xml=false
+
 # Time-services
 persist.timed.enable=true
 
