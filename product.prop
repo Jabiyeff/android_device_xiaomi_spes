@@ -34,10 +34,9 @@ bluetooth.profile.ccp.server.enabled?=true
 bluetooth.profile.vcp.controller.enabled?=true
 
 # Low memory killer daemon
-ro.lmk.medium=800
 ro.lmk.log_stats=true
 ro.lmk.kill_heaviest_task=true
-ro.lmk.kill_timeout_ms=100
+ro.lmk.kill_timeout_ms=15
 ro.lmk.use_minfree_levels=true
 
 # Display
