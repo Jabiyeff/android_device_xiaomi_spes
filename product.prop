@@ -4,10 +4,9 @@ audio.sys.offload.pstimeout.secs=3
 ro.config.vc_call_vol_steps=11
 
 # Low memory killer daemon
-ro.lmk.medium=800
 ro.lmk.log_stats=true
 ro.lmk.kill_heaviest_task=true
-ro.lmk.kill_timeout_ms=100
+ro.lmk.kill_timeout_ms=15
 ro.lmk.use_minfree_levels=true
 
 # Display
