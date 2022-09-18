@@ -7,3 +7,5 @@ get_prop(system_server, vendor_persist_camera_prop)
 allow system_server hal_displayfeature_default:binder { call transfer };
 
 allow system_server system_server:capability { sys_module };
+
+allow system_server vendor_sysfs_battery_supply:file rw_file_perms;
