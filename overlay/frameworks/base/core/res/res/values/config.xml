@@ -719,7 +719,4 @@
      <!-- Delay that allows some content to arrive at the display before switching
          from DOZE to ON, in millis. -->
      <integer name="config_wakeUpDelayDoze">32</integer>
-
-    <!-- Whether to cancel fingerprint operation if not idle -->
-    <bool name="config_fpCancelIfNotIdle">true</bool>
 </resources>
