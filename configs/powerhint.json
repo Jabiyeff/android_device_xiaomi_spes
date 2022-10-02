@@ -23,7 +23,6 @@
         "691200",
         "300000"
       ],
-      "DefaultIndex": 6,
       "ResetOnInit": true
     },
     {
@@ -50,7 +49,6 @@
         "806400",
         "300000"
       ],
-      "DefaultIndex": 6,
       "ResetOnInit": true
     },
     {
