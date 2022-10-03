@@ -1,6 +1,5 @@
 set_prop(vendor_init, vendor_alarm_boot_prop)
 set_prop(vendor_init, vendor_camera_prop)
-set_prop(vendor_init, vendor_power_prop)
 set_prop(vendor_init, vendor_video_prop)
 
 r_dir_file(vendor_init, vendor_sysfs_msm_power)

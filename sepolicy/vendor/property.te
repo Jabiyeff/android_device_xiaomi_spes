@@ -6,8 +6,6 @@ vendor_internal_prop(vendor_displayfeature_prop)
 
 vendor_internal_prop(vendor_thermal_normal_prop)
 
-vendor_internal_prop(vendor_power_prop)
-
 vendor_internal_prop(vendor_wifimac_prop)
 
 vendor_public_prop(vendor_fp_prop)
