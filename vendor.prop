@@ -181,8 +181,10 @@ vendor.sys.media.target.version=3
 # OTG
 persist.sys.oem.otg_support=true
 
-# Perf
+# PERF
 ro.vendor.extension_library=libqti-perfd-client.so
+ro.vendor.perf-hal.ver=2.2
+ro.vendor.perf.scroll_opt=1
 
 # Radio
 persist.radio.multisim.config=dsds
