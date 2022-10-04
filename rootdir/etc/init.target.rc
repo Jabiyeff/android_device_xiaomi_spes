@@ -115,14 +115,6 @@ on boot
     chmod 0660 /sys/bus/platform/devices/soc:fpc1020/compatible_all
     chmod 0777 /dev/goodix_fp
 
-    # Governor settings
-    write /sys/devices/system/cpu/cpu0/cpufreq/scaling_min_freq 300000
-    write /sys/devices/system/cpu/cpu0/cpufreq/schedutil/hispeed_freq 1516000
-    write /sys/devices/system/cpu/cpu4/cpufreq/scaling_min_freq 300000
-    write /sys/devices/system/cpu/cpu4/cpufreq/schedutil/hispeed_freq 1344000
-    write /sys/module/cpu_boost/parameters/input_boost_freq "0:1344000"
-    write /sys/module/cpu_boost/parameters/input_boost_ms 120
-
     # DT2W
     chown system system /proc/tp_gesture
     chmod 0664 /proc/tp_gesture
@@ -233,6 +225,14 @@ on property:sys.boot_completed=1
     write /sys/block/zram0/use_dedup 1
     # Mount swap partitions specified in fstab
     swapon_all /vendor/etc/fstab.zram
+
+    # Governor settings
+    write /sys/devices/system/cpu/cpu0/cpufreq/scaling_min_freq 300000
+    write /sys/devices/system/cpu/cpu0/cpufreq/schedutil/hispeed_freq 1516000
+    write /sys/devices/system/cpu/cpu4/cpufreq/scaling_min_freq 300000
+    write /sys/devices/system/cpu/cpu4/cpufreq/schedutil/hispeed_freq 1344000
+    write /sys/module/cpu_boost/parameters/input_boost_freq "0:1344000"
+    write /sys/module/cpu_boost/parameters/input_boost_ms 120
 
 on property:ro.boot.hwversion=*
     setprop vendor.boot.hwversion ${ro.boot.hwversion}
