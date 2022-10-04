@@ -1,7 +1,13 @@
 allow vendor_qti_init_shell configfs:dir rw_dir_perms;
-allow vendor_qti_init_shell configfs:file create_file_perms;
 allow vendor_qti_init_shell sysfs_wakeup:file setattr;
 allow vendor_qti_init_shell sysfs:file { setattr write };
+
+allow vendor_qti_init_shell {
+    configfs
+    vendor_sysfs_devfreq
+    vendor_sysfs_msm_power
+    sysfs_devices_system_cpu
+}:file create_file_perms;
 
 r_dir_file(vendor_qti_init_shell, vendor_sysfs_process_reclaim)
 
