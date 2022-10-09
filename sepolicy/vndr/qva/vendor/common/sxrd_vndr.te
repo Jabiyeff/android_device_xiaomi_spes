@@ -53,6 +53,9 @@ allow vendor_sxrd_vndr vendor_sxrd_vndr_data_file:file create_file_perms;
 #video device
 allow vendor_sxrd_vndr video_device:chr_file rw_file_perms;
 
+#Access sxr properties
+get_prop(vendor_sxrd_vndr, vendor_sxr_prop)
+
 #Allow hal graphics allocator permissions
 hal_client_domain(vendor_sxrd_vndr, hal_graphics_allocator);
 
