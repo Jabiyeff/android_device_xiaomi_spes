@@ -378,6 +378,7 @@
 /(vendor|system/vendor)/bin/lowirpcd                                u:object_r:vendor_lowirpcd_service_exec:s0
 
 # vendor_sysfs_graphics
+/sys/class/drm/sde-crtc-([0-9])+/lineptr_value                      u:object_r:vendor_sysfs_graphics:s0
 /sys/class/graphics/fb0/mdp/caps                                    u:object_r:vendor_sysfs_graphics:s0
 /sys/class/thermal(/.*)?                                            u:object_r:sysfs_thermal:s0
 /sys/devices/virtual/graphics/fb([0-3])+/idle_time                  u:object_r:vendor_sysfs_graphics:s0
@@ -471,6 +472,7 @@
 /sys/devices(/platform)?/soc/[a-f0-9]+.qcom,kgsl-3d0/kgsl/kgsl-3d0/gpu_model u:object_r:vendor_sysfs_kgsl_gpu_model:s0
 /sys/devices(/platform)?/soc/[a-f0-9]+.qcom,kgsl-3d0/kgsl/kgsl-3d0/gpuclk u:object_r:vendor_sysfs_kgsl_gpuclk:s0
 /sys/devices(/platform)?/soc/[a-f0-9]+.qcom,kgsl-3d0/kgsl/kgsl-3d0/max_gpuclk u:object_r:vendor_sysfs_kgsl_max_gpuclk:s0
+/sys/devices(/platform)?/soc/[a-f0-9]+.qcom,kgsl-3d0/kgsl/kgsl-3d0/perfcounter u:object_r:vendor_sysfs_kgsl_shell:s0
 /sys/devices/platform/soc/3d00000\.qcom,kgsl-3d0/kgsl/kgsl-3d0/gpubusy u:object_r:vendor_sysfs_kgsl_gpubusy:s0
 
 /sys/devices/soc/[a-f0-9]+.ssusb/power_supply/usb(/.*)?             u:object_r:vendor_sysfs_usb_supply:s0
