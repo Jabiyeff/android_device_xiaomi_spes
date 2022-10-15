@@ -15,7 +15,7 @@ $(call inherit-product, device/xiaomi/spes/device.mk)
 $(call inherit-product, vendor/lineage/config/common_full_phone.mk)
 
 # Additions
-$(call inherit-product-if-exists, vendor/gapps/common/common-vendor.mk)
+$(call inherit-product-if-exists, vendor/gapps/common.mk)
 $(call inherit-product-if-exists, vendor/prebuilt-apps/config.mk)
 
 # Camera
