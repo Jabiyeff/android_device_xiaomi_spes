@@ -63,6 +63,14 @@ ro.hardware.fp.sideCap                          u:object_r:vendor_fp_prop:s0
 ro.boot.factorybuild                            u:object_r:vendor_public_vendor_default_prop:s0
 ro.boot.hwversion                               u:object_r:vendor_public_vendor_default_prop:s0
 
+# Power
+init.svc.recovery                               u:object_r:vendor_power_prop:s0
+vendor.powerhal.state                           u:object_r:vendor_power_prop:s0
+vendor.powerhal.audio                           u:object_r:vendor_power_prop:s0
+vendor.powerhal.lpm                             u:object_r:vendor_power_prop:s0
+vendor.powerhal.init                            u:object_r:vendor_power_prop:s0
+vendor.powerhal.rendering                       u:object_r:vendor_power_prop:s0
+
 # Mlipay
 vendor.sys.rpmb_state                           u:object_r:vendor_tee_listener_prop:s0
 persist.vendor.sys.pay                          u:object_r:vendor_tee_listener_prop:s0
