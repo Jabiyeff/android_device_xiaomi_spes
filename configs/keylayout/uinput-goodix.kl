@@ -1,4 +1,5 @@
 #single click
 #key 353   DPAD_CENTER VIRTUAL
+key 353   FOCUS
 #double click
 #key 306   BUTTON_C VIRTUAL
