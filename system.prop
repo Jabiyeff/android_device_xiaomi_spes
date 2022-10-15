@@ -15,6 +15,9 @@ persist.vendor.service.bdroid.soc.alwayson=true
 ro.bluetooth.emb_wp_mode=false
 ro.bluetooth.wipower=false
 
+# Boot
+debug.sf.nobootanimation=1
+
 # Camera
 camera.disable_zsl_mode=true
 vendor.camera.aux.packagelist=org.codeaurora.snapcam,com.android.camera,app.grapheneos.camera
