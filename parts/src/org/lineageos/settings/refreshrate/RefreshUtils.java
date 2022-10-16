@@ -28,13 +28,11 @@ import androidx.preference.PreferenceManager;
 public final class RefreshUtils {
 
     private static final String REFRESH_CONTROL = "refresh_control";
+    private static final String REFRESH_SERVICE = "refresh_service";
 
-    private static float defaultMaxRate;
-    private static float defaultMinRate;
     private static final String KEY_PEAK_REFRESH_RATE = "peak_refresh_rate";
     private static final String KEY_MIN_REFRESH_RATE = "min_refresh_rate";
     private Context mContext;
-    protected static boolean isAppInList = false;
 
     protected static final int STATE_DEFAULT = 0;
     protected static final int STATE_STANDARD = 1;
@@ -47,6 +45,10 @@ public final class RefreshUtils {
     private static final String REFRESH_STANDARD = "refresh.standard=";
     private static final String REFRESH_HIGH = "refresh.high=";
 
+    private static boolean isAppInList = false;
+    private static float defaultMaxRate;
+    private static float defaultMinRate;
+
     private SharedPreferences mSharedPrefs;
 
     protected RefreshUtils(Context context) {
@@ -54,18 +56,33 @@ public final class RefreshUtils {
         mContext = context;
     }
 
+    public static void initialize(Context context) {
+        defaultMaxRate = Settings.System.getFloat(context.getContentResolver(), KEY_PEAK_REFRESH_RATE, REFRESH_STATE_DEFAULT);
+        defaultMinRate = Settings.System.getFloat(context.getContentResolver(), KEY_MIN_REFRESH_RATE, REFRESH_STATE_DEFAULT);
+
+        if (isServiceEnabled(context))
+            startService(context);
+        else
+            setDefaultRefreshRate(context);
+    }
+
     public static void startService(Context context) {
         context.startServiceAsUser(new Intent(context, RefreshService.class),
                 UserHandle.CURRENT);
+        PreferenceManager.getDefaultSharedPreferences(context).edit().putString(REFRESH_SERVICE, "true").apply();
+    }
+
+    protected static void stopService(Context context) {
+        context.stopService(new Intent(context, RefreshService.class));
+        PreferenceManager.getDefaultSharedPreferences(context).edit().putString(REFRESH_SERVICE, "false").apply();
+    }
+
+    protected static boolean isServiceEnabled(Context context) {
+        return true;
     }
 
     private void writeValue(String profiles) {
         mSharedPrefs.edit().putString(REFRESH_CONTROL, profiles).apply();
-    }
-
-   protected void getOldRate(){
-        defaultMaxRate = Settings.System.getFloat(mContext.getContentResolver(), KEY_PEAK_REFRESH_RATE, REFRESH_STATE_DEFAULT);
-        defaultMinRate = Settings.System.getFloat(mContext.getContentResolver(), KEY_MIN_REFRESH_RATE, REFRESH_STATE_DEFAULT);
     }
 
 
@@ -111,31 +128,40 @@ public final class RefreshUtils {
         return state;
     }
 
+    protected static void setDefaultRefreshRate(Context context) {
+        Settings.System.putFloat(context.getContentResolver(), KEY_PEAK_REFRESH_RATE, defaultMaxRate);
+        Settings.System.putFloat(context.getContentResolver(), KEY_MIN_REFRESH_RATE, defaultMinRate);
+    }
+
     protected void setRefreshRate(String packageName) {
         String value = getValue();
         String modes[];
-        float maxrate = defaultMaxRate;
+
+        if (!isAppInList) {
+            defaultMaxRate = Settings.System.getFloat(mContext.getContentResolver(), KEY_PEAK_REFRESH_RATE, REFRESH_STATE_DEFAULT);
+            defaultMinRate = Settings.System.getFloat(mContext.getContentResolver(), KEY_MIN_REFRESH_RATE, REFRESH_STATE_DEFAULT);
+        }
+
         float minrate = defaultMinRate;
-        isAppInList = false;
+        float maxrate = defaultMaxRate;
 
-            if (value != null) {
+        if (value != null) {
             modes = value.split(":");
-
             if (modes[0].contains(packageName + ",")) {
                 maxrate = REFRESH_STATE_STANDARD;
-                if ( minrate > maxrate){
-                minrate = maxrate;
+                if (minrate > maxrate) {
+                    minrate = maxrate;
                 }
-	            isAppInList = true;
+                isAppInList = true;
             } else if (modes[1].contains(packageName + ",")) {
                 maxrate = REFRESH_STATE_HIGH;
-		        if ( minrate > maxrate){
-                minrate = maxrate;
+                if (minrate > maxrate) {
+                    minrate = maxrate;
                 }
                 isAppInList = true;
            }
-          }
-	Settings.System.putFloat(mContext.getContentResolver(), KEY_MIN_REFRESH_RATE, minrate);
+        }
 	Settings.System.putFloat(mContext.getContentResolver(), KEY_PEAK_REFRESH_RATE, maxrate);
+	Settings.System.putFloat(mContext.getContentResolver(), KEY_MIN_REFRESH_RATE, minrate);
     }
 }
