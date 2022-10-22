@@ -72,12 +72,6 @@
         <fqname>@1.2::IRadioConfig/default</fqname>
     </hal>
     <hal format="hidl">
-        <name>android.hardware.soundtrigger</name>
-        <transport>hwbinder</transport>
-        <fqname>@2.0::ISoundTriggerHw/default</fqname>
-        <fqname>@2.3::ISoundTriggerHw/default</fqname>
-    </hal>
-    <hal format="hidl">
         <name>android.hardware.tetheroffload.control</name>
         <transport>hwbinder</transport>
         <fqname>@1.0::IOffloadControl/default</fqname>
