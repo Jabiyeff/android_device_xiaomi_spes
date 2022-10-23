@@ -4,6 +4,3 @@ type hal_misys_hwservice, hwservice_manager_type;
 type hal_mlipay_hwservice, hwservice_manager_type;
 type hal_mtdservice_hwservice, hwservice_manager_type;
 type hal_displayfeature_hwservice, hwservice_manager_type;
-
-# Dolby
-type hal_dms_hwservice, hwservice_manager_type;

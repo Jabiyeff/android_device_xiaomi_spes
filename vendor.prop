@@ -99,11 +99,6 @@ vendor.display.idle_time=1100
 vendor.display.svi.config=1
 vendor.display.svi.config_path=/vendor/etc/SVIConfig.xml
 
-# Dolby
-persist.vendor.audio_fx.current=dolby
-ro.vendor.dolby.dax.version=DS1_2.2.0.0_r1
-vendor.audio.dolby.ds2.enabled=true
-
 # DPM
 persist.dpm.feature=1
 persist.vendor.dpmhalservice.enable=1
@@ -173,7 +168,7 @@ vendor.gralloc.secure_preview_buffer_format=420_sp
 # Media Codecs
 debug.stagefright.ccodec=1
 debug.stagefright.omx_default_rank=0
-debug.stagefright.omx_default_rank.sw-audio=16
+debug.stagefright.omx_default_rank.sw-audio=1
 vendor.media.target.version=3
 vendor.sys.media.target.version=3
 
