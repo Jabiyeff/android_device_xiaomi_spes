@@ -107,6 +107,7 @@ persist.data.wda.enable=true
 persist.rmnet.data.enable=true
 
 # Skia
+debug.hwui.skia_atrace_enabled=false
 renderthread.skia.reduceopstasksplitting=true
 
 # System
