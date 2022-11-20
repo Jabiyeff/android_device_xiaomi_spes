@@ -6,7 +6,6 @@ set_prop(vendor_init, vendor_video_prop)
 r_dir_file(vendor_init, vendor_sysfs_msm_power)
 
 allow vendor_init {
-  vendor_debugfs_clk
   proc_dirty
   proc
 }:file w_file_perms;
