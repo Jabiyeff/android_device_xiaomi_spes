@@ -110,9 +110,6 @@ persist.rmnet.data.enable=true
 debug.hwui.skia_atrace_enabled=false
 renderthread.skia.reduceopstasksplitting=true
 
-# System
-persist.sys.binary_xml=false
-
 # Time-services
 persist.timed.enable=true
 
