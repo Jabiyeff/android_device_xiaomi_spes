@@ -1,4 +1,4 @@
-# All unpinned blobs below are extracted from miui_SPESINGlobal_V13.0.1.0.SGCINXM_998fb440f2_12.0.zip
+# All unpinned blobs below are extracted from miui_SPESINGlobal_V13.0.2.0.SGCINXM_2b1552304f_12.0
 
 # ACDB
 vendor/etc/acdbdata/IDP/bengal-scubaidp-snd-card/IDP_Scuba_Bluetooth_cal.acdb
@@ -326,7 +326,7 @@ vendor/lib64/libwa_refocus.so
 vendor/lib64/libwa_rtdof.so
 vendor/lib64/libwa_widelens_undistort.so
 vendor/lib64/libxmi_high_dynamic_range.so
-vendor/lib64/vendor.qti.hardware.camera.postproc@1.0-service-impl.so|7a115f12f4fa948bd54c4fd4124a59c9b54730f9
+vendor/lib64/vendor.qti.hardware.camera.postproc@1.0-service-impl.so
 
 # Camera Arcsoft
 vendor/lib64/libarcsoft_beautyshot.so
@@ -1257,6 +1257,9 @@ vendor/radio/qcril_database/upgrade/10_version_update_ecc_table.sql
 vendor/radio/qcril_database/upgrade/11_version_update_ecc_table.sql
 vendor/radio/qcril_database/upgrade/12_version_update_ecc_table.sql
 vendor/radio/qcril_database/upgrade/13_version_update_ecc_table.sql
+vendor/radio/qcril_database/upgrade/14_version_update_ecc_table.sql
+vendor/radio/qcril_database/upgrade/15_version_update_ecc_table.sql
+vendor/radio/qcril_database/upgrade/16_version_update_ecc_table.sql
 vendor/radio/qcril_database/upgrade/1_version_intro.sql
 vendor/radio/qcril_database/upgrade/2_version_add_wps_config.sql
 vendor/radio/qcril_database/upgrade/3_version_update_wps_config.sql
