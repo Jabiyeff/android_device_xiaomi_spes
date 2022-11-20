@@ -157,5 +157,8 @@
 /vendor/bin/mi_thermald                                                 u:object_r:mi_thermald_exec:s0
 /data/vendor/thermal(/.*)?                                              u:object_r:thermal_data_file:s0
 
+# USB
+/vendor/bin/hw/android\.hardware\.usb\@1\.[0-3]-service-spes                      u:object_r:vendor_hal_usb_qti_exec:s0
+
 # WiFi
 /data/vendor/mac_addr(/.*)?                                             u:object_r:vendor_wifi_vendor_data_file:s0
