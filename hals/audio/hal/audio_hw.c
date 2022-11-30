@@ -150,6 +150,9 @@ struct pcm_config default_pcm_config_voip_copp = {
 #define STR(x) #x
 #endif
 
+#define IS_USB_HIFI (MAX_HIFI_CHANNEL_COUNT >= MAX_CHANNEL_COUNT) ? \
+                     true : false
+
 #ifdef LINUX_ENABLED
 static inline int64_t audio_utils_ns_from_timespec(const struct timespec *ts)
 {
@@ -714,11 +717,17 @@ static void register_out_stream(struct stream_out *out)
 
     if (!adev->adm_set_config)
         return;
-
+#ifdef PLATFORM_AUTO
     if (out->realtime || (out->flags & AUDIO_OUTPUT_FLAG_SYS_NOTIFICATION))
        adev->adm_set_config(adev->adm_data,
                              out->handle,
                              out->pcm, &out->config);
+#else
+    if (out->realtime)
+       adev->adm_set_config(adev->adm_data,
+                             out->handle,
+                             out->pcm, &out->config);
+#endif
 }
 
 static void register_in_stream(struct stream_in *in)
@@ -799,6 +808,17 @@ static int parse_snd_card_status(struct str_parms *parms, int *card,
     *status = !strcmp(state, "ONLINE") ? CARD_STATUS_ONLINE :
                                          CARD_STATUS_OFFLINE;
     return 0;
+}
+
+bool is_combo_audio_input_device(struct listnode *devices){
+
+    if ((devices == NULL) || (!list_empty(devices)))
+        return false;
+
+    if(compare_device_type(devices, AUDIO_DEVICE_IN_BUILTIN_MIC|AUDIO_DEVICE_IN_SPEAKER_MIC2))
+        return true;
+    else
+        return false;
 }
 
 static inline void adjust_frames_for_device_delay(struct stream_out *out,
@@ -1446,7 +1466,11 @@ int enable_audio_route(struct audio_device *adev,
 
     if (usecase->type == PCM_CAPTURE) {
         in = usecase->stream.in;
-        if (in && is_loopback_input_device(get_device_types(&in->device_list))) {
+        if ((in && is_loopback_input_device(get_device_types(&in->device_list))) ||
+            (in && is_combo_audio_input_device(&in->device_list)) ||
+            (in && ((compare_device_type(&in->device_list, AUDIO_DEVICE_IN_BUILTIN_MIC) ||
+                     compare_device_type(&in->device_list, AUDIO_DEVICE_IN_LINE)) &&
+                    (snd_device == SND_DEVICE_IN_HANDSET_GENERIC_6MIC)))) {
             ALOGD("%s: set custom mtmx params v1", __func__);
             audio_extn_set_custom_mtmx_params_v1(adev, usecase, true);
         }
@@ -1541,7 +1565,11 @@ int disable_audio_route(struct audio_device *adev,
 
     if (usecase->type == PCM_CAPTURE) {
         in = usecase->stream.in;
-        if (in && is_loopback_input_device(get_device_types(&in->device_list))) {
+        if ((in && is_loopback_input_device(get_device_types(&in->device_list))) ||
+            (in && is_combo_audio_input_device(&in->device_list)) ||
+            (in && ((compare_device_type(&in->device_list, AUDIO_DEVICE_IN_BUILTIN_MIC) ||
+                    compare_device_type(&in->device_list, AUDIO_DEVICE_IN_LINE)) &&
+                    (snd_device == SND_DEVICE_IN_HANDSET_GENERIC_6MIC)))){
             ALOGD("%s: reset custom mtmx params v1", __func__);
             audio_extn_set_custom_mtmx_params_v1(adev, usecase, false);
         }
@@ -2869,6 +2897,9 @@ static struct stream_in *get_priority_input(struct audio_device *adev)
             in = usecase->stream.in;
             if (!in)
                 continue;
+
+            if (USECASE_AUDIO_RECORD_FM_VIRTUAL == usecase->id)
+                continue;
             priority = source_priority(in->source);
 
             if (priority > last_priority) {
@@ -3250,11 +3281,15 @@ int select_devices(struct audio_device *adev, audio_usecase_t uc_id)
                      !audio_is_true_native_stream_active(adev)) &&
                     usecase->stream.out->sample_rate == OUTPUT_SAMPLING_RATE_44100) ||
                     (usecase->stream.out->sample_rate < OUTPUT_SAMPLING_RATE_44100)) {
+#ifdef PLATFORM_AUTO
             if (!(compare_device_type(&usecase->device_list, AUDIO_DEVICE_OUT_BUS) && ((usecase->stream.out->flags &
                 (audio_output_flags_t)AUDIO_OUTPUT_FLAG_SYS_NOTIFICATION) || (usecase->stream.out->flags &
                 (audio_output_flags_t)AUDIO_OUTPUT_FLAG_PHONE)))) {
                 usecase->stream.out->app_type_cfg.sample_rate = DEFAULT_OUTPUT_SAMPLING_RATE;
             }
+#else
+                usecase->stream.out->app_type_cfg.sample_rate = DEFAULT_OUTPUT_SAMPLING_RATE;
+#endif
         }
     }
     enable_audio_route(adev, usecase);
@@ -4677,6 +4712,9 @@ static size_t get_stream_buffer_size(size_t duration_ms,
 
     size = (sample_rate * duration_ms) / 1000;
     if (is_low_latency){
+#ifndef PLATFORM_AUTO
+         size = configured_low_latency_capture_period_size;
+#else
         switch(sample_rate) {
             case 48000:
                 size = 240;
@@ -4696,6 +4734,7 @@ static size_t get_stream_buffer_size(size_t duration_ms,
             default:
                 size = 240;
         }
+#endif
     }
 
     bytes_per_period_sample = audio_bytes_per_sample(format) * channel_count;
@@ -4718,9 +4757,10 @@ static size_t get_input_buffer_size(uint32_t sample_rate,
                                     int channel_count,
                                     bool is_low_latency)
 {
+    bool is_usb_hifi = IS_USB_HIFI;
     /* Don't know if USB HIFI in this context so use true to be conservative */
     if (check_input_parameters(sample_rate, format, channel_count,
-                               true /*is_usb_hifi */) != 0)
+                               is_usb_hifi) != 0)
         return 0;
 
     return get_stream_buffer_size(AUDIO_CAPTURE_PERIOD_DURATION_MSEC,
@@ -6356,12 +6396,13 @@ static ssize_t out_write(struct audio_stream_out *stream, const void *buffer,
             ALOGD("copl(%p):send new gapless metadata", out);
             compress_set_gapless_metadata(out->compr, &out->gapless_mdata);
             out->send_new_metadata = 0;
+#if defined(SNDRV_COMPRESS_SET_NEXT_TRACK_PARAM)
             if (out->send_next_track_params && out->is_compr_metadata_avail) {
                 ALOGD("copl(%p):send next track params in gapless", out);
-                compress_set_next_track_param(out->compr, &(out->compr_config.codec->options));
                 out->send_next_track_params = false;
                 out->is_compr_metadata_avail = false;
             }
+#endif
         }
         if (!(out->flags & AUDIO_OUTPUT_FLAG_COMPRESS_OFFLOAD) &&
                       (out->convert_buffer) != NULL) {
@@ -9429,6 +9470,7 @@ static int adev_set_parameters(struct audio_hw_device *dev, const char *kvpairs)
     }
 
     amplifier_set_parameters(parms);
+    audio_extn_auto_hal_set_parameters(adev, parms);
     audio_extn_set_parameters(adev, parms);
 done:
     str_parms_destroy(parms);
@@ -9625,11 +9667,12 @@ static int adev_get_mic_mute(const struct audio_hw_device *dev, bool *state)
 static size_t adev_get_input_buffer_size(const struct audio_hw_device *dev __unused,
                                          const struct audio_config *config)
 {
+    bool is_usb_hifi = IS_USB_HIFI;
     int channel_count = audio_channel_count_from_in_mask(config->channel_mask);
 
     /* Don't know if USB HIFI in this context so use true to be conservative */
     if (check_input_parameters(config->sample_rate, config->format, channel_count,
-                               true /*is_usb_hifi */) != 0)
+                              is_usb_hifi) != 0)
         return 0;
 
     return get_input_buffer_size(config->sample_rate, config->format, channel_count,
@@ -9920,7 +9963,7 @@ static int adev_open_input_stream(struct audio_hw_device *dev,
             goto err_open;
         }
     }
-
+#ifdef PLATFORM_AUTO
     if ((config->sample_rate == 48000 ||
         config->sample_rate == 32000 ||
         config->sample_rate == 24000 ||
@@ -9928,7 +9971,14 @@ static int adev_open_input_stream(struct audio_hw_device *dev,
         config->sample_rate == 8000)&&
             (flags & AUDIO_INPUT_FLAG_TIMESTAMP) == 0 &&
             (flags & AUDIO_INPUT_FLAG_COMPRESS) == 0 &&
-            (flags & AUDIO_INPUT_FLAG_FAST) != 0) {
+            (flags & AUDIO_INPUT_FLAG_FAST) != 0)
+#else
+    if (config->sample_rate == LOW_LATENCY_CAPTURE_SAMPLE_RATE &&
+            (flags & AUDIO_INPUT_FLAG_TIMESTAMP) == 0 &&
+            (flags & AUDIO_INPUT_FLAG_COMPRESS) == 0 &&
+            (flags & AUDIO_INPUT_FLAG_FAST) != 0)
+#endif
+{
         is_low_latency = true;
 #if LOW_LATENCY_CAPTURE_USE_CASE
         if ((flags & AUDIO_INPUT_FLAG_VOIP_TX) != 0)
@@ -9949,6 +9999,7 @@ static int adev_open_input_stream(struct audio_hw_device *dev,
             in->af_period_multiplier = 1;
         } else {
             // period size is left untouched for rt mode playback
+#ifdef PLATFORM_AUTO
             switch(config->sample_rate)
             {
                 case 48000:
@@ -9969,6 +10020,9 @@ static int adev_open_input_stream(struct audio_hw_device *dev,
                 default:
                     in->config = pcm_config_audio_capture_rt_48KHz;
             }
+#else
+            in->config = pcm_config_audio_capture_rt_48KHz;
+#endif
             in->af_period_multiplier = af_period_multiplier;
         }
     }
@@ -10062,6 +10116,7 @@ static int adev_open_input_stream(struct audio_hw_device *dev,
         in->config.rate = config->sample_rate;
         in->af_period_multiplier = 1;
     } else if (in->realtime) {
+#ifdef PLATFORM_AUTO
         switch(config->sample_rate)
         {
             case 48000:
@@ -10084,7 +10139,10 @@ static int adev_open_input_stream(struct audio_hw_device *dev,
         }
         in->config.format = pcm_format_from_audio_format(config->format);
         in->af_period_multiplier = af_period_multiplier;
-    } else {
+#else
+        in->config = pcm_config_audio_capture_rt_48KHz;
+#endif
+} else {
         int ret_val;
         pthread_mutex_lock(&adev->lock);
         ret_val = audio_extn_check_and_set_multichannel_usecase(adev,

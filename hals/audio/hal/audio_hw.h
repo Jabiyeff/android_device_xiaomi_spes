@@ -911,6 +911,7 @@ size_t get_output_period_size(uint32_t sample_rate,
 #define CHECK(condition) LOG_ALWAYS_FATAL_IF(!(condition), "%s",\
             __FILE__ ":" LITERAL_TO_STRING(__LINE__)\
             " ASSERT_FATAL(" #condition ") failed.")
+bool is_combo_audio_input_device(struct listnode *devices);
 
 static inline bool is_loopback_input_device(audio_devices_t device) {
     if (!audio_is_output_device(device) &&

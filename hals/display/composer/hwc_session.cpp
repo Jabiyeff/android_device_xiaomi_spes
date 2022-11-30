@@ -3005,7 +3005,7 @@ void HWCSession::DestroyPluggableDisplay(DisplayMapInfo *map_info) {
 
   SCOPE_LOCK(system_locker_);
   {
-    SEQUENCE_WAIT_SCOPE_LOCK(locker_[client_id]);
+    SEQUENCE_CANCEL_SCOPE_LOCK(locker_[client_id]);
     auto &hwc_display = hwc_display_[client_id];
     if (!hwc_display) {
       return;

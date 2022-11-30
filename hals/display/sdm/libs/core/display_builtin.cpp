@@ -151,9 +151,13 @@ DisplayError DisplayBuiltIn::Init() {
 
   current_refresh_rate_ = hw_panel_info_.max_fps;
 
-  initColorSamplingState();
-
   int value = 0;
+  Debug::Get()->GetProperty(ENABLE_HISTOGRAM_INTR, &value);
+  if (value == 1) {
+    initColorSamplingState();
+  }
+
+  value = 0;
   Debug::Get()->GetProperty(DEFER_FPS_FRAME_COUNT, &value);
   deferred_config_.frame_count = (value > 0) ? UINT32(value) : 0;
 

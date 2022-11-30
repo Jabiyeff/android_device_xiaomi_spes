@@ -479,7 +479,7 @@ static int update_custom_mtmx_coefficients_v2(struct audio_device *adev,
         cust_ch_mixer_cfg[len++] = pinfo->ip_channels;
         cust_ch_mixer_cfg[len++] = pinfo->op_channels;
         for (i = 0; i < (int) (pinfo->op_channels * pinfo->ip_channels); i++) {
-            ALOGV("%s: coeff[%d] %d", __func__, i, params->coeffs[i]);
+            ALOGV("%s: coeff[%d] %lu", __func__, i, (unsigned long )params->coeffs[i]);
             cust_ch_mixer_cfg[len++] = params->coeffs[i];
         }
         err = mixer_ctl_set_array(ctl, cust_ch_mixer_cfg, len);
@@ -3790,7 +3790,8 @@ static int audio_extn_set_multichannel_mask(struct audio_device *adev,
 
     int max_mic_count = platform_get_max_mic_count(adev->platform);
     /* validate input params. Avoid updated channel mask if loopback device */
-    if ((channel_count == 6) &&
+    /* validate input params. Avoid updated channel mask if HDMI or loopback device */
+    if ((channel_count > max_mic_count) &&
         (in->format == AUDIO_FORMAT_PCM_16_BIT) &&
         (!is_loopback_input_device(get_device_types(&in->device_list)))) {
         switch (max_mic_count) {
@@ -6369,6 +6370,7 @@ int audio_extn_auto_hal_init(struct audio_device *adev)
         auto_hal_init_config.fp_platform_set_echo_reference = platform_set_echo_reference;
         auto_hal_init_config.fp_platform_get_eccarstate = platform_get_eccarstate;
         auto_hal_init_config.fp_generate_patch_handle = generate_patch_handle;
+        auto_hal_init_config.fp_platform_get_pcm_device_id = platform_get_pcm_device_id;
         return auto_hal_init(adev, auto_hal_init_config);
     }
     else

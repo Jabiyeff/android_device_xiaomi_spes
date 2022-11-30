@@ -23,9 +23,9 @@ MM_VIDEO += init.qti.media.sh
 
 PRODUCT_PACKAGES += $(MM_VIDEO)
 
-#include hardware/qcom/media/conf_files/$(TARGET_BOARD_PLATFORM)/$(TARGET_BOARD_PLATFORM).mk
+include $(TARGET_HALS_PATH)/media/conf_files/$(TARGET_BOARD_PLATFORM)/$(TARGET_BOARD_PLATFORM).mk
 
 endif
 
 #Vendor property to enable Codec2 for audio and OMX for Video
-PRODUCT_PROPERTY_OVERRIDES += debug.stagefright.ccodec=1
+PRODUCT_VENDOR_PROPERTIES += debug.stagefright.ccodec=1

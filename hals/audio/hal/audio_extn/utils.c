@@ -111,10 +111,12 @@
 #define VNDK_FWK_LIB_PATH "/vendor/lib/libqti_vndfwk_detect.so"
 #endif
 
+#ifdef PLATFORM_AUTO
 /* 24 KHz ECNR support */
 #define ECNS_USE_CASE_ACDB_DEV_ID 95
 #define ECNS_UNSUPPORTED_CAPTURE_SAMPLE_RATE_FOR_ADM 24000
 #define ECNS_SUPPORTED_CAPTURE_SAMPLE_RATE_FOR_ADM 48000
+#endif
 
 typedef struct vndkfwk_s {
     void *lib_handle;
@@ -756,12 +758,14 @@ void audio_extn_utils_update_stream_input_app_type_cfg(void *platform,
     app_type_cfg->app_type = platform_get_default_app_type_v2(platform, PCM_CAPTURE);
     app_type_cfg->sample_rate = CODEC_BACKEND_DEFAULT_SAMPLE_RATE;
     app_type_cfg->bit_width = 16;
+#ifdef PLATFORM_AUTO
     if ((flags & AUDIO_INPUT_FLAG_TIMESTAMP) == 0 &&
         (flags & AUDIO_INPUT_FLAG_COMPRESS) == 0 &&
         (flags & AUDIO_INPUT_FLAG_FAST) != 0) {
         // Support low latency record for different sample rates
         app_type_cfg->sample_rate = sample_rate;
     }
+#endif
 }
 
 void audio_extn_utils_update_stream_output_app_type_cfg(void *platform,
@@ -1321,7 +1325,9 @@ int audio_extn_utils_get_app_sample_rate_for_device(
 {
     char value[PROPERTY_VALUE_MAX] = {0};
     int sample_rate = DEFAULT_OUTPUT_SAMPLING_RATE;
+#ifdef PLATFORM_AUTO
     int acdb_dev_id;
+#endif
 
     if ((usecase->type == PCM_PLAYBACK) && (usecase->stream.out != NULL)) {
         property_get("vendor.audio.playback.mch.downsample",value,"");
@@ -1404,11 +1410,13 @@ int audio_extn_utils_get_app_sample_rate_for_device(
         /* ECNR module in DSP does not support 24 KHz sample rate. As a workaround,
            run ADM at 48 KHz when ECNR is enabled in ACDB topology (e.g. device id = 95)
         */
+#ifdef PLATFORM_AUTO
         acdb_dev_id = platform_get_snd_device_acdb_id(snd_device);
         if (sample_rate == ECNS_UNSUPPORTED_CAPTURE_SAMPLE_RATE_FOR_ADM && acdb_dev_id == ECNS_USE_CASE_ACDB_DEV_ID) {
             sample_rate = ECNS_SUPPORTED_CAPTURE_SAMPLE_RATE_FOR_ADM;
             ALOGD("%s: update sample rate from 24K to 48K to support ECNR in PCM_CAPTURE, sample_rate=%d",__func__,sample_rate);
         }
+#endif
     } else if (usecase->type == TRANSCODE_LOOPBACK_RX) {
         sample_rate = usecase->stream.inout->out_config.sample_rate;
     }
@@ -2520,7 +2528,6 @@ int audio_extn_utils_compress_get_dsp_latency(struct stream_out *out)
         }
 
         metadata.key = SNDRV_COMPRESS_PATH_DELAY;
-        ret = compress_get_metadata(out->compr, &metadata);
         if(ret) {
             ALOGE("%s::error %s", __func__, compress_get_error(out->compr));
             goto exit;
@@ -2569,7 +2576,6 @@ int audio_extn_utils_compress_set_render_mode(struct stream_out *out)
         ret = 0;
         goto exit;
     }
-    ret = compress_set_metadata(out->compr, &metadata);
     if(ret) {
         ALOGE("%s::error %s", __func__, compress_get_error(out->compr));
     }
@@ -2635,7 +2641,6 @@ int audio_extn_utils_compress_set_clk_rec_mode(
 
     ALOGD("%s:: clk recovery mode %d",__func__, metadata.value[0]);
 
-    ret = compress_set_metadata(out->compr, &metadata);
     if(ret) {
         ALOGE("%s::error %s", __func__, compress_get_error(out->compr));
     }
@@ -2697,7 +2702,6 @@ int audio_extn_utils_compress_set_render_window(
     metadata.value[3] = \
             (0xFFFFFFFF00000000 & render_window->render_we) >> 32; /* msb*/
 
-    ret = compress_set_metadata(out->compr, &metadata);
     if(ret) {
         ALOGE("%s::error %s", __func__, compress_get_error(out->compr));
     }
@@ -2754,7 +2758,6 @@ int audio_extn_utils_compress_set_start_delay(
     metadata.value[1] = \
             (0xFFFFFFFF00000000 & delay_param->start_delay) >> 32; /* msb*/
 
-    ret = compress_set_metadata(out->compr, &metadata);
     if(ret) {
         ALOGE("%s::error %s", __func__, compress_get_error(out->compr));
     }
@@ -2784,7 +2787,6 @@ int audio_extn_utils_compress_get_dsp_presentation_pos(struct stream_out *out,
     ALOGV("%s:: Quering DSP position with clock id %d",__func__, clock_id);
     metadata.key = SNDRV_COMPRESS_DSP_POSITION;
     metadata.value[0] = clock_id;
-    ret = compress_get_metadata(out->compr, &metadata);
     if (ret) {
         ALOGE("%s::error %s", __func__, compress_get_error(out->compr));
         ret = -errno;
@@ -2817,6 +2819,7 @@ int audio_extn_utils_pcm_get_dsp_presentation_pos(struct stream_out *out,
     int ret = -EINVAL;
     uint64_t time = 0;
     struct snd_pcm_prsnt_position prsnt_position;
+    memset(&prsnt_position, 0, sizeof(struct snd_pcm_prsnt_position));
 
     ALOGV("%s:: Quering DSP position with clock id %d",__func__, clock_id);
     prsnt_position.clock_id = clock_id;
@@ -3027,7 +3030,6 @@ int audio_extn_utils_compress_enable_drift_correction(
     metadata.value[0] = drift->enable;
     out->drift_correction_enabled = drift->enable;
 
-    ret = compress_set_metadata(out->compr, &metadata);
     if(ret) {
         ALOGE("%s::error %s", __func__, compress_get_error(out->compr));
         out->drift_correction_enabled = false;
@@ -3082,7 +3084,6 @@ int audio_extn_utils_compress_correct_drift(
     metadata.value[1] = \
              (0xFFFFFFFF00000000 & drift_param->adjust_time) >> 32; /* msb*/
 
-    ret = compress_set_metadata(out->compr, &metadata);
     if(ret)
         ALOGE("%s::error %s", __func__, compress_get_error(out->compr));
 exit:

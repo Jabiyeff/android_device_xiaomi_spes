@@ -280,6 +280,9 @@ void *start_input(void *thread_param)
   case 4:
       params->config.channel_mask = AUDIO_CHANNEL_INDEX_MASK_4;
       break;
+  case 6:
+      params->config.channel_mask = AUDIO_CHANNEL_INDEX_MASK_6;
+      break;
   case 8:
       params->config.channel_mask = AUDIO_CHANNEL_INDEX_MASK_8;
       break;

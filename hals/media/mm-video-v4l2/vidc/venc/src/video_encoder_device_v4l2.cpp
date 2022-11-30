@@ -981,6 +981,9 @@ OMX_ERRORTYPE venc_dev::venc_get_supported_profile_level(OMX_VIDEO_PARAM_PROFILE
     OMX_ERRORTYPE eRet = OMX_ErrorNone;
     struct v4l2_queryctrl profile_cap, level_cap, tier_cap;
     int v4l2_profile;
+    char platform_name[PROP_VALUE_MAX] = {0};
+    char version[PROP_VALUE_MAX] = {0};
+
     int avc_profiles[5] = { QOMX_VIDEO_AVCProfileConstrainedBaseline,
                             QOMX_VIDEO_AVCProfileBaseline,
                             QOMX_VIDEO_AVCProfileMain,
@@ -1090,6 +1093,16 @@ OMX_ERRORTYPE venc_dev::venc_get_supported_profile_level(OMX_VIDEO_PARAM_PROFILE
     if(!((profile_cap.flags >> v4l2_profile) & 0x1)) {
         DEBUG_PRINT_ERROR("%s: Invalid index corresponding profile not supported : %d ",__FUNCTION__, profileLevelType->eProfile);
         eRet = OMX_ErrorNoMore;
+    }
+
+    if (m_sVenc_cfg.codectype == V4L2_PIX_FMT_HEVC) {
+        property_get("ro.board.platform", platform_name, "0");
+        if (!strncmp(platform_name, "lito", 4)) {
+            if (property_get("vendor.media.target.version", version, "0") && ((atoi(version) != 2) && (atoi(version) != 3))) {
+                DEBUG_PRINT_LOW("Disabling main10 and above for saipan");
+                m_disable_hdr = 0x2;
+            }
+        }
     }
 
     if (m_disable_hdr & ENC_HDR_DISABLE_FLAG) {
@@ -2720,6 +2733,15 @@ bool venc_dev::venc_empty_buf(void *buffer, void *pmem_data_buf, unsigned index,
                         DEBUG_PRINT_LOW("gralloc format 0x%x (%s) (%s)",
                             handle->format, grallocFormatStr, isUBWC ? "UBWC" : "Linear");
 
+                        if (m_codec == OMX_VIDEO_CodingHEVC && (handle->format == HAL_PIXEL_FORMAT_YCbCr_420_TP10_UBWC ||
+                            handle->format == HAL_PIXEL_FORMAT_YCbCr_420_P010_VENUS) &&
+                            codec_profile.profile != V4L2_MPEG_VIDEO_HEVC_PROFILE_MAIN_10)
+                            {
+                                if (!venc_set_profile (OMX_VIDEO_HEVCProfileMain10)) {
+                                    DEBUG_PRINT_ERROR("ERROR: Unsuccessful in updating Profile OMX_VIDEO_HEVCProfileMain10");
+                                    return false;
+                                }
+                            }
                         if (handle->format == HAL_PIXEL_FORMAT_NV12_ENCODEABLE) {
                             m_sVenc_cfg.inputformat = isUBWC ? V4L2_PIX_FMT_NV12_UBWC : V4L2_PIX_FMT_NV12;
                             DEBUG_PRINT_INFO("ENC_CONFIG: Input Color = NV12 %s", isUBWC ? "UBWC" : "Linear");

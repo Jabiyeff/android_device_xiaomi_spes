@@ -699,6 +699,16 @@ void HWCDisplay::BuildLayerStack() {
       layer->flags.solid_fill = true;
     }
 
+#ifdef FOD_ZPOS
+    if (hwc_layer->IsFodPressed()) {
+      layer->flags.fod_pressed = true;
+      layer_stack_.flags.fod_pressed_present = true;
+    } else {
+      layer->flags.fod_pressed = false;
+      layer_stack_.flags.fod_pressed_present = false;
+    }
+#endif
+
     if (!hwc_layer->IsDataSpaceSupported()) {
       layer->flags.skip = true;
     }
@@ -2614,10 +2624,31 @@ HWC2::Error HWCDisplay::GetDisplayVsyncPeriod(VsyncPeriodNanos *vsync_period) {
 HWC2::Error HWCDisplay::SetActiveConfigWithConstraints(
     hwc2_config_t config, const VsyncPeriodChangeConstraints *vsync_period_change_constraints,
     VsyncPeriodChangeTimeline *out_timeline) {
+  DTRACE_SCOPED();
+
   if (variable_config_map_.find(config) == variable_config_map_.end()) {
     DLOGE("Invalid config: %d", config);
     return HWC2::Error::BadConfig;
   }
+
+  // DRM driver expects DRM_PREFERRED_MODE to be set as part of first commit
+  if (!IsFirstCommitDone()) {
+    // Store client's config.
+    // Set this as part of post commit.
+    pending_first_commit_config_ = true;
+    pending_first_commit_config_index_ = config;
+    DLOGI("Defer config change to %d until first commit", UINT32(config));
+    return HWC2::Error::None;
+  } else if (pending_first_commit_config_) {
+    // Config override request from client.
+    // Honour latest request.
+    pending_first_commit_config_ = false;
+  }
+
+  // Cache refresh rate set by client.
+  DisplayConfigVariableInfo info = {};
+  GetDisplayAttributesForConfig(INT(config), &info);
+  active_refresh_rate_ = info.fps;
 
   if (vsync_period_change_constraints->seamlessRequired && !AllowSeamless(config)) {
     DLOGE("Seamless switch to the config: %d, is not allowed!", config);

@@ -1689,6 +1689,13 @@ bool HWCDisplayBuiltIn::HasReadBackBufferSupport() {
   DisplayConfigFixedInfo fixed_info = {};
   display_intf_->GetConfig(&fixed_info);
 
+  uint32_t width = UINT32(window_rect_.right + window_rect_.left);
+  uint32_t height = UINT32(window_rect_.bottom + window_rect_.top);
+  if (width > 0 || height > 0) {
+     DLOGE("No ReadBackBuffersupport on window_rect width = %u - height = %u",width,height);
+     return false;
+  }
+
   return fixed_info.readback_supported;
 }
 

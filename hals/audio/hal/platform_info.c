@@ -1226,6 +1226,10 @@ static void process_custom_mtmx_param_in_ch_info(const XML_Char **attr)
               ENUM_TO_STRING(AUDIO_DEVICE_IN_LOOPBACK),
               sizeof(mtmx_in_params->in_ch_info[in_ch_idx].device)))
         mtmx_in_params->ec_ref_ch = mtmx_in_params->in_ch_info[in_ch_idx].ch_count;
+    else if (!strncmp(mtmx_in_params->in_ch_info[in_ch_idx].device,
+                 ENUM_TO_STRING(AUDIO_DEVICE_IN_SPEAKER_MIC2),
+                 sizeof(mtmx_in_params->in_ch_info[in_ch_idx].device)))
+        mtmx_in_params->i2s_ch = mtmx_in_params->in_ch_info[in_ch_idx].ch_count;
 
     mtmx_in_params->ip_channels += mtmx_in_params->in_ch_info[in_ch_idx].ch_count;
 }
@@ -1542,6 +1546,8 @@ static void start_tag(void *userdata __unused, const XML_Char *tag_name,
                 return;
             }
             section = CUSTOM_MTMX_PARAM_IN_CH_INFO;
+            section_process_fn fn = section_table[section];
+            fn(attr);
         } else if (strcmp(tag_name, "audio_input_source_delay") == 0) {
             section = AUDIO_SOURCE_DELAY;
         } else if (strcmp(tag_name, "audio_source_delay") == 0) {

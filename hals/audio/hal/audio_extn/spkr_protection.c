@@ -1877,7 +1877,7 @@ static int set_spkr_prot_v_vali_cfg(int wait_time, int vali_time)
     if (ioctl(cal_fd, AUDIO_SET_CALIBRATION, &cal_data))
         ALOGE("%s: failed to set TH VI V_VALI_CFG, errno = %d", __func__, errno);
 
-    if (cal_fd > 0)
+    if (cal_fd >= 0)
         close(cal_fd);
 done:
     return ret;

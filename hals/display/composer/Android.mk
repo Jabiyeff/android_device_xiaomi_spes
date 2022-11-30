@@ -36,6 +36,10 @@ LOCAL_SHARED_LIBRARIES        := libhistogram libbinder libhardware libutils lib
                                  libdisplayconfig.qti \
                                  libdrm libthermalclient
 
+ifeq ($(TARGET_USES_FOD_ZPOS), true)
+LOCAL_CFLAGS                  += -DFOD_ZPOS
+endif
+
 LOCAL_SRC_FILES               := QtiComposer.cpp QtiComposerClient.cpp service.cpp \
                                  QtiComposerHandleImporter.cpp \
                                  hwc_session.cpp \
