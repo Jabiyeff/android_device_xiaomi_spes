@@ -66,7 +66,6 @@
 
 # Charger
 /vendor/bin/batterysecret                                               u:object_r:batterysecret_exec:s0
-/vendor/bin/hw/vendor.xiaomi.hardware.micharge@1.0-service              u:object_r:hal_micharge_default_exec:s0
 
 # Display
 /vendor/bin/hw/vendor\.xiaomi\.hardware\.displayfeature@1\.0-service                                    u:object_r:hal_displayfeature_default_exec:s0
