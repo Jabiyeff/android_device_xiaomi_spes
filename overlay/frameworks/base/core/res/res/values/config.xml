@@ -597,6 +597,18 @@
          for higher refresh rates to be automatically used out of the box -->
     <integer name="config_defaultPeakRefreshRate">90</integer>
 
+    <!-- Not allow to switch to higher refresh rate when (display, ambient) brightness falls into
+         the region defined by the two arrays -->
+    <integer-array name="config_brightnessThresholdsOfPeakRefreshRate">
+        <item>-1</item>
+    </integer-array>
+    <integer-array name="config_ambientThresholdsOfPeakRefreshRate">
+        <item>-1</item>
+    </integer-array>
+
+    <!-- default refresh rate in the zone defined by brightness and ambient thresholds -->
+    <integer name="config_defaultRefreshRateInZone">90</integer>
+
     <!-- Indicates whether device has a power button fingerprint sensor. -->
     <bool name="config_is_powerbutton_fps" translatable="false" >true</bool>
 
