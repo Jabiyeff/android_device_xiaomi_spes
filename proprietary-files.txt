@@ -1,4 +1,4 @@
-# All unpinned blobs below are extracted from miui_SPESINGlobal_V13.0.2.0.SGCINXM_2b1552304f_12.0
+# All unpinned blobs below are extracted from miui_SPESGlobal_V13.0.6.0.SGCMIXM_d8718d8a07_12.0
 
 # ACDB
 vendor/etc/acdbdata/IDP/bengal-scubaidp-snd-card/IDP_Scuba_Bluetooth_cal.acdb
