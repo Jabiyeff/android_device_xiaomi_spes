@@ -46,3 +46,4 @@ debug.sf.disable_backpressure=1
 persist.vendor.radio.report_codec=1
 persist.vendor.radio.vdp_on_ims_cap=1
 persist.vendor.qti.telephony.vt_cam_interface=2
+ro.telephony.block_binder_thread_on_incoming_calls=false

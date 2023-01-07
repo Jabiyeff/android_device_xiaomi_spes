@@ -205,7 +205,6 @@ persist.vendor.radio.snapshot_enabled=1
 persist.vendor.radio.snapshot_timer=5
 vendor.rild.libpath=/vendor/lib64/libril-qc-hal-qmi.so
 ro.com.android.dataroaming=false
-ro.telephony.block_binder_thread_on_incoming_calls=false
 ro.telephony.default_network=22,22
 ro.vendor.se.type=HCE,UICC
 telephony.lteOnCdmaDevice=1
