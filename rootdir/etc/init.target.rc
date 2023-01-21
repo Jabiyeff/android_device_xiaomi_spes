@@ -64,6 +64,12 @@ on post-fs-data
     mkdir /data/vendor/thermal 0771 root system
     mkdir /data/vendor/thermal/config 0771 root system
     mkdir /data/vendor/wlan_logs 0770 system wifi
+    restorecon_recursive /mnt/vendor/persist/rfs/msm/mpss
+    restorecon_recursive /mnt/vendor/persist/rfs/msm/mpss/lctoem.tmp
+    restorecon_recursive /mnt/vendor/persist/rfs/msm/mpss/server_check.txt
+    chown vendor_rfs vendor_rfs /mnt/vendor/persist/rfs
+    chown vendor_rfs vendor_rfs /mnt/vendor/persist/rfs/msm
+    chown vendor_rfs vendor_rfs /mnt/vendor/persist/rfs/msm/mpss
 
     # Fingerprint
     mkdir /data/vendor/fpc 0777 system system
