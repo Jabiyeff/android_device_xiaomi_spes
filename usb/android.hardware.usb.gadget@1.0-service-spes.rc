@@ -1,4 +1,0 @@
-service vendor.usbgadget-hal-1-0 /vendor/bin/hw/android.hardware.usb.gadget@1.0-service-spes
-    class hal
-    user root
-    group root system mtp
