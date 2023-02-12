@@ -326,11 +326,10 @@ Only the three quirks included above are recognized at this point:
             <!-- profiles and levels:  ProfileMain : MainTierLevel51 -->
             <Limit name="size" min="2x2" max="1280x720" />
             <Limit name="alignment" value="2x2" />
-            <Limit name="block-size" value="16x16" />
+            <Limit name="block-size" value="8x8" />
             <Limit name="block-count" range="1-3600" />
             <Limit name="blocks-per-second" range="1-108000" />
             <Limit name="bitrate" range="1-2000000" />
-            <Feature name="adaptive-playback" />
        </MediaCodec>
        <MediaCodec name="c2.android.avc.decoder" type="video/avc" update="true">
             <!-- profiles and levels:  ProfileHigh : Level51 -->

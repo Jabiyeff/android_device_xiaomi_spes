@@ -678,7 +678,7 @@
     </hal>
     <hal format="hidl" optional="true">
         <name>vendor.xiaomi.hardware.mtdservice</name>
-        <version>1.0-3</version>
+        <version>1.0-2</version>
         <interface>
             <name>IMTService</name>
             <instance>default</instance>
