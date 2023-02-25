@@ -35,4 +35,7 @@
     <dimen name="rounded_corner_radius_bottom">106.0px</dimen>
     <dimen name="rounded_corner_radius_top">106.0px</dimen>
 
+    <!-- Default paddings for content around the corners. -->
+    <dimen name="rounded_corner_content_padding">47.0px</dimen>
+
 </resources>
