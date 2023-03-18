@@ -120,6 +120,7 @@ debug.sf.high_fps_early_phase_offset_ns=-5000000
 debug.sf.high_fps_late_app_phase_offset_ns=1000000
 debug.sf.high_fps_late_sf_phase_offset_ns=-5000000
 debug.sf.predict_hwc_composition_strategy=0
+debug.sf.treat_170m_as_sRGB=1
 persist.metadata_dynfps.disable=true
 persist.sys.sf.color_mode=7
 persist.sys.sf.color_saturation=1.0
