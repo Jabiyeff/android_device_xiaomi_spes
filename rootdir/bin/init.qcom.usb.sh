@@ -153,11 +153,15 @@ esac
 
 # check configfs is mounted or not
 if [ -d /config/usb_gadget ]; then
-	usb_product=`getprop vendor.usb.product_string`;
-	vendor_model=`getprop ro.product.vendor.model`;
-	if [ "$usb_product" == "" ]; then
-		setprop vendor.usb.product_string "$vendor_model"
+	# Chip-serial is used for unique MSM identification in Product string
+	msm_serial=`cat /sys/devices/soc0/serial_number`;
+	# If MSM serial number is not available, then keep it blank instead of 0x00000000
+	if [ "$msm_serial" != "" ]; then
+		msm_serial_hex=`printf %08X $msm_serial`
 	fi
+
+	machine_type=`cat /sys/devices/soc0/machine`
+	setprop vendor.usb.product_string "$machine_type-$soc_hwplatform _SN:$msm_serial_hex"
 
 	# ADB requires valid iSerialNumber; if ro.serialno is missing, use dummy
 	serialnumber=`cat /config/usb_gadget/g1/strings/0x409/serialnumber 2> /dev/null`
