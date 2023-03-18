@@ -100,6 +100,10 @@ on post-fs-data
     chown system system /sys/class/power_supply/battery/battery_charging_enabled
     chown system system /sys/class/power_supply/usb/typec_cc_orientation
 
+    # Dolby
+    mkdir /data/vendor/dolby 0770 media media
+    mkdir /data/vendor/multimedia 0775 system system
+
 on boot
     chown system system /sys/class/drm/card0-DSI-1/disp_param
     chmod 0666 /sys/class/drm/card0-DSI-1/disp_param

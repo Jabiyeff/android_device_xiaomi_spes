@@ -1,4 +1,5 @@
 type hal_camerapostproc_xiaomi_hwservice, hwservice_manager_type;
+type hal_dms_hwservice, hwservice_manager_type;
 type hal_misys_hwservice, hwservice_manager_type;
 type hal_mlipay_hwservice, hwservice_manager_type;
 type hal_mtdservice_hwservice, hwservice_manager_type;

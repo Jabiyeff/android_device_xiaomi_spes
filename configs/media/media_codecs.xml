@@ -325,5 +325,6 @@ Only the three quirks included above are recognized at this point:
              <Limit name="performance-point-1920x1080" value="30" />
         </MediaCodec>
     </Decoders>
+    <Include href="media_codecs_dolby_audio.xml" />
     <Include href="media_codecs_google_video.xml" />
 </MediaCodecs>
