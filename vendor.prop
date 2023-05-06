@@ -120,7 +120,6 @@ debug.sf.auto_latch_unsignaled=true
 debug.renderengine.backend=skiaglthreaded
 debug.sf.disable_client_composition_cache=1
 debug.sf.enable_advanced_sf_phase_offset=1
-debug.sf.enable_gl_backpressure=1
 debug.sf.high_fps_early_gl_phase_offset_ns=-5000000
 debug.sf.high_fps_early_phase_offset_ns=-5000000
 debug.sf.high_fps_late_app_phase_offset_ns=1000000
