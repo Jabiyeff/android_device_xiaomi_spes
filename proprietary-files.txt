@@ -875,7 +875,6 @@ system_ext/framework/com.android.hotwordenrollment.common.util.jar
 
 # IMS
 -system_ext/app/uceShimService/uceShimService.apk
--system_ext/priv-app/ims/ims.apk
 system_ext/etc/permissions/com.qualcomm.qti.imscmservice-V2.0-java.xml
 system_ext/etc/permissions/com.qualcomm.qti.imscmservice-V2.1-java.xml
 system_ext/etc/permissions/com.qualcomm.qti.imscmservice-V2.2-java.xml
@@ -981,6 +980,9 @@ vendor/lib64/vendor.qti.ims.rcsconfig@2.0.so
 vendor/lib64/vendor.qti.ims.rcsconfig@2.1.so
 vendor/lib64/vendor.qti.imsrtpservice@3.0-service-Impl.so
 vendor/lib64/vendor.qti.imsrtpservice@3.0.so
+
+# IMS - from renoir
+-system_ext/priv-app/ims/ims.apk|f0d834acbc77e7830459e0246f5073e1b9ba8657
 
 # IPA firmware
 vendor/etc/init/ipa_fws.rc
