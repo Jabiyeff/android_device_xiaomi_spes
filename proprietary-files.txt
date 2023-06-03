@@ -1,4 +1,4 @@
-# All unpinned blobs below are extracted from miui_SPESGlobal_V13.0.12.0.SGCMIXM_17a5e4852c_12.0
+# All unpinned blobs below are extracted from miui_SPESGlobal_V14.0.2.0.TGCMIXM_f4e2e7b209_13.0
 
 # ACDB
 vendor/etc/acdbdata/IDP/bengal-scubaidp-snd-card/IDP_Scuba_Bluetooth_cal.acdb
@@ -653,7 +653,6 @@ system_ext/priv-app/MotorolaSettingsProvider/MotorolaSettingsProvider.apk|25deb5
 system_ext/priv-app/daxService/daxService.apk|c9f688a32c81aace7207bd67d14b926b2662ba98
 vendor/bin/hw/vendor.dolby.hardware.dms@2.0-service|8215768638794162db3bb76e43045926fcbb4b0b
 vendor/etc/init/vendor.dolby.hardware.dms@2.0-service.rc|29296ebfe89b2697fec573be73cc3757fd97bed6
-vendor/odm/bin/hw/vendor.dolby_v3_6.hardware.dms360@2.0-service|da39a3ee5e6b4b0d3255bfef95601890afd80709
 vendor/lib/soundfx/libswdap.so|810d0e266e4a77f06cba72fe8bdde2e1ede4f9f9
 vendor/lib/soundfx/libswgamedap.so|c7d35eb932ecffb384ec62628404df3406b63919
 vendor/lib/soundfx/libswvqe.so|3009202dcdd5b8fadb9c43a8cf5f0fe1c28311a6
@@ -674,6 +673,7 @@ vendor/lib64/libstagefright_soft_ddpdec.so|7f1ee1710cdb5d4334613a765e04bec5d807f
 vendor/lib64/libstagefrightdolby.so|884abf462a46d0e0281c8157418c513cd4dc003a
 vendor/lib64/vendor.dolby.hardware.dms@2.0-impl.so|92eb0a2b730810881288119fc4d038f52870acd1
 vendor/lib64/vendor.dolby.hardware.dms@2.0.so|a93b5cf33ae57387a2d32686520a0d1dd5d10dcc
+vendor/odm/bin/hw/vendor.dolby_v3_6.hardware.dms360@2.0-service|da39a3ee5e6b4b0d3255bfef95601890afd80709
 
 # DPM
 -system_ext/priv-app/dpmserviceapp/dpmserviceapp.apk
@@ -868,8 +868,8 @@ vendor/lib/hw/vulkan.adreno.so
 vendor/lib64/hw/vulkan.adreno.so
 
 # HotwordEnrollment
--product/priv-app/HotwordEnrollmentOKGoogleHEXAGON/HotwordEnrollmentOKGoogleHEXAGON.apk
--product/priv-app/HotwordEnrollmentXGoogleHEXAGON/HotwordEnrollmentXGoogleHEXAGON.apk
+-product/priv-app/HotwordEnrollmentOKGoogleHEXAGON_WIDEBAND/HotwordEnrollmentOKGoogleHEXAGON_WIDEBAND.apk
+-product/priv-app/HotwordEnrollmentXGoogleHEXAGON_WIDEBAND/HotwordEnrollmentXGoogleHEXAGON_WIDEBAND.apk
 system_ext/etc/permissions/com.android.hotwordenrollment.common.util.xml
 system_ext/framework/com.android.hotwordenrollment.common.util.jar
 
@@ -1079,43 +1079,43 @@ vendor/lib64/libwvkeybox.so
 vendor/lib64/vendor.xiaomi.hardware.mfidoca@1.0.so
 vendor/lib64/vendor.xiaomi.hardware.mtdservice@1.3.so
 
-# Modules - from SPESGlobal V13.0.16.0-A11
-vendor/lib/modules/audio_adsp_loader.ko|fd89fdf52abdccffb4bdbbd4db7b3737889c12b6
-vendor/lib/modules/audio_apr.ko|c6d0b9eda13a726b3f3a7ac43572c37f872c563d
-vendor/lib/modules/audio_aw87xxx.ko|480cea9832221289a8e16ba82502b842e9c66b97
-vendor/lib/modules/audio_bolero_cdc.ko|26d6db614269443ac6d3a2b0e1ff26f2c2b51ca5
-vendor/lib/modules/audio_lct_pinctrl.ko|121943497b22e63cbbb39aa0e5bf181b590cf805
-vendor/lib/modules/audio_machine_bengal.ko|5409b9d838d1d93dc11e6cb55bfbcb705ee05fd8
-vendor/lib/modules/audio_mbhc.ko|98c33eb9ee2d533b6a32ac81ac4f49f61fa81f59
-vendor/lib/modules/audio_native.ko|739250a5006091cded34c2ae20e5e11cb5f48d59
-vendor/lib/modules/audio_pinctrl_lpi.ko|2a489d3ed097eb58cb01dcd7e8350967668f9cb7
-vendor/lib/modules/audio_platform.ko|4409f50ac3d65e51b8031c1df6109bc057eda4d9
-vendor/lib/modules/audio_pm2250_spmi.ko|e0d8f3cf2e7d8913036591fee7a39d8ab5620a8e
-vendor/lib/modules/audio_q6.ko|66e2e9f000ab73a6eba00cfacde072fff151b207
-vendor/lib/modules/audio_q6_notifier.ko|4e2cb7972d2207dc2dc8cf66a7077ff8d9a06648
-vendor/lib/modules/audio_q6_pdr.ko|24c0b7e9635cd5718411a19e1af6ad4f57335be0
-vendor/lib/modules/audio_rouleur.ko|9edecd9d3651f00459296f16acd66c06c518a59c
-vendor/lib/modules/audio_rouleur_slave.ko|3ea2f17d84b0cffe926fee3bbe5640ac57d03f2c
-vendor/lib/modules/audio_rx_macro.ko|9b2f59e10fe03b27fdfc90068cb209044b904ba4
-vendor/lib/modules/audio_snd_event.ko|3df9fa8a8bc737f391482074fd6f70528a91b1a7
-vendor/lib/modules/audio_stub.ko|fb3306e3b8ea34e54350db6ccce4432b8a1e5ade
-vendor/lib/modules/audio_swr.ko|a855d69ffd502ff59e8f4d010394ff4725a14526
-vendor/lib/modules/audio_swr_ctrl.ko|844309d2dcaa7bfcc1b192f497882d19d99754c3
-vendor/lib/modules/audio_tx_macro.ko|3e511144a14db30643da1dc18a8ca0cd31842d96
-vendor/lib/modules/audio_usf.ko|71f940f36ffa67e2c6a1368729ec471344adb433
-vendor/lib/modules/audio_va_macro.ko|4782ae51b746191dbc0403d2a112914e70aa428a
-vendor/lib/modules/audio_wcd937x.ko|45a39aa24759b873b14c8298be048148ed801b25
-vendor/lib/modules/audio_wcd937x_slave.ko|7f0270ef3ea6e528366a48f1f558e6179a9fa82c
-vendor/lib/modules/audio_wcd9xxx.ko|b538965d009b17f56d05a92cf6f5cd8c1dbe3a8e
-vendor/lib/modules/audio_wcd_core.ko|0eb20aefd4faaf1bbbccaa04456203b1d251d2ca
-vendor/lib/modules/audio_wsa881x_analog.ko|8ee56e3d22ecbc73851db6e04fd42031c07370d8
-vendor/lib/modules/exfat.ko|02d97f09bf802683945f79b3fd43182bc501c85b
-vendor/lib/modules/modules.alias|46338fffdbce80e3c79e5d35cb0b17a7e9e8293d
-vendor/lib/modules/modules.dep|98cf703ed9f1063a5fb3f6dee6cbc3af4bd52d9b
-vendor/lib/modules/modules.load|58143412a93ab19f8525db590cbdf5f8fa762d8f
-vendor/lib/modules/modules.softdep|071ea5081f0d210604b6d7c38c011ff4b8bb6380
-vendor/lib/modules/qca_cld3_wlan.ko|2be7c512c84c79a52ef89e7b135a496fb72c38ad
-vendor/lib/modules/rdbg.ko|17c3f054608d58e5c3b68c1b2e5eb8ca2f5ce222
+# Modules
+vendor/lib/modules/audio_adsp_loader.ko
+vendor/lib/modules/audio_apr.ko
+vendor/lib/modules/audio_aw87xxx.ko
+vendor/lib/modules/audio_bolero_cdc.ko
+vendor/lib/modules/audio_lct_pinctrl.ko
+vendor/lib/modules/audio_machine_bengal.ko
+vendor/lib/modules/audio_mbhc.ko
+vendor/lib/modules/audio_native.ko
+vendor/lib/modules/audio_pinctrl_lpi.ko
+vendor/lib/modules/audio_platform.ko
+vendor/lib/modules/audio_pm2250_spmi.ko
+vendor/lib/modules/audio_q6.ko
+vendor/lib/modules/audio_q6_notifier.ko
+vendor/lib/modules/audio_q6_pdr.ko
+vendor/lib/modules/audio_rouleur.ko
+vendor/lib/modules/audio_rouleur_slave.ko
+vendor/lib/modules/audio_rx_macro.ko
+vendor/lib/modules/audio_snd_event.ko
+vendor/lib/modules/audio_stub.ko
+vendor/lib/modules/audio_swr.ko
+vendor/lib/modules/audio_swr_ctrl.ko
+vendor/lib/modules/audio_tx_macro.ko
+vendor/lib/modules/audio_usf.ko
+vendor/lib/modules/audio_va_macro.ko
+vendor/lib/modules/audio_wcd937x.ko
+vendor/lib/modules/audio_wcd937x_slave.ko
+vendor/lib/modules/audio_wcd9xxx.ko
+vendor/lib/modules/audio_wcd_core.ko
+vendor/lib/modules/audio_wsa881x_analog.ko
+vendor/lib/modules/exfat.ko
+vendor/lib/modules/modules.alias
+vendor/lib/modules/modules.dep
+vendor/lib/modules/modules.load
+vendor/lib/modules/modules.softdep
+vendor/lib/modules/qca_cld3_wlan.ko
+vendor/lib/modules/rdbg.ko
 
 # Neural networks
 -vendor/etc/vintf/manifest/android.hardware.neuralnetworks@1.3-service-qti.xml
@@ -1300,8 +1300,8 @@ vendor/radio/qcril_database/upgrade/13_version_update_ecc_table.sql
 vendor/radio/qcril_database/upgrade/14_version_update_ecc_table.sql
 vendor/radio/qcril_database/upgrade/15_version_update_ecc_table.sql
 vendor/radio/qcril_database/upgrade/16_version_update_ecc_table.sql
-vendor/radio/qcril_database/upgrade/17_version_update_ecc_table.sql
 vendor/radio/qcril_database/upgrade/18_version_update_ecc_table.sql
+vendor/radio/qcril_database/upgrade/19_version_update_ecc_table.sql
 vendor/radio/qcril_database/upgrade/1_version_intro.sql
 vendor/radio/qcril_database/upgrade/2_version_add_wps_config.sql
 vendor/radio/qcril_database/upgrade/3_version_update_wps_config.sql
@@ -1333,6 +1333,7 @@ vendor/lib64/libsnsdiaglog.so
 vendor/lib64/libssc.so
 vendor/lib64/libssc_default_listener.so
 vendor/lib64/sensors.ssc.so
+vendor/lib64/sensors.touch.detect.so
 
 # Sensors Calibrate
 vendor/bin/hw/vendor.qti.hardware.sensorscalibrate@1.0-service
@@ -1422,39 +1423,36 @@ vendor/lib64/libscveObjectTracker.so
 vendor/lib64/libscveObjectTracker_stub.so
 
 # Soter
--vendor/app/SoterService/SoterService.apk
 vendor/bin/hw/vendor.qti.hardware.soter@1.0-service
 vendor/etc/init/vendor.qti.hardware.soter@1.0-service.rc
 vendor/lib64/hw/vendor.qti.hardware.soter@1.0-impl.so
 vendor/lib64/vendor.qti.hardware.soter@1.0.so
 
 # Thermal engine - from alioth_global-user 12 RKQ1.200826.002 V13.0.2.0.SKHMIXM release-keys
--vendor/lib/libthermalclient.so|6ed686c6c39546a7bf532767f6d87808a42b1176
--vendor/lib64/libthermalclient.so|7bcb4af9a6ae8d12bb0b2749c85e2ff1473678aa
-vendor/bin/mi_thermald|909c57ed861248423a62fc2d0385e99d955e9b0f
 vendor/etc/init/init.mi_thermald.rc|6505d89e19957888612d89f6769585a7d26af080
 
-# Thermal configs (Global)
+# Thermal engine
+-vendor/lib/libthermalclient.so
+-vendor/lib64/libthermalclient.so
+vendor/bin/mi_thermald
+
+# Thermal configs
 vendor/etc/thermal-4k.conf
 vendor/etc/thermal-arvr.conf
 vendor/etc/thermal-camera.conf
 vendor/etc/thermal-chg-only.conf
+vendor/etc/thermal-class0.conf
 vendor/etc/thermal-engine.conf
 vendor/etc/thermal-map.conf
+vendor/etc/thermal-navigation.conf
 vendor/etc/thermal-nolimits.conf
 vendor/etc/thermal-normal.conf
 vendor/etc/thermal-phone.conf
 vendor/etc/thermal-tgame.conf
+vendor/etc/thermal-video.conf
+vendor/etc/thermal-videochat.conf
+vendor/etc/thermal-youtube.conf
 vendor/etc/thermald-devices.conf
-
-# Thermal configs (India) - from alioth_global-user 12 RKQ1.200826.002 V13.0.2.0.SKHMIXM release-keys
-vendor/etc/thermal-india-class0.conf|7cc57c1e625297c600c840a08e6e7d2d0af81817
-vendor/etc/thermal-india-mgame.conf|fda5b9fef4e24146ba430241eb100919f660c376
-vendor/etc/thermal-india-normal.conf|3ace701339810d147a2abf8cb8e77c1651c107c8
-vendor/etc/thermal-india-tgame.conf|085bf32b1cbe16516ee0adf4ac4f6e57ef4840a4
-vendor/etc/thermal-india-video.conf|bb15b873112319704323f219b382bd18b1996b56
-vendor/etc/thermal-map-india.conf|fdee294162e90ba8c7b60c8aac3d3f3ac84f2fef
-vendor/etc/thermal-region-map.conf|8a60e0d66e519e0301c3192a5c1740e21f2170bf
 
 # Time services
 -vendor/app/TimeService/TimeService.apk

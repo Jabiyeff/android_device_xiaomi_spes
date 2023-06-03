@@ -42,6 +42,17 @@ on early-init
     chown root system /dev/kmsg
     chmod 0620 /dev/kmsg
 
+on init
+    #disable absolute volume
+    setprop  persist.bluetooth.disableabsvol true
+    setprop  persist.sys.btsatck.absvolfeature false
+    setprop  persist.vendor.bt.a2dp.absvolfeature false
+
+on property:persist.vendor.bt.a2dp.absvolfeature=true
+       setprop persist.vendor.bt.a2dp.absvolfeature false
+on property:persist.sys.btsatck.absvolfeature=true
+       setprop persist.sys.btsatck.absvolfeature false
+
 on post-fs
     mkdir /mnt/vendor/dsp 0770 root root
     copy /vendor/dsp/cdsp/fastrpc_shell_3 /mnt/vendor/dsp/fastrpc_shell_3

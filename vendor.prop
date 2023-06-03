@@ -21,6 +21,7 @@ ro.vendor.audio.surround.support=flase
 ro.vendor.audio.us.proximity=true
 ro.vendor.audio.vocal.support=flase
 ro.vendor.audio.voice.change.support=true
+ro.vendor.audio.voice.change.version=2
 vendor.audio.adm.buffering.ms=2
 vendor.audio.chk.cal.us=0
 vendor.audio.feature.a2dp_offload.enable=true
@@ -192,6 +193,8 @@ ro.vendor.extension_library=libqti-perfd-client.so
 
 # Radio
 persist.radio.multisim.config=dsds
+persist.sys.cnss_diag.enable=false
+persist.sys.tcpdump.enable=false
 persist.vendor.data.iwlan.enable=true
 persist.vendor.radio.add_power_save=1
 persist.vendor.radio.apm_sim_not_pwdn=1
@@ -264,6 +267,7 @@ wifi.aware.interface=wifi-aware0
 
 # WLAN
 persist.vendor.sys.cnd.iwlan=1
+ro.hardware.wlan.dbs=0
 ro.telephony.iwlan_operation_mode=legacy
 
 # SoC
