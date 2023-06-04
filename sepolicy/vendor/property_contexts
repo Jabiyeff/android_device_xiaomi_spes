@@ -79,9 +79,19 @@ vendor.sys.feature_state                        u:object_r:vendor_mtdservice_pro
 # RIL
 ro.vendor.ril                                   u:object_r:vendor_public_vendor_default_prop:s0
 
+# Sensor
+persist.sensor.                                 u:object_r:vendor_sensors_prop:s0
+invn.hal.data.                                  u:object_r:vendor_sensors_prop:s0
+invn.hal.entry.                                 u:object_r:vendor_sensors_prop:s0
+invn.hal.debug.                                 u:object_r:vendor_sensors_prop:s0
+invn.hal.verbose.                               u:object_r:vendor_sensors_prop:s0
+
 # Thermal
+sys.thermal.                                    u:object_r:vendor_thermal_normal_prop:s0
 vendor.sys.thermal.                             u:object_r:vendor_thermal_normal_prop:s0
+persist.sys.thermal.config                      u:object_r:vendor_thermal_normal_prop:s0
 
 # WiFi
+ro.wlan.bdf                                     u:object_r:vendor_public_vendor_default_prop:s0
 ro.wlan.chip                                    u:object_r:vendor_public_vendor_default_prop:s0
 ro.ril.oem.wifimac                              u:object_r:vendor_wifimac_prop:s0
