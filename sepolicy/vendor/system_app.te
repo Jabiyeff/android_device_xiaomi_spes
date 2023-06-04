@@ -1,6 +1,7 @@
 allow system_app proc_pagetypeinfo:file r_file_perms;
 allow system_app vendor_sysfs_battery_supply:dir r_dir_perms;
 allow system_app vendor_sysfs_battery_supply:file r_file_perms;
+allow system_app sysfs_kgsl:dir { read getattr search open };
 allow system_app sysfs_thermal:file rw_file_perms;
 allow system_app sysfs_zram:dir r_dir_perms;
 allow system_app sysfs_zram:file r_file_perms;
