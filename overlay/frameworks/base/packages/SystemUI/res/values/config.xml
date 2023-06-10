@@ -31,7 +31,10 @@
     <bool name="config_roundedCornerMultipleRadius">true</bool>
 
     <!-- Preferred refresh rate at keyguard, if supported by the display -->
-    <integer name="config_keyguardRefreshRate">90</integer>
+    <integer name="config_keyguardRefreshRate">60</integer>
+
+    <!-- Preferred max refresh rate at keyguard, if supported by the display. -->
+    <integer name="config_keyguardMaxRefreshRate">60</integer>
 
     <!-- Override value to use for proximity sensor.  -->
     <string name="proximity_sensor_type" translatable="false">android.sensor.proximity</string>
