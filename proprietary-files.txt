@@ -1003,7 +1003,6 @@ vendor/firmware/scuba_ipa_fws.mdt
 
 # IRQ balance
 vendor/bin/msm_irqbalance
-vendor/etc/msm_irqbalance.conf
 
 # IWlan
 -vendor/app/IWlanService/IWlanService.apk
