@@ -65,6 +65,7 @@ vendor.audio.volume.headset.gain.depcal=true
 vendor.audio_hal.in_period_size=144
 vendor.audio_hal.period_multiplier=3
 vendor.audio_hal.period_size=192
+vendor.display.defer_fps_frame_count=2
 vendor.voice.path.for.pcm.voip=true
 
 # Bluetooth
