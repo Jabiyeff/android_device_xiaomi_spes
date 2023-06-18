@@ -171,6 +171,9 @@ TARGET_KERNEL_CONFIG := vendor/bengal_defconfig
 TARGET_KERNEL_HEADERS := kernel/xiaomi/spes
 TARGET_KERNEL_SOURCE := kernel/xiaomi/spes
 
+# Lineage Health
+TARGET_HEALTH_CHARGING_CONTROL_SUPPORTS_BYPASS := false
+
 # LMKD
 TARGET_LMKD_STATS_LOG := true
 
