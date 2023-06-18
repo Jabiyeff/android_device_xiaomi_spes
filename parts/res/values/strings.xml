@@ -16,7 +16,6 @@
 -->
 <resources>
     <!-- Refresh Rate Settings -->
-    <string name="refresh_rate_tile_title">Refresh Rate</string>
     <string name="refresh_title">App Refresh Rate</string>
     <string name="refresh_summary">Adjust per-app maximum refresh rate</string>
     <string name="refresh_default">Default</string>
