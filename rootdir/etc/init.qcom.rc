@@ -343,16 +343,8 @@ service vendor.qcom-post-boot /vendor/bin/init.qcom.post_boot.sh
     disabled
     oneshot
 
-service vendor.display-refresh /vendor/bin/init.display.refresh.sh
-    class late_start
-    user root
-    group root system graphics
-    disabled
-    oneshot
-
 on property:sys.boot_completed=1
     start vendor.qcom-post-boot
-    start vendor.display-refresh
 
 on property:ro.vendor.ril.mbn_copy_completed=1
     write /data/vendor/radio/copy_complete 1
