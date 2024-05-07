@@ -446,7 +446,11 @@ PRODUCT_PACKAGES += \
     android.hardware.sensors@2.1-service.xiaomi-multihal \
     android.frameworks.sensorservice@1.0.vendor \
     android.frameworks.sensorservice@1.0 \
-    libsensorndkbridge
+    libsensorndkbridge \
+    sensors.xiaomi
+
+PRODUCT_COPY_FILES += \
+    $(LOCAL_PATH)/configs/sensors/hals.conf:$(TARGET_COPY_OUT_VENDOR)/etc/sensors/hals.conf
 
 # Soong namespaces
 PRODUCT_SOONG_NAMESPACES += \
