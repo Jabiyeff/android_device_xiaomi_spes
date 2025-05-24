@@ -196,6 +196,10 @@ vendor.gralloc.disable_ubwc=0
 vendor.gralloc.secure_preview_buffer_format=420_sp
 vendor.display.override_doze_mode=1
 
+# HWUI
+debug.hwui.use_hint_manager=true
+debug.hwui.target_cpu_time_percent=30
+
 # Media Codecs
 debug.stagefright.c2inputsurface=-1
 debug.stagefright.ccodec=1
