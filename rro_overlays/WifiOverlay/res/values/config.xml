@@ -11,7 +11,7 @@
     <bool name="config_wifi5ghzSupport" translatable="false">true</bool>
 
     <!-- boolean indicating whether the WiFi chipset has 6GHz band support -->
-    <bool name="config_wifi6ghzSupport">true</bool>
+    <bool name="config_wifi6ghzSupport" translatable="false">true</bool>
 
     <!-- Integer indicating maximum hardware supported client number of soft ap -->
     <integer name="config_wifiHardwareSoftapMaxClientCount" translatable="false">32</integer>
@@ -66,7 +66,7 @@
     <bool name="config_wifi_fast_bss_transition_enabled" translatable="false">true</bool>
 
     <!-- Wifi driver Automatic channel selection (ACS) for softap to include DFS channels -->
-    <bool name="config_wifiSoftapAcsIncludeDfs" translatable="false">true</bool>
+    <bool name="config_wifiSoftapAcsIncludeDfs" translatable="false">false</bool>
 
     <!-- integer indicating additional disconnect delay (in ms) after IMS onLost() indication is received -->
     <integer name="config_wifiDelayDisconnectOnImsLostMs" translatable="false">1000</integer>
@@ -92,4 +92,7 @@
     <!-- Enable concurrent restricted connectivity + internet connectivity
          Note: this is conditional on the device supporting dual concurrent STAs. -->
     <bool translatable="false" name="config_wifiMultiStaRestrictedConcurrencyEnabled">true</bool>
+	
+	<!-- For Dual SoftaAp -->
+    <bool translatable="false" name="config_wifi_dual_sap_mode_enabled">false</bool>
 </resources>
