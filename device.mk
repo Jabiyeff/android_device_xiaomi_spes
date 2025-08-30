@@ -21,6 +21,9 @@ ifeq ($(wildcard hardware/xiaomi/Android.bp),)
 $(error Error: cannot found hardware/xiaomi repository, please clone it and try to build again!)
 endif
 
+# Libinit
+$(call soong_config_set,libinit,vendor_init_lib,//$(LOCAL_PATH):init_xiaomi_spes)
+
 # Enable Dynamic partition
 PRODUCT_USE_DYNAMIC_PARTITIONS := true
 
