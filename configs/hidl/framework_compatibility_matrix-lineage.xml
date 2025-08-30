@@ -1,9 +1,0 @@
-<compatibility-matrix version="2.0" type="framework">
-    <hal format="aidl">
-        <name>vendor.lineage.health</name>
-        <interface>
-            <name>IChargingControl</name>
-            <instance>default</instance>
-        </interface>
-    </hal>
-</compatibility-matrix>
