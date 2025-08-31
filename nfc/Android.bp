@@ -1,0 +1,39 @@
+cc_prebuilt_binary {
+    name: "STFlashTool",
+    owner: "xiaomi",
+    target: {
+        android_arm64: {
+            srcs: [
+                "STFlashTool",
+            ],
+        },
+    },
+    compile_multilib: "64",
+    strip: {
+        none: true,
+    },
+    
+    check_elf_files: false,
+    prefer: true,
+    soc_specific: true,
+}
+
+cc_prebuilt_library_shared {
+    name: "libstfactory-vendor",
+    owner: "xiaomi",
+    strip: {
+        none: true,
+    },
+    target: {
+        android_arm64: {
+            srcs: [
+                "libstfactory-vendor.so",
+            ],
+        },
+    },
+    compile_multilib: "64",
+
+    check_elf_files: false,
+    prefer: true,
+    soc_specific: true,
+}

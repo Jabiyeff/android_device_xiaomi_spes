@@ -15,6 +15,6 @@ cc_prebuilt_library_shared {
             srcs: ["v34/arm64/libcrypto-v34.so"],
         },
     },
-    compile_multilib: "both",
+    compile_multilib: "64",
     check_elf_files: false,
 }

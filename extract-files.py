@@ -49,11 +49,13 @@ blob_fixups: blob_fixups_user_type = {
         .strip_debug_sections(),
     'vendor/lib64/libwvhidl.so': blob_fixup()
         .replace_needed('libcrypto.so', 'libcrypto-v34.so'),
+    'vendor/lib64/mediadrm/libwvdrmengine.so': blob_fixup()
+        .replace_needed('libcrypto.so', 'libcrypto-v34.so'),
     'vendor/lib64/libgoodixhwfingerprint.so': blob_fixup()
         .replace_needed('libvendor.goodix.hardware.biometrics.fingerprint@2.1.so', 'vendor.goodix.hardware.biometrics.fingerprint@2.1.so'),
-    ('vendor/lib/libadreno_app_profiles.so', 'vendor/lib64/libadreno_app_profiles.so'): blob_fixup()
-        .remove_needed('vendor.qti.qspmhal-V1-ndk.so')
-        .remove_needed('libqspm-mem-utils-vendor.so'),
+#    ('vendor/lib/libadreno_app_profiles.so', 'vendor/lib64/libadreno_app_profiles.so'): blob_fixup()
+#        .remove_needed('vendor.qti.qspmhal-V1-ndk.so')
+#        .remove_needed('libqspm-mem-utils-vendor.so'),
 }  # fmt: skip
 
 module = ExtractUtilsModule(
