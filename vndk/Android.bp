@@ -11,9 +11,6 @@ cc_prebuilt_library_shared {
         none: true,
     },
     target: {
-        android_arm: {
-            srcs: ["v34/arm/libcrypto-v34.so"],
-        },
         android_arm64: {
             srcs: ["v34/arm64/libcrypto-v34.so"],
         },

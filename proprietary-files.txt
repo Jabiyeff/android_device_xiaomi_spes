@@ -99,12 +99,7 @@ system_ext/framework/audiosphere.jar
 
 # Audio Libraries
 -vendor/lib/liba2dpoffload.so
--vendor/lib/libacdb-fts.so
--vendor/lib/libacdbloader.so
--vendor/lib/libacdbrtac.so
--vendor/lib/libadiertac.so
 -vendor/lib/libadm.so
--vendor/lib/libaudcal.so
 -vendor/lib/libaudioalsa.so
 -vendor/lib/libaudioconfigstore.so
 -vendor/lib/libaudioparsers.so
@@ -121,6 +116,11 @@ system_ext/framework/audiosphere.jar
 -vendor/lib/libspkrprot.so
 -vendor/lib/libssrec.so
 -vendor/lib/libsurround_3mic_proc.so
+-vendor/lib64/libacdb-fts.so
+-vendor/lib64/libacdbloader.so
+-vendor/lib64/libacdbrtac.so
+-vendor/lib64/libadiertac.so
+-vendor/lib64/libaudcal.so
 
 # Batterysecret
 -vendor/bin/batterysecret
@@ -298,6 +298,7 @@ vendor/lib64/camera/fdconfigvideolite.bin
 -vendor/lib64/libmiai_supernight.so
 -vendor/lib64/libmialgoengine.so
 -vendor/lib64/libmibokeh_712.so
+-vendor/lib64/libmm-color-convertor.so
 -vendor/lib64/libmorpho_Lowlight.so
 -vendor/lib64/libmpbase.so
 -vendor/lib64/libofflinelog.so
@@ -321,6 +322,7 @@ vendor/lib64/camera/fdconfigvideolite.bin
 -vendor/lib64/libwa_rtdof.so
 -vendor/lib64/libwa_widelens_undistort.so
 -vendor/lib64/libxmi_high_dynamic_range.so
+-vendor/lib64/libxml2_vendor.so
 
 # Camera Arcsoft
 -vendor/lib64/libarcsoft_beautyshot.so
@@ -597,7 +599,6 @@ vendor/etc/init/vendor.xiaomi.hardware.displayfeature@1.0-service.rc
 -vendor/lib64/libdisplayqos.so
 -vendor/lib64/libdisplayskuutils.so
 -vendor/lib64/libdpp_manager.so
--vendor/lib64/libdpps.so
 -vendor/lib64/libqseed3.so
 -vendor/lib64/librcmask.so
 -vendor/lib64/libsdm-color.so
@@ -632,11 +633,6 @@ system_ext/etc/permissions/com.qti.dpmframework.xml
 system_ext/etc/permissions/dpmapi.xml
 system_ext/framework/com.qti.dpmframework.jar
 system_ext/framework/dpmapi.jar
--system_ext/lib/com.qualcomm.qti.dpm.api@1.0.so
--system_ext/lib/libdpmctmgr.so
--system_ext/lib/libdpmfdmgr.so
--system_ext/lib/libdpmframework.so
--system_ext/lib/libdpmtcm.so
 -system_ext/lib64/com.qualcomm.qti.dpm.api@1.0.so
 -system_ext/lib64/libdpmctmgr.so
 -system_ext/lib64/libdpmfdmgr.so
@@ -679,7 +675,7 @@ vendor/etc/permissions/com.fingerprints.extension.xml
 vendor/framework/com.fingerprints.extension.jar
 -vendor/lib/vendor.qti.hardware.fingerprint@1.0.so
 -vendor/lib64/hw/fingerprint.fpc.default.so
--vendor/lib64/hw/fingerprint.goodix.default.so
+-vendor/lib64/hw/fingerprint.goodix.default.so;FIX_SONAME
 -vendor/lib64/libgf_ca.so
 -vendor/lib64/libgf_hal.so
 -vendor/lib64/libgoodixhwfingerprint.so
@@ -719,6 +715,9 @@ vendor/etc/xtra_root_cert.pem
 -vendor/lib64/hw/android.hardware.gnss@2.1-impl-qti.so
 -vendor/lib64/hw/vendor.qti.gnss@4.0-impl.so
 -vendor/lib64/libaoa.so
+-vendor/lib64/libasn1cper.so
+-vendor/lib64/libasn1crt.so
+-vendor/lib64/libasn1crtx.so
 -vendor/lib64/libbatching.so
 -vendor/lib64/libcacertclient.so
 -vendor/lib64/libdataitems.so
@@ -756,6 +755,7 @@ vendor/etc/xtra_root_cert.pem
 -vendor/lib64/vendor.qti.gnss@3.0.so
 -vendor/lib64/vendor.qti.gnss@4.0-service.so
 -vendor/lib64/vendor.qti.gnss@4.0.so
+-vendor/lib64/vendor.qti.hardware.cacert@1.0.so
 
 # GPS
 vendor/etc/apdr.conf
@@ -767,32 +767,32 @@ vendor/etc/sap.conf
 vendor/etc/xtwifi.conf
 
 # Graphics Adreno - from v757 by tryigit
--vendor/lib/egl/eglSubDriverAndroid.so
--vendor/lib/egl/libEGL_adreno.so
--vendor/lib/egl/libGLESv1_CM_adreno.so
--vendor/lib/egl/libGLESv2_adreno.so
--vendor/lib/egl/libq3dtools_adreno.so
--vendor/lib/egl/libq3dtools_esx.so
--vendor/lib/libadreno_app_profiles.so
--vendor/lib/libadreno_utils.so
--vendor/lib/libC2D2.so
--vendor/lib/libc2d30_bltlib.so
--vendor/lib/libgsl.so
--vendor/lib/libllvm-glnext.so
--vendor/lib/libllvm-qgl.so
--vendor/lib64/egl/eglSubDriverAndroid.so
--vendor/lib64/egl/libEGL_adreno.so
--vendor/lib64/egl/libGLESv1_CM_adreno.so
--vendor/lib64/egl/libGLESv2_adreno.so
--vendor/lib64/egl/libq3dtools_adreno.so
--vendor/lib64/egl/libq3dtools_esx.so
--vendor/lib64/libadreno_app_profiles.so
--vendor/lib64/libadreno_utils.so
--vendor/lib64/libC2D2.so
--vendor/lib64/libc2d30_bltlib.so
--vendor/lib64/libgsl.so
--vendor/lib64/libllvm-glnext.so
--vendor/lib64/libllvm-qgl.so
+-vendor/lib/egl/eglSubDriverAndroid.so|9f76906266649d5c8bb98c693c9dbfa87e06d720
+-vendor/lib/egl/libEGL_adreno.so|00675b9ebff3fc836e166ef22991d12684bc0448
+-vendor/lib/egl/libGLESv1_CM_adreno.so|1d7f7b8bc6b177cd7eb3205212f7d20fa6db04a4
+-vendor/lib/egl/libGLESv2_adreno.so|b8080669f8a7139d3d7febb71e1fe287a934f163
+-vendor/lib/egl/libq3dtools_adreno.so|323e297790439794d50c0a2901e5129de2bdef4e
+-vendor/lib/egl/libq3dtools_esx.so|e8138832bb59fae3f7a9ead2db5e3eedd95fd820
+-vendor/lib/libadreno_app_profiles.so|a8852a9a2bf934401f0d0c4d7b79687dad3a100e
+-vendor/lib/libadreno_utils.so|125545343b3d7e2f65bddac3b1aa33e1794d9172
+-vendor/lib/libC2D2.so|909c06c3f780da8ea77e8bd0e328e444db19aefd
+-vendor/lib/libc2d30_bltlib.so|64d8012ee00227cf3bafc0f510e1daac3d0215f2
+-vendor/lib/libgsl.so|fcb25c397cef45a30239d82355815536c91d94e8
+-vendor/lib/libllvm-glnext.so|a71bf7c86c1d7e0f983712827d662fdf35ec3f7d
+-vendor/lib/libllvm-qgl.so|b6d221cccc7fc1d64628ba7edf22f11197062191
+-vendor/lib64/egl/eglSubDriverAndroid.so|0acaba7a64fb3522af5119bcdf50c12bda8e3d11
+-vendor/lib64/egl/libEGL_adreno.so|6960a3645afe097a25dd1d2bf7914a804ba2e787
+-vendor/lib64/egl/libGLESv1_CM_adreno.so|d02fd3da6d3135f4aeccabb2a861e11650e7d8e9
+-vendor/lib64/egl/libGLESv2_adreno.so|ac20806e23e3c56b471fdd34dc369a9707ccb376
+-vendor/lib64/egl/libq3dtools_adreno.so|2d698f5d23a324871f91f173418e1775948baf0c
+-vendor/lib64/egl/libq3dtools_esx.so|ed4bb351c0475a193ff2c90c1a735d801bfda57f
+-vendor/lib64/libadreno_app_profiles.so|e40e50eda680458a6016b71f4c00ec8a891ae9cf
+-vendor/lib64/libadreno_utils.so|2b75abcaba8e0801e878201328126e0b67689459
+-vendor/lib64/libC2D2.so|f4f572f85fdd2dd741112060a8fdf49cb646a91d
+-vendor/lib64/libc2d30_bltlib.so|46512132c1ba8f72d58b19ec3e754503fa1653d6
+-vendor/lib64/libgsl.so|c914c3fde7c6c98e7f5388802074953c5588b4e2
+-vendor/lib64/libllvm-glnext.so|0a2bae6ec3516e396deb7810b0a45ec2bbd0a22a
+-vendor/lib64/libllvm-qgl.so|44f2e97ab4436be6abef27b2684b3ec6349b0294
 
 # Graphics Adreno
 -vendor/lib/libCB.so
@@ -815,8 +815,8 @@ vendor/firmware/a610_zap.mdt
 vendor/firmware/a630_sqe.fw
 
 # Graphics Vulkan - from v757 by tryigit
--vendor/lib/hw/vulkan.adreno.so
--vendor/lib64/hw/vulkan.adreno.so
+-vendor/lib/hw/vulkan.adreno.so|9f4fd884bb4e947264487f396b9c747b660c30a7
+-vendor/lib64/hw/vulkan.adreno.so|70944c6f369d720274165d5839e5202ffd3eb727
 
 # HotwordEnrollment
 -product/priv-app/HotwordEnrollmentOKGoogleHEXAGON_WIDEBAND/HotwordEnrollmentOKGoogleHEXAGON_WIDEBAND.apk
@@ -951,6 +951,7 @@ vendor/etc/seccomp_policy/mediacodec.policy
 -vendor/lib/libApeSwDec.so
 -vendor/lib/libFlacSwDec.so
 -vendor/lib/libMpeg4SwEncoder.so
+-vendor/lib/libMpeghSwEnc.so
 -vendor/lib/libOmxAacDec.so
 -vendor/lib/libOmxAlacDec.so
 -vendor/lib/libOmxAlacDecSw.so
@@ -970,6 +971,10 @@ vendor/etc/seccomp_policy/mediacodec.policy
 -vendor/lib/libOmxWmaDec.so
 -vendor/lib/libdsd2pcm.so
 -vendor/lib/libswvdec.so
+-vendor/lib/libwfdcommonutils_proprietary.so
+-vendor/lib/libwfddisplayconfig_proprietary.so
+-vendor/lib/libwfdmmservice_proprietary.so
+-vendor/lib/libwfdutils_proprietary.so
 
 # Mlipay
 -vendor/etc/vintf/manifest/manifest_vendor.xiaomi.hardware.mlipay.xml
@@ -983,8 +988,8 @@ vendor/etc/init/vendor.xiaomi.hardware.mtdservice@1.3-service.rc
 -vendor/lib64/libmlipay@1.1.so
 -vendor/lib64/libmt@1.3.so
 -vendor/lib64/libwvkeybox.so
--vendor/lib64/vendor.xiaomi.hardware.mfidoca@1.0.so
--vendor/lib64/vendor.xiaomi.hardware.mtdservice@1.3.so
+-vendor/lib64/vendor.xiaomi.hardware.mfidoca@1.0.so;MODULE_SUFFIX=_vendor
+-vendor/lib64/vendor.xiaomi.hardware.mtdservice@1.3.so;MODULE_SUFFIX=_vendor
 
 # Modules
 vendor/lib/modules/modules.alias
@@ -1035,27 +1040,12 @@ system/etc/sysconfig/qti_whitelist.xml
 -vendor/bin/irsc_util
 vendor/etc/seccomp_policy/qti-systemd.policy
 vendor/etc/sec_config
--vendor/lib/libdiag.so
--vendor/lib/libdsi_netctrl.so
--vendor/lib/libdsutils.so
--vendor/lib/libidl.so
--vendor/lib/libqcci_legacy.so
--vendor/lib/libqcmaputils.so
--vendor/lib/libqdi.so
--vendor/lib/libqdp.so
--vendor/lib/libqmi.so
--vendor/lib/libqmi_cci.so
--vendor/lib/libqmi_client_helper.so
--vendor/lib/libqmi_client_qmux.so
--vendor/lib/libqmi_common_so.so
--vendor/lib/libqmi_csi.so
--vendor/lib/libqmi_encdec.so
--vendor/lib/libqmiservices.so
 -vendor/lib64/libdiag.so
 -vendor/lib64/libdsi_netctrl.so
 -vendor/lib64/libdsutils.so
 -vendor/lib64/libidl.so
 -vendor/lib64/libqcci_legacy.so
+-vendor/lib64/libqmi_legacy.so
 -vendor/lib64/libqcmaputils.so
 -vendor/lib64/libqdi.so
 -vendor/lib64/libqdp.so
@@ -1199,14 +1189,9 @@ vendor/etc/init/vendor.sensors.qti.rc
 vendor/etc/init/vendor.sensors.sscrpcd.rc
 vendor/etc/elliptic_sensor.xml
 -vendor/lib64/hw/sensors.elliptic@2.0.so
--vendor/lib64/libnotifyaudiohal.so
+-vendor/lib64/libnotifyaudiohal.so;FIX_SONAME
 -vendor/lib64/libsensorcal.so
 -vendor/lib64/libsensorslog.so
--vendor/lib64/libsns_device_mode_stub.so
--vendor/lib64/libsns_fastRPC_util.so
--vendor/lib64/libsns_low_lat_stream_stub.so
--vendor/lib64/libsnsapi.so
--vendor/lib64/libsnsdiaglog.so
 -vendor/lib64/libssc.so
 -vendor/lib64/libssc_default_listener.so
 -vendor/lib64/sensors.ssc.so
@@ -1278,7 +1263,6 @@ vendor/etc/sensors/sns_reg_config
 vendor/etc/sensor_diag.cfg
 
 # Secure element
--vendor/lib/android.hardware.secure_element@1.0-impl.so
 -vendor/lib64/android.hardware.secure_element@1.0-impl.so
 
 # Snapdragon Computer Vision Engine
