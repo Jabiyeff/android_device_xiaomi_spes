@@ -53,6 +53,8 @@ blob_fixups: blob_fixups_user_type = {
         .replace_needed('libcrypto.so', 'libcrypto-v34.so'),
     'vendor/lib64/libgoodixhwfingerprint.so': blob_fixup()
         .replace_needed('libvendor.goodix.hardware.biometrics.fingerprint@2.1.so', 'vendor.goodix.hardware.biometrics.fingerprint@2.1.so'),
+    'vendor/etc/seccomp_policy/atfwd@2.0.policy': blob_fixup()
+        .add_line_if_missing('gettid: 1'),
 #    ('vendor/lib/libadreno_app_profiles.so', 'vendor/lib64/libadreno_app_profiles.so'): blob_fixup()
 #        .remove_needed('vendor.qti.qspmhal-V1-ndk.so')
 #        .remove_needed('libqspm-mem-utils-vendor.so'),
