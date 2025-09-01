@@ -99,7 +99,12 @@ system_ext/framework/audiosphere.jar
 
 # Audio Libraries
 -vendor/lib/liba2dpoffload.so
+-vendor/lib/libacdb-fts.so
+-vendor/lib/libacdbloader.so
+-vendor/lib/libacdbrtac.so
+-vendor/lib/libadiertac.so
 -vendor/lib/libadm.so
+-vendor/lib/libaudcal.so
 -vendor/lib/libaudioalsa.so
 -vendor/lib/libaudioconfigstore.so
 -vendor/lib/libaudioparsers.so
