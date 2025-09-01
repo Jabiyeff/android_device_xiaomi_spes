@@ -1037,6 +1037,13 @@ system/etc/sysconfig/qti_whitelist.xml
 -vendor/bin/irsc_util
 vendor/etc/seccomp_policy/qti-systemd.policy
 vendor/etc/sec_config
+-vendor/lib/libdiag.so
+-vendor/lib/libidl.so
+-vendor/lib/libqmi_cci.so
+-vendor/lib/libqmi_common_so.so
+-vendor/lib/libqmi_csi.so
+-vendor/lib/libqmi_encdec.so
+-vendor/lib/libqmiservices.so
 -vendor/lib64/libdiag.so
 -vendor/lib64/libdsi_netctrl.so
 -vendor/lib64/libdsutils.so
