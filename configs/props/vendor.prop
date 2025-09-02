@@ -136,6 +136,7 @@ ro.qcom.adreno.qgl.ShaderStorageImageExtendedFormats=0
 debug.sf.auto_latch_unsignaled=false
 debug.sf.disable_client_composition_cache=1
 debug.sf.enable_gl_backpressure=1
+debug.sf.frame_rate_multiple_threshold=90
 debug.sf.use_phase_offsets_as_durations=1
 debug.sf.enable_egl_image_tracker=1
 debug.sf.late.sf.duration=10500000
