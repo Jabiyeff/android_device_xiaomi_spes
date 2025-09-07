@@ -971,6 +971,8 @@ vendor/etc/seccomp_policy/mediacodec.policy
 -vendor/lib/libOmxQcelp13Dec.so
 -vendor/lib/libOmxSwVdec.so
 -vendor/lib/libOmxSwVencMpeg4.so
+-vendor/lib/libOmxVdec.so
+-vendor/lib/libOmxVenc.so
 -vendor/lib/libOmxVideoDSMode.so
 -vendor/lib/libOmxWmaDec.so
 -vendor/lib/libdsd2pcm.so
