@@ -5,6 +5,7 @@ soong_namespace {
           "hardware/google/interfaces",
           "hardware/google/pixel",
           "hardware/qcom-caf/bootctrl",
+          "hardware/qcom-caf/sm8250",
           "hardware/xiaomi"
      ],
 }
